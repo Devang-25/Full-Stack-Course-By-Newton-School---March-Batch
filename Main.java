@@ -1,4 +1,4 @@
-Date : 28th March 2022
+wDate : 28th March 2022
 Mentor: DEVANG SHARMA
 Batch: March Batch - 2
 
@@ -340,7 +340,6 @@ int a= "hello"; - INCORRECT
 
 Number(4), Decimal(2), Character(1), Boolean(1)
 
-
 (A) Character: 2 Bytes 
 
 Other Languages: 1 Byte in Memory (C, C++, Py, Perl, Go)
@@ -556,11 +555,11 @@ java : package
 
 - io (input output) (Modules)
     - bufferedreader
-    - scanner (FOCUS)
     - customreader
     - filereader
 
 - util (utility)
+    - scanner (FOCUS)
     - apiexception
     - collections
     - collections framework
@@ -579,13 +578,11 @@ How to Use a Class:
 
 import package.module.class
 
-
 import java.io.*;
 - Select All Classes inside io module of java package
 
 import java.util.*;
 - Select All Classes inside util module of java package
-
 
 
 
@@ -611,9 +608,9 @@ Scanner = Class
 sc = Object of Scanner Class
 
 
-System.in: Take Input from System
+System.in: Take Input from System (Environment)
 
-System.out : Print Output to System
+System.out : Print Output to System (Environment)
 
 
 Class obj;
@@ -625,6 +622,30 @@ obj: Actual Instance
 
 Class: Cars
 object: BMW/Mercedes/Tesla/Audi...
+
+
+
+NOTE:
+
+In Programming,
+a = b;
+
+Meaning: RIGHT TO LEFT
+b is assigned to a.
+
+Eg: 
+
+int a = 10;
+
+Reading: "10 is Assigned to a"
+
+
+int a = 10;
+int b = 20;
+
+a = b;
+
+Meaning: b is Assigned to a
 
 
 
@@ -642,13 +663,25 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt(); // 10
+
+        int a = sc.nextInt(); // 10    
         int b = sc.nextInt(); // 20
         int c = sc.nextInt(); // 30
+
+
+        OR
+
+        int a,b,c;
+        a = sc.nextInt(); // 10    
+        b = sc.nextInt(); // 20
+        c = sc.nextInt(); // 30
+
 
         System.out.println(a + " " + b + " " + c);
     }
 }
+
+
 
 
 IP:
@@ -706,13 +739,18 @@ d e v
 
 
 
+sc.nextLine(); - "devang sharma"
+sc.next(); - "devang"
+
+devang sharma
 
 
 
 
 
 
-Assignment - 2:
+
+Assignment - 2: Doctor Clinic
 
 Problem Statement
 
@@ -797,6 +835,58 @@ Ans = (10-X)*(N-1)
 
 
 
+Case: X >= 10
+Ans = 0
+
+X = 12
+10-X = -2
+
+
+Final Ans:
+
+if (x>=10)
+ans = 0;
+else
+ans = (10-x) * (n-1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 31st March 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 2
+
+Agenda:
+- Revision: DONE
+- Doubts: Assignments: DONE
+- Decoding First Java Code: DONE
+- Variables and Constants: DONE
+- Data Types: DONE
+- How to Take Input from User in Java: DONE
+- Assignment: DONE
+
+TODO:
+- Operators
+- Assignment Questions
+- Loops
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
 
 
 
@@ -810,6 +900,57 @@ Ans = (10-X)*(N-1)
 ------> Operators
 
 (1) Mathematical Operators:
+
+
++: Addition
+-: Subtraction
+*: Multiplication
+/: Division (Quotient)
+%: Modulus (Remainder)
+
+
+Long Division Method:
+
+12 = 7*1 + 5
+
+D = d*q + r
+
+D: Dividend : 12
+d: Divisor: 7
+q: Quotient: 1
+r: Remainder: 5
+
+
+50/7 = 7 (Quotient)
+50%7 = 1 (Remainder)
+
+
+
+Operator Overloading:
+
+One Operator behaves differently with different data types.
+
+
+Eg:
+
++:
+
+int: Add the Numbers
+String: Concatenate/Merge the String
+
+
+
+5 + 2 = 7 : Add
+"dev" + "ang" = "devang": Merge/Concatenate
+
+
+"": String
+'': Character
+
+
+
+CODE:
+
 
 
 import java.io.*;
@@ -827,11 +968,239 @@ public class Main {
         int c = a + b;
         int d = a * b;        
         int e = a - b;        
-        int f = b/a;        
-
-        System.out.println(c + " " + d + " " + e + " " + f);
+        int f = b/a;  
+        int g = b%a;
+      // 20 = 10*2 + 0(Rem)
+        g = a%b;
+    // 10 = 20*0 + 10(Rem)
+     
+System.out.println(c + " " + d + " " + e + " " + f + " " + g);
         
     }
+}
+
+
+10 % 20 = 10, 20>10 
+n % p = n, p>n
+
+
+p = 45
+n = 12
+
+12 = 0*45 + 12
+
+12 % 45 = 12
+
+
+
+
+
+- Taking Input 
+- Printing Output
+- Mathematical Operations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----> Loops
+
+
+
+Q: WAP to Take Input of 10 Integers
+
+Solution:
+
+Scanner s = new Scanner(System.in);
+
+int a = s.nextInt();
+int b = s.nextInt();
+int c = s.nextInt();
+int d = s.nextInt();
+
+.... 10 Times
+
+
+
+
+LOOP: 
+Same Thing on Repetition
+
+
+Movie: Inception, Edge of Tomorrow
+
+
+(1) For Loop
+
+
+for (initilisation ; condition ; increment/decrement)
+{
+    // Code to be executed
+}
+
+
+Flow of For Loop:
+
+(1) initilisation: ONLY ONCE AT THE BEGINNING
+(2) condition Check: 
+- Pass: Enter Loop
+- Incorrect: Exit Loop
+
+(3) After Entering Loop
+(4) increment/decrement
+(5) Step 2 and repeat
+
+
+i++ or ++i = i = i+1: Increment the Value By 1
+i-- or --i = i = i-1: Decrement the Value by 1
+
+i+=k : i = i+k: Increment the Value By k
+i-=k : i = i-k: Decrement the Value By k
+
+
+
+    int i;
+    for (i=0; i<10; i++)
+    {
+    System.out.print(i + " ");
+    }
+
+System.out.println(i); // 10
+
+
+
+OP: 
+
+0 1 2 3 4 5 6 7 8 9
+
+
+for (i=0; i<10; i++) - 10 Times
+
+for (i=0; i<n; i++) - N Times
+
+
+
+
+
+
+
+
+
+    int i;
+    for (i=0; i<=10; i++)
+    {
+    System.out.print(i + " ");
+    }
+
+
+OP: 0 1 2 3 4 5 6 7 8 9 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+(2) While Loop
+
+
+
+
+(3) Do While Loop
+
+
+
+
+
+
+
+-----> Take Multiple Input as per Test Cases:
+
+
+(A) Only 1 Test Case:
+
+IP: 1 2
+
+Scanner s = new Scanner(System.in);
+int a = s.nextInt(); // 1
+int b = s.nextInt(); // 2
+
+
+
+(B) Take 5 Times Input for Test Cases:
+
+
+5
+1 2
+3 4 
+5 6
+7 8
+
+
+Scanner s = new Scanner(System.in);
+
+for (i=0; i<5; i++)
+{
+int a = s.nextInt(); // 1
+int b = s.nextInt(); // 2
+}
+
+Memory: 40 Bytes
+
+
+More Efficient:
+
+
+Scanner s = new Scanner(System.in);
+int i,a,b; // 12 Bytes
+
+for (i=0; i<5; i++)
+{
+a = s.nextInt(); // 1
+b = s.nextInt(); // 2
+}
+
+
+(C) Take N Times Input for Test Cases:
+
+5
+1 2
+3 4 
+5 6
+7 8
+9 10
+
+CODE:
+
+Scanner s = new Scanner(System.in);
+int tc = s.nextInt(); //5
+int i,a,b; 
+
+for (i=0; i<tc; i++)
+{
+a = s.nextInt(); // 1, 3, 5, 7, 9
+b = s.nextInt(); // 2, 4, 6, 8, 10
 }
 
 
@@ -846,12 +1215,29 @@ public class Main {
 
 
 
+Date : 1st April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 2
 
+Agenda:
 
+✅ Drive students to Mentor Session just after your session
 
+✅ Entrance Contest Dump
+Starts at 3 PM, Saturday tomorrow
+-Duration - 1hr
+-3 coding ques
+-15 MCQ's
+-Topic covered - Datatypes, loops, arithmetic options  (overall topics covered in Trial class)
+Mandatory to attend! For getting eligible for next steps
 
+✅ They have doubt session tomorrow from 11 AM -12 PM for doubt resolutions on topics which is helpful for contest
 
+- Operators
+- Assignment Questions
+- Loops
 
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
 
 
 
