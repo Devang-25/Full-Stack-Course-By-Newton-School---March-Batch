@@ -995,6 +995,197 @@ n = 12
 
 
 
+(2) Relational Operators: true/ false
+
+
+<  : Less Than
+>  : Greater Than
+<= : Less Than Or Equal To
+>= : Greater Than Or Equal To
+== : Equal To
+!= : No Equal To
+
+
+
+Note:
+
+In Programming,
+
+= : Assignment
+== : Equality
+!= : Inequality
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        
+        System.out.println(a<b); // 10<20: true
+        System.out.println(a>b); // 10>20: false
+        System.out.println(a==b); // 10 == 20: false
+        System.out.println(a!=b); // 10!=20: true
+
+    }
+}
+
+
+OP:
+
+true
+false
+false
+true
+
+
+
+
+
+
+
+(3) Logical Operators:
+
+&&: AND
+||: OR
+! : NOT
+
+
+
+AND: Both Must be True
+
+true && true = true
+true && false = false
+false && true = false
+false && false = false
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        
+        System.out.println(a<b && a<5); 
+        // 10<20: true && 10<5: false
+        // true && false: false
+        
+        System.out.println(a<b && a>5); 
+        // 10<20: true && 10>5: true
+        // true && true: true    
+    }
+}
+
+
+OP:
+
+false
+true
+
+
+
+OR: Even One is True
+
+true || true = true
+true || false = true
+false || true = true
+false || false = false
+
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        
+        System.out.println(a>b || a<5); 
+        // 10>20: false || 10<5: false
+        // false || false: false
+        
+        System.out.println(a<b || a<5); 
+        // 10<20: true || 10<5: false
+        // true || false: true    
+    }
+}
+
+
+
+OP:
+
+false
+true
+
+
+
+
+
+
+NOT:
+
+!0 = 1
+!1 = 0
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        boolean b = true, c = false;
+        
+        System.out.println(!b); 
+        // !true = false
+
+        System.out.println(!c); 
+        // !false = true
+    
+    }
+}
+
+
+
+OP:
+
+false
+true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Taking Input 
 - Printing Output
 - Mathematical Operations
@@ -1045,7 +1236,7 @@ Same Thing on Repetition
 Movie: Inception, Edge of Tomorrow
 
 
-(1) For Loop
+(1) For Loop - ENTRY BASED LOOP
 
 
 for (initilisation ; condition ; increment/decrement)
@@ -1091,7 +1282,7 @@ OP:
 
 for (i=0; i<10; i++) - 10 Times
 
-for (i=0; i<n; i++) - N Times
+for (i=0; i<N; i++) - N Times
 
 
 
@@ -1106,6 +1297,8 @@ for (i=0; i<n; i++) - N Times
     {
     System.out.print(i + " ");
     }
+
+    System.out.print(i); // 11
 
 
 OP: 0 1 2 3 4 5 6 7 8 9 10
@@ -1193,17 +1386,29 @@ b = s.nextInt(); // 2
 
 CODE:
 
+import java.io.*;
+import java.util.*;
+
+
+public class Main {
+    public static void main(String[] args) {    
+
 Scanner s = new Scanner(System.in);
 int tc = s.nextInt(); //5
 int i,a,b; 
 
 for (i=0; i<tc; i++)
 {
-a = s.nextInt(); // 1, 3, 5, 7, 9
+a = s.nextInt(); // 1, 3, 5, 7, 9 
 b = s.nextInt(); // 2, 4, 6, 8, 10
+
+System.out.println(a + " " + b);
 }
 
 
+        
+    }
+}
 
 
 
@@ -1224,6 +1429,22 @@ Agenda:
 ✅ Drive students to Mentor Session just after your session
 
 ✅ Entrance Contest Dump
+
+
+Time: 3 PM - 4 PM IST
+
+- 3 coding ques
+- 15 MCQ's
+- Topics: Datatypes, loops, arithmetic options
+
+
+
+Doubt Session: 11 AM - 12 PM IST
+
+
+
+
+
 Starts at 3 PM, Saturday tomorrow
 -Duration - 1hr
 -3 coding ques
@@ -1233,11 +1454,306 @@ Mandatory to attend! For getting eligible for next steps
 
 ✅ They have doubt session tomorrow from 11 AM -12 PM for doubt resolutions on topics which is helpful for contest
 
-- Operators
+
+
+- Operators: DONE
 - Assignment Questions
-- Loops
+- Loops: DONE
 
 "Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+byte c = 127+1-1: DONE
+
+
+If - Else:
+
+
+if (condition)
+{
+
+}
+else
+{
+
+}
+
+
+
+Nested If-Else:
+
+
+if (condition 1)
+{
+
+}
+
+else if (condition- 2)
+{
+
+}
+
+
+else
+
+
+
+
+
+Switch:
+
+
+Q: Dice Example
+
+ 1-6: True, Else: False
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // Dice Example
+        // 1-6: True, Else: False
+        
+    Scanner s = new Scanner(System.in);
+    int num = s.nextInt(); 
+    String ans = "FALSE"; - TO MAKE ELSE OPTIONAL
+       
+        if (num>=1 && num<= 6)
+        {
+            ans = "TRUE";
+        }
+        else - NOT REQUIRED
+        {
+            ans = "FALSE";
+        }
+        
+        System.out.println(ans);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Topics: Datatypes, loops, arithmetic options
+
+
+Even or Odd:
+
+Q: Input : Number
+OP: Odd or Even
+
+
+
+TC-1:
+
+3
+4
+5
+6
+
+OP:
+
+EVEN
+ODD
+EVEN
+
+
+
+
+Condition -> Diff OP ---> If-Else
+
+
+Concept: 
+- Take Multiple Input Test Cases : DONE
+- If Else
+- Arithmetic Operators
+
+
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+Scanner s = new Scanner(System.in);
+int tc = s.nextInt(); 
+int num, i=0; 
+String ans = "ODD";
+
+    for (i=0; i<tc; i++)
+    {
+        num = s.nextInt(); 
+        if (num % 2 == 0)   
+        {
+        ans = "EVEN";
+        }
+        
+        else
+        {
+        ans = "ODD";    
+        }
+
+    System.out.println(ans);
+    }
+    
+    }
+}
+
+
+
+
+
+
+Even: Divisible by 2
+
+%: Remainder
+Modulus 0 means Completely Divisible
+
+6%3 = 0
+
+12%2 = 0
+
+
+num % 2 == 0 --> Even
+else Odd
+
+
+
+
+
+
+
+
+
+Q: Fizzbuzz
+
+
+num % 3 == 0: Newton 
+
+num % 5 == 0: School
+
+num % 3 && num % 5  == 0: NewtonSchool
+OR
+ num % 15 == 0: NewtonSchool
+
+Else: Number
+
+
+OP:
+
+1: 1
+3: Newton
+5: School
+15: NewtonSchool
+
+
+num = 20
+
+if(num > 30)
+{
+
+}
+
+else if()
+{
+
+}
+
+else if()
+{
+
+}
+
+else
+{
+
+}    
+
+
+Solution: Always Follow in Decreasing Order (15 -> 5 -> 3)
+
+
+
+
+--- Why Increasing Order Gives Incorrect Answer?
+
+15: Newton
+
+
+if (num % 3 == 0)
+{
+
+}
+
+else if (num % 5 == 0)
+{
+
+
+}
+
+else if (num % 15 == 0)
+{
+
+
+}
+
+
+
+
+
+
+
+
+--- Why Decreasing Order Gives Correct Answer?
+
+
+
+15: NewtonSchool
+5
+
+if (num % 15 == 0)
+{
+
+}
+
+else if (num % 5 == 0)
+{
+
+
+}
+
+else if (num % 3 == 0)
+{
+
+
+}
+
+
+
+
+
 
 
 
