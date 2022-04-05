@@ -1168,45 +1168,58 @@ true
 
 
 
+(4) Unary Operators
+
+
+Unary: Unit: One Operand
+
+
+Pre-Increment/Decrement:
+
+Increases/Decreases the value by 1 BEFORE and then Use it
+
+int a =10;
+++a; // 11
+--a; // 10
+
+
+Post-Increment/Decrement:
+
+Use it and THEN Increases/Decreases the value by 1 
+
+int a = 10;
+a++; // 11
+a--; //10
 
 
 
 
+Difference:
+
+int a = 10;
+int c = a++ + ++a;
+System.out.println(c);
+
+OP: 22
+
+a++ (10) ---->11
+
++ 
+
+++a; (11--->12)
 
 
 
 
+int a = 10;
+int c = ++a + a++; // 11 + 11
+System.out.println(c);
+System.out.println(a); // 11-->12
+        
 
-
-
-
-
-
-
-
-
-
-- Taking Input 
-- Printing Output
-- Mathematical Operations
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+OP:
+22
+12        
 
 
 ----> Loops
@@ -1292,6 +1305,8 @@ for (i=0; i<N; i++) - N Times
 
 
 
+
+
     int i;
     for (i=0; i<=10; i++)
     {
@@ -1308,6 +1323,52 @@ OP: 0 1 2 3 4 5 6 7 8 9 10
 
 
 
+int i=1;
+for (; i<10; i++)
+{
+    System.out.print(i);
+}
+
+OP: 1-9
+
+
+
+for (int i=1; ; ++i)
+{
+    System.out.print(i);    
+}
+
+
+OP: 1 2 3 4 5 6 7 .......Infinite
+
+OP in Compiler: TLE
+
+
+
+for (int i=1; i<10; )
+{
+    System.out.print(i);    
+}
+
+OP: 1 1 1 1 1 1....infinite
+
+
+
+int i = 5;
+for ( ; ; )
+{
+    System.out.print(i);        
+}
+
+OP: 5 5 5 5 5 5 5....infinite
+
+
+for (int i=10; i>=0; i--)
+{
+    System.out.print(i);            
+}
+
+OP: 10-0
 
 
 
@@ -1315,12 +1376,152 @@ OP: 0 1 2 3 4 5 6 7 8 9 10
 
 
 
-(2) While Loop
 
 
 
 
-(3) Do While Loop
+
+(2) While Loop: Entry based Loop
+
+
+while (codition)
+{
+    Code to be executed
+    increment/decrement
+}
+
+
+
+
+int i = 1;
+while (i<10)
+{
+    System.out.println(i);
+    i++;
+}
+
+System.out.println(i); //10
+
+
+OP: 1 2 3 4 5 6 7 8 9
+
+
+
+
+
+
+int i = 1;
+while (i<=10)
+{
+    System.out.println(i);
+    i++;
+}
+
+System.out.println(i); //11
+
+
+OP: 1 2 3 4 5 6 7 8 9 10
+
+
+
+
+
+
+int i = 1;
+while ()
+{
+    System.out.println(i);
+    i++;
+}
+
+
+OP: 1 2 3 4 5 6 7 8 9 10.....infinite - TLE
+
+
+
+
+int i = 1;
+while ()
+{
+    System.out.println(i);
+}
+
+
+OP: 1 1 1 1 1 1.....infinite
+
+
+
+
+for, while - Entry Based Loop
+
+
+
+
+
+(3) Do While Loop: Exit Based Loop
+
+
+do
+{
+    body
+    increment/decrement
+} while(condition);
+
+
+int i = 1;
+
+do{
+    System.out.println(i);
+    i++;
+} while (i<10);
+
+OP: 1 2 3 4 5 6 7 8 9
+
+
+
+int i = 1;
+do{
+    i++; // 9-->10
+    System.out.println(i);
+} while (i<10);
+
+
+
+OP: 2-10
+
+
+
+
+int i=1;
+do{
+    i = 1000;
+    System.out.println(i);    
+} while (i<10);
+// 1000<10: FALSE
+
+OP: 1000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1749,6 +1950,142 @@ else if (num % 3 == 0)
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 4th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 2
+
+Agenda:
+
+
+- Operators: DONE
+- Loops: DONE
+- Functions
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+Functions:
+A piece of Code which is used to perform a SPECIFIC TASK
+
+
+Why?
+
+- Better Modularity: Modules
+- Easier Implementation
+- Avoid Single Point of Exceptions
+
+
+
+Syntax:
+
+[return type] name (parameters)
+{
+    body
+    return value;
+}
+
+
+
+(): Functions
+[]: Arrays
+
+
+CODE:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+static int add(int a, int b) -- FUNCTION DEFINITION
+{
+    int c = a+b;
+    return c;
+}
+
+static int subtract(int a, int b)
+{
+    int c = a-b;
+    return c;
+}
+    
+static void printvalues(int a, int b, String name)
+{
+    System.out.println(a + " " + b + " " + name);
+}
+    
+    public static void main(String[] args) {
+        System.out.println(add(2,4)); -- FUNCTION INVOKATION/ CALLING
+        System.out.println(subtract(4,2));
+        printvalues(2,4,"devang");
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Amazon/Flipkart:
+
+
+Search
+Add to Cart
+Buy
+Payment
+
+Example:
+
+Jacket:
+
+Search: Sucess
+Add to Cart: Success
+Buy: Success
+
+Payment: Not Completed
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
