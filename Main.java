@@ -1460,7 +1460,6 @@ for, while - Entry Based Loop
 
 (3) Do While Loop: Exit Based Loop
 
-
 do
 {
     body
@@ -1975,7 +1974,7 @@ Agenda:
 
 - Operators: DONE
 - Loops: DONE
-- Functions
+- Functions: DONE
 - Assignment Questions
 
 "Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
@@ -1987,7 +1986,7 @@ Agenda:
 
 
 Functions:
-A piece of Code which is used to perform a SPECIFIC TASK
+A piece of Code which is used to perform a "SPECIFIC TASK"
 
 
 Why?
@@ -2017,7 +2016,7 @@ CODE:
 // "static void main" must be defined in a public class.
 public class Main {
     
-static int add(int a, int b) -- FUNCTION DEFINITION
+static int add(int a, int b) //-- FUNCTION DEFINITION
 {
     int c = a+b;
     return c;
@@ -2035,7 +2034,11 @@ static void printvalues(int a, int b, String name)
 }
     
     public static void main(String[] args) {
-        System.out.println(add(2,4)); -- FUNCTION INVOKATION/ CALLING
+        int c = add(2,4); //6 - FUNCTION INVOKATION/CALLING
+        System.out.println(c);
+        System.out.println(add(20,40)); // CALL MUTLTIPLE TIME- REUSABILITY
+        System.out.println(add(c,80)); // PASS VARIABLE TO FUNCTION
+        
         System.out.println(subtract(4,2));
         printvalues(2,4,"devang");
         
@@ -2056,14 +2059,14 @@ static void printvalues(int a, int b, String name)
 
 
 
-
 Amazon/Flipkart:
 
 
-Search
-Add to Cart
-Buy
-Payment
+- Search
+- Add to Cart
+- Buy
+- Payment
+
 
 Example:
 
@@ -2087,6 +2090,171 @@ Payment: Not Completed
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 5th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 2
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions
+- Nested Loops
+- Pattern Printing: TEMPLATE
+- Switch Case
+- Intro to DSA
+- Arrays
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+------> Assignment Questions
+
+
+
+
+
+Floor: Bottom
+Ceil: Top
+
+Programming -- English
+
+
+-5 -4.5 -4 -3 -2 -1 0 1 2 3 4 4.5 4.9 5
+
+
+Floor: below: Nearest Left Integer on the Number Line/ Nearest Smaller Integer Value
+
+
+floor(4.5) = 4
+floor(4.9) = 4 
+floor(4.1) = 4
+floor(4) = 4 
+
+
+floor(-4.5) = -5
+floor(-4.9) = -5
+floor(-4.1) = -5
+floor(-4) = -4
+
+
+CODE:
+Math.floor(4.5) = 4
+
+Floor(a) = a, a = int, BOTH POSITIVE and NEGATIVE
+
+floor(4) = 4
+floor(-4) = -4
+
+int a = 2.9;
+System.out.println(a); //2
+
+Decimal:
+
+(1) Positive : floor = Integer Value
+(2) Negative : floor = Integer Value-1
+
+
+floor(-4.5) = -4-1= -5
+
+
+
+
+
+
+-5 -4.5 -4 -3 -2 -1 0 1 2 3 4 4.5 4.9 5
+
+Ceil: top: Nearest Right Integer on the Number Line/ Nearest Larger Integer Value
+
+
+
+ceil(4.5) = 5
+ceil(4.9) = 5
+ceil(4.1) = 5
+ceil(4) = 4
+
+
+ceil(-4.5) = -4
+ceil(-4.9) = -4
+ceil(-4.1) = -4
+ceil(-4) = -4
+
+
+Ceil Values:
+
+
+CODE:
+Math.ceil(4.5) = 5
+
+
+(1) Integers
+
+ceil(a) = a, BOTH and NEGATIVE
+
+(2) Decimal
+
+- Positive: ceil value = Int value + 1
+- Negative: ceil value = Int value
+
+
+
+
+
+
+
+
+
+
+Type Casting:
+
+- String to Integer
+- Integer to String
+
+
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+class Main {
+    public static void main (String[] args) 
+    {
+        int a =10;  
+        String ans ="devang";
+        //System.out.println(ans.length());
+        
+        // Integer to String
+        ans = String.valueOf(a); // 10 --> "10"
+        System.out.println(ans);
+           // "10" --> '1' and '0'
+       //System.out.println(ans.length());
+        
+        // String to Integer
+        a = Integer.parseInt(ans); // "10" --> 10
+        System.out.println(a);
+        
+        
+        
+    }
+}
 
 
 
