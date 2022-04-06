@@ -2220,10 +2220,6 @@ ceil(a) = a, BOTH and NEGATIVE
 
 
 
-
-
-
-
 Type Casting:
 
 - String to Integer
@@ -2248,14 +2244,455 @@ class Main {
        //System.out.println(ans.length());
         
         // String to Integer
-        a = Integer.parseInt(ans); // "10" --> 10
-        System.out.println(a);
-        
-        
-        
+        a = Integer.parseInt(ans); // "10" --> 1
+        System.out.println(a);       
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 6th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 2
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+
+- Assignment Questions
+- Nested Loops
+- Pattern Printing: TEMPLATE
+- Switch Case
+
+- Intro to DSA
+- Arrays
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-> Nested Loops
+
+
+
+
+
+
+
+
+int ans = p/q;
+
+
+
+q---> Smaller
+
+ans ---> Larger
+
+
+p = 20- Constant
+
+q = 10
+
+ans = 20/10 = 2
+
+q = 2
+
+ans = 20/2 = 10
+
+
+ans = p/q, q--->0: ans --> Infinity
+
+ans = p/q, q =0, ans: Undefined
+
+
+
+
+
+
+MCQ Exam
+View Solution
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+Problem Statement
+Sara has an MCQ exam containing 100 questions this sunday but she isn't prepared. She came to know that in her exam
+- >P number of Questions will have A as the correct option
+- >Q number of Questions will have B as the correct option
+- >R number of Questions will have C as the correct option
+- >S number of Questions will have D as the correct option
+Sara doesn't know the order of the questions. If Sara filled the MCQs optimally using the above information what will be the maximum of minimum marks she can get.
+Input
+The input contains 4 integers P, Q, R, and S.
+
+Constraints:-
+0 <= P, Q, R, S <= 100
+
+Note:- P + Q + R + S will always be 100
+Output
+Print the maximum marks Sara can get.
+Example
+Sample Input:-
+
+8 10 20 62
+
+Sample Output:-
+62
+
+
+
+Ans = Max(8,10,20,62) = 62
+
+import java.util.*;
+
+
+util 
+ - Math
+
+
+
+
+Maximum of N Numbers
+
+
+For Two Numbers:
+
+(1) int ans = Math.max(2,3) = 3
+
+2 Values: Math.max(1,2) = 2 
+3 Values: Math.max(Math.max(1,2),3) = Math.max(2,3) = 3
+4 Values: Math.max(Math.max(Math.max(1,2),3), 4)
+
+
+(2) Nested if -else (For Small N)
+
+(3) Use For Loops:
+
+
+-2 Bn ..................... +2 Bn
+INT_MIN                     INT_MAX
+
+
+int ans = Math.INT_MIN; //-2 Bn
+
+1,2,3,4
+Maximum = Greater than All Other Values
+
+
+for (i=0; i<4; i++)
+{
+    ans = Math.max(num, ans); // ans = 1->2->3->4: Final
+}
+
+
+ans = max(1, -2 Bn) = 1
+ans = max(1,2) = 2
+ans = max(2,3) = 3
+ans = max(3,4) = 4
+
+
+
+
+max(-2, INT_MIN) = -2
+
+max( any integer, INT_MIN) = any integer
+
+
+
+
+
+
+
+
+
+Minimum of N Numbers
+
+
+
+
+
+
+
+
+Q: Finding roots
+
+View Solution
+Time Limit: 2 sec
+
+Memory Limit: 128000 kB
+
+Problem Statement
+Write a program to find roots of a quadratic equation using switch case.
+Input
+The first line of the input contains the three float values a, b, and c of equation ax^2 + bx + c.
+
+Constraints
+1<= a, b, c <= 50
+Output
+Print the two roots in two different lines and for imaginary roots print real and imaginary part of one root with (+/- and i )sign in between in one line and other in next line. For clarity see sample Output 2.
+
+Note Imaginary roots can also be there and roots are considered upto 2 decimal places.
+Example
+Sample Input 1 :
+4 -2 -10
+
+Sample Output 2 :
+1.85
+-1.35
+
+Sample Input 2 :
+2 1 10
+
+Sample Output 2:
+-0.25 + i2.22
+-0.25 - i2.22
+
+
+
+
+
+
+
+Solution:
+
+
+D = b^2-4*a*c
+
+D = 0, Real and Equal Roots
+D > 0, Real and Unequal Roots
+D < 0, Imaginary Roots
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Switch Case:
+
+
+
+switch(condition)
+{
+case A:
+        ____
+        break;
+
+case B: 
+       ____
+        break;
+
+case C: 
+    ___       
+        break;
+
+
+
+.......
+
+
+
+default: 
+        ___    
+}
+
+
+
+
+
+CODE:
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+class Main {
+    public static void main (String[] args) 
+    {
+     int val = 10;
+
+switch(val)
+{
+case 1: 
+    System.out.println(1);
+    break;
+case 2: 
+    System.out.println(2);
+    break;
+case 3: 
+    System.out.println(3);
+    break;
+case 4: 
+    System.out.println(4);
+    break;
+default:
+    System.out.println(0);    
+}
+
+    }
+}
+
+
+
+- Use of Default
+- Without Break
+- No Pretraversal (second condtion matched, previous conditions wont be matched)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----> Nested Loops:
+
+
+int i=0;
+for (i=0; i<3; i++)
+{
+    System.out.println(i);
+}
+
+
+for (i=0; i<3; i++)
+{
+    System.out.println(i);
+}
+
+OP: 0 1 2 0 1 2
+
+
+
+
+
+Nested Loop -- Loop Inside Loop
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+class Main {
+    public static void main (String[] args) 
+    {
+        int i=0, j=0;
+        for (i=0; i<3; i++) // i = 0, j=0 -- i =1
+        {
+        for (j=0; j<3; j++) // i =0, j =0 --- i=0,j=1 --- i=0,      j=2 
+            {
+        System.out.println(i + " " + j);
+            }
+        }
+
+    }
+}
+
+
+OP:
+
+0 0
+0 1
+0 2
+
+1 0
+1 1
+1 2
+
+2 0
+2 1
+2 2
+
+
+
+
+
+Total Iterations = 3*3 = 9 Times
+
+
+
+int i=0,j=0;
+for (i=0; i<p; i++) -- P Times
+{
+    for (j=0; j<q; j++) -- Q Times
+    {
+        s.o.p(i,j);
+    }
+}
+
+
+Total: P*Q Times
+
+
+0 to N-1 == 1 to N
+
+
+
+
+int i=0,j=0;
+for (i=0; i<p; i++) -- P Times
+{
+    while (j<q) - Q Times
+    {
+        s.o.p(i,j);
+        j++;
+    }
+}
+
+
+Total: P*Q Times
+
+
+int i=0,j=0,k=0;
+
+for (i=0; i<p; i++) -- P Times
+{
+    for (j=0; j<q; j++) -- Q Times
+    {
+       for (k=0; k<r; k++) -- R Times
+       {
+        s.o.p(i,j,k);
+       }
+    }
+}
+
+
+Total: P*Q*R
 
 
 
