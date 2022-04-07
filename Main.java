@@ -2706,3 +2706,433 @@ Total: P*Q*R
 
 
 
+Date : 7th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 1 & 2
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+
+- Intro to DSA
+- Arrays
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+
+
+Q-1: Pattern Printing:
+
+
+
+N = 5 
+
+*****
+****
+***
+**
+*
+
+
+
+N = 6
+
+******
+*****
+****
+***
+**
+*
+
+
+Template: (N = 5)
+
+
+Row = 1, Col = 5  1+5 = 6 
+Row = 2, Col = 4  2+4 = 6
+Row = 3, Col = 3  3+3 = 6
+Row = 4, Col = 2  4+2 = 6 
+Row = 5, Col = 1  5+1 = 6 
+
+
+
+
+TWO LOOPS:
+
+First Loop: Outer Loop: Row
+
+for (i=0; i<5; i++) 
+
+
+Second Loop: Inner Loop: Col
+
+for (j=0; i+j<5; j++)
+
+
+
+
+for (i=0; i<5; i++)  i = 0
+{
+    for (j=0; i+j<5; j++) i =0, j=0 ---> i =1, j=0
+    {
+        System.out.println(i, j);
+    }
+}
+
+
+Condition: i + j < 5
+
+i = 0
+j = 0,1,2,3,4 (5 Times)
+
+i = 1
+j = 0,1,2,3  ( 4 Times)
+
+i = 2
+j = 0,1,2  ( 3 Times)
+
+i = 3
+j = 0,1  ( 2 Times)
+
+
+
+---> Decreasing Pattern: Col Decreases
+
+
+CODE:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+    public static void pattern(int n)
+{
+        int i=0, j=0;
+        
+        for (i=0; i<n; i++) 
+    {
+        for (j=0; i+j<n; j++)
+        {
+        System.out.print("* ");
+        }
+        System.out.println("");
+    }
+}
+    
+    public static void main(String[] args) {
+       pattern(5);
+       //pattern(6);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q-2: Pattern Printing:
+
+N = 5 
+
+*
+**
+***
+****
+*****
+
+N = 6
+
+*
+**
+***
+****
+*****
+******
+
+
+Template: (N = 5)
+
+Row = 1, Col = 1  i == j
+Row = 2, Col = 2  i == j
+Row = 3, Col = 3  i == j
+Row = 4, Col = 4  i == j
+Row = 5, Col = 5  i == j
+
+
+
+Cols Increasing --> Increasing
+
+
+
+TWO LOOPS:
+
+First Loop: Outer Loop: Row
+
+for (i=0; i<5; i++) 
+
+
+Second Loop: Inner Loop: Col
+
+for (j=0; j<=i; j++)
+
+
+for (i=0; i<5; i++)
+{
+    for (j=0; j<=i; j++)
+    {
+        s.o.p(i,j)
+    }
+}
+
+
+DRY RUN:
+
+Condition: j<=i
+
+
+i = 0
+j = 0 (1 Time)
+
+i = 1
+j = 0,1 (2 Times)
+
+
+i = 2
+j = 0,1,2 (3 Times)
+
+
+
+
+CODE:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+    public static void pattern(int n)
+{
+        int i=0, j=0;
+        
+        for (i=0; i<n; i++) 
+    {
+        for (j=0; j<=i; j++)
+        {
+        System.out.print("* ");
+        }
+        System.out.println("");
+    }
+}
+    
+    public static void main(String[] args) {
+       //pattern(5);
+       pattern(6);
+
+    }
+}
+
+
+
+
+
+
+
+
+- Intro to DSA
+
+
+
+Practical Understanding:
+
+
+20 L Water
+5 Buckets - 10 L Each
+
+Task: Store Water in Buckets
+
+
+Ways:
+
+
+(1) B1- 10L, B2- 10L, Rest Empty
+
+(2) B1- 4L, B2- 4L, B3- 4L, B4- 4L, B5- 4L
+
+(3) B1-10L, B2- 5L, B3- 5L, Rest Empty 
+
+..............etc
+
+
+Water: Data
+Bucket: Data Structure
+Ways: Algorithms
+
+
+
+
+Theoretical Definition
+
+
+Data Structures:
+
+Container to Store Data to perform operations on it
+
+Eg: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, RBT, BST, Segment Trees, Tries
+
+
+
+Algorithms:
+
+Step by Step Process to solve a problem using appropriate DS
+
+
+Eg: Linear Search, Binary Search, DP, Sorting, Recursion, Two Pointers, Backtracking, Greedy, DFS, BFS etc
+
+
+
+
+Master any DS/Algorithm:
+
+- What ? (Need/Use Case)
+- Why? (Applications)
+- How? (Coding/Implementation)
+
+
+
+
+
+----> Arrays
+
+10 Integers
+
+int a,b,c,d,e,f,g,h,i,j
+
+
+1000 Integers
+
+
+
+ARRAYS:
+Collection of "Similar Type of Data Types" stored in a "Contiguous Location"
+
+
+[1 2 3 4 5] - YES- Array of Integers
+
+[a b c d e] - YES - Array of Characters
+
+[10 20 p 30 40 50 q] - NO
+
+[2 2 2 2 2] - YES, Array of Integers
+
+
+
+(): Function
+[]: Array
+
+Code:
+
+Declaration Syntax: data_type name[size];
+
+int arr[5]; // 20 Bytes in Memory
+char arr[20];
+float arr[10];
+boolean arr[25];
+
+
+int arr[] = {1,2,3,4,5};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lunch Packets: Database
+
+- Cashews- Array (Only Cashews - Variable)
+- Almonds (Only Almonds)
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
