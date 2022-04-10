@@ -3069,20 +3069,30 @@ boolean arr[25];
 
 int arr[] = {1,2,3,4,5};
 
+Size: 5
+Indexing: 0 to size-1: 0 to 4
 
 
+0 Index: arr[0] = 1s
+1 Index: arr[1] = 2
+2 Index: arr[2] = 3
+3 Index: arr[3] = 4
+4 Index: arr[4] = 5
 
 
+arr[6] = Error - Index Out of Bound Exception
+
+arr[-2] = Error - Index Out of Bound Exception
 
 
+Practical Example:
 
+Book: Collection of Pages
 
+Book: Array of Pages
+All Pages --> Same Structure
 
-
-
-
-
-
+Page Number: Unique Page
 
 
 
@@ -3095,6 +3105,204 @@ Lunch Packets: Database
 
 
 
+------> Contiguous/Continuous Location
+
+
+int arr[] = {1,2,3,4,5}
+Index: 0 to 4
+
+int: 4 Bytes
+
+Size of arr in Memory: 20 Bytes
+
+
+Adrress of arr[0]= 1 - Base Address of Array: 1000: ASSUME
+Adrress of arr[1]= 2: 1000 + 1*4 = 4 
+Adrress of arr[2]= 3: 1000 + 2*4 = 1008
+Address of arr[3]= 4: 1000 + 3*4 = 1012
+
+.........................................
+
+Address of arr[k] = Base Address + k*4 (int)
+
+Address of arr[k] = Base Address + k*2 (char)
+
+Address of arr[k] = Base Address + k*8 (double)
+
+
+Memory Diagram:
+
+--- 1-------------- -------2----------- ----3-------
+
+1000 1001 1002 1003 1004 1005 1006 1007 1008 1009 
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 9th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 1 & 2
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+
+- Arrays
+- 1 D Array 
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+Q-1: WAP Sum of All Values in Array
+
+
+a[] = {1, 5, 3, -2, 6}
+
+OP: 13
+N: 5
+
+
+
+Approach:
+
+sum = 0
+
+sum = sum + a[0] + a[1] +.....a[n-1]
+
+sum = sum + a[loop from 0 to n-1]
+
+
+
+
+int sumOfArray(int arr[], int n)
+{
+int i=0;
+int sum=0;
+
+for (i=0; i<n; i++)
+{
+    sum = sum + arr[i]; //sum = sum + a[0] + a[1] +.....a[n-1]
+
+}
+
+return sum;
+}
+
+
+
+
+Final Code:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+ static int sumOfArray(int arr[], int n)
+{
+int i=0;
+int sum=0;
+
+for (i=0; i<n; i++)
+{
+    sum = sum + arr[i]; 
+    // Creating a Copy of sum EVERY TIME --- SC: O(N)
+    sum += arr[i];   // O(1)-  No Copy Created - CP Trick
+}
+
+
+return sum;
+}
+
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+             System.out.println(sumOfArray(arr, n));
+
+    }    
+}
+
+
+
+
+Q-2:  WAP to Print Product of All Values in Array
+
+
+a[] = {1, 5, 3, -2, 6}
+
+OP: -180
+
+
+
+Approach:
+
+prod = 1
+
+prod = prod * a[0] * a[1] *.....a[n-1]
+
+prod = prod * a[loop from 0 to n-1]
+
+
+CODE:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+ static int productOfArray(int arr[], int n)
+{
+int i=0;
+int prod=1;
+
+for (i=0; i<n; i++)
+{
+    prod = prod * arr[i]; 
+}
+
+return prod;
+}
+
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+             System.out.println(productOfArray(arr, n));
+
+    }    
+}
 
 
 
@@ -3110,20 +3318,112 @@ Lunch Packets: Database
 
 
 
+Q-4:  Pattern:
+
+N = 4
+OP:
+
+*
+*^*
+*^^*
+*****
+
+N = 3
+Sample Output:-
+*
+*^*
+****
+
+N = 6
+Sample Output:-
+*
+*^*
+*^^*
+*^^^*
+*^^^^*
+******
+
+
+
+^^ Pattern: N-2 Rows
+
+N = 6 (0 Based Indexing)
+
+Row :1   No of ^: 1  i == j
+Row :2   No of ^: 2  i == j
+Row :3   No of ^: 3  i == j
+Row :4   No of ^: 4  i == j
+
+
+
+
+Observations:
+
+(1) Increasing
+
+(3) Last Row: N+1 Stars: DONE
+
+(3) First Row: 1 Star: DONE
+
+(4) ^^ Pattern: N-2 Rows: DONE
+    - Outer Loop: Rows: N-2
+    - Inner Loop: Cols: i == j
+
+CODE:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+ static void pattern(int n)
+{
+     int i=0,j=0;
+System.out.println("*");
+
+// N-2 Pattern
+for (i=0; i<n-2; i++)
+{
+   System.out.print("*");
+    for (j=0; j<=i; j++)
+    {
+        System.out.print("^");
+    }
+     System.out.println("*");
+}
+
+for(i=0; i<=n; i++) 
+{
+    System.out.print("*");
+}
+
+
+}
+
+    public static void main(String[] args) 
+    {
+        pattern(6);
+    }    
+}
 
 
 
 
 
+Q: Magic Trick:
 
 
 
 
+Initial Number: X
 
-
-
-
-
+(1) X + A
+(2) 2(X+A)
+(3) Even Number: B Added
+(4) 2(X+A) + B
+(5) Divide by 2
+(6) X + A + B/2
+(7) Subtract Initial Number: X
+(8) X + A + B/2 - X = A + B/2
+(9) Final Ans = A + B/2
 
 
 
