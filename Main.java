@@ -21,8 +21,6 @@ Agenda:
 
 
 
-
-
 - Introduction: DONE
 
 Competitive Programming:
@@ -2969,7 +2967,6 @@ public class Main {
 - Intro to DSA
 
 
-
 Practical Understanding:
 
 
@@ -2982,9 +2979,9 @@ Task: Store Water in Buckets
 Ways:
 
 
-(1) B1- 10L, B2- 10L, Rest Empty
+(1) B1- 10L, B2- 10L, Rest Empty: Resource Utilised
 
-(2) B1- 4L, B2- 4L, B3- 4L, B4- 4L, B5- 4L
+(2) B1- 4L, B2- 4L, B3- 4L, B4- 4L, B5- 4L: Resource Not Utilised
 
 (3) B1-10L, B2- 5L, B3- 5L, Rest Empty 
 
@@ -3038,6 +3035,15 @@ int a,b,c,d,e,f,g,h,i,j
 
 1000 Integers
 
+int a-z, A-Z, a1-z1.....
+
+
+
+int a =10;
+a = "devang";
+s.o.p(a);
+
+
 
 
 ARRAYS:
@@ -3052,6 +3058,10 @@ Collection of "Similar Type of Data Types" stored in a "Contiguous Location"
 
 [2 2 2 2 2] - YES, Array of Integers
 
+[true false false true] - YES, Array of boolean
+
+["devang" "sharma" "newton" "school"] - YES, Array os Strings
+
 
 
 (): Function
@@ -3062,18 +3072,27 @@ Code:
 Declaration Syntax: data_type name[size];
 
 int arr[5]; // 20 Bytes in Memory
-char arr[20];
+char arr[20]; // 40 Bytes in Memory
 float arr[10];
 boolean arr[25];
+
+
+Book: Collection of Pages
+    = Array of Pages
+
+Page Numbering: Uniquely Access a Page in Book
+
+Indexing: Uniquely Access a Element in Array
 
 
 int arr[] = {1,2,3,4,5};
 
 Size: 5
+
 Indexing: 0 to size-1: 0 to 4
 
 
-0 Index: arr[0] = 1s
+0 Index: arr[0] = 1
 1 Index: arr[1] = 2
 2 Index: arr[2] = 3
 3 Index: arr[3] = 4
@@ -3207,6 +3226,21 @@ return sum;
 }
 
 
+CP Trick:
+
+int a = 10;
+b = a;
+
+NOTE: ALWAYS RHS IS ASSIGNED TO LHS
+
+int a = "Devang";
+
+String to int Error: RHS to LHS
+
+error: incompatible types: String cannot be converted to int [in Main.java]
+        a = "devang";
+
+
 
 
 Final Code:
@@ -3226,7 +3260,6 @@ for (i=0; i<n; i++)
     // Creating a Copy of sum EVERY TIME --- SC: O(N)
     sum += arr[i];   // O(1)-  No Copy Created - CP Trick
 }
-
 
 return sum;
 }
@@ -3281,7 +3314,7 @@ int prod=1;
 
 for (i=0; i<n; i++)
 {
-    prod = prod * arr[i]; 
+    prod *= arr[i]; 
 }
 
 return prod;
@@ -3424,6 +3457,190 @@ Initial Number: X
 (7) Subtract Initial Number: X
 (8) X + A + B/2 - X = A + B/2
 (9) Final Ans = A + B/2
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 11th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - 1 & 2
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+
+- 1 D Array 
+
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+Two Types:
+
+Unsorted Array
+
+a = [5 2 1 4 3]
+
+Sorted Array
+
+a = [1 2 3 4 5]
+
+
+
+
+Case 1: Unsorted Array
+
+
+--------> Search in Unsorted Array (Linear Search/ Sequential Search)
+
+Return the index of key if it exists in array, 
+else return -1 (Invalid Index)
+
+
+a = [5 2 1 3 4 -6 -2]
+
+key = -6
+OP: 5
+
+key = 1
+OP: 2
+
+key = 4
+OP: 4
+
+key = -2
+OP: 6
+
+key = 20
+OP: -1
+
+
+
+Approach:
+
+Traverse each and every element in the array and check if arr[i] == key
+If not found in arr, then return -1
+
+IMP:
+Brownie Points: (Interviews)
+
+Search for Any DS - Always Think About Best case and Worst case while Answering Complexity
+(Both TC and SC)
+
+
+Best Case: O(1), key == arr[0]
+Worst Case: O(N), Key does not exist or key == arr[n-1]
+
+
+
+Code:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+static int linearSearch(int[] arr, int key)
+{
+    int i=0, n = arr.length;
+    for (i=0; i<n; i++)
+    {
+        if (arr[i] == key)
+            return i;
+    }
+
+    return -1;
+}
+
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+        // arr = [-2 3 0 1 5]
+        System.out.println(linearSearch(arr, 3));
+        System.out.println(linearSearch(arr, 1));
+        System.out.println(linearSearch(arr, 10));
+        System.out.println(linearSearch(arr, -2));
+
+    }    
+}
+
+OP:
+
+1
+3
+-1
+0
+
+
+
+
+
+
+
+
+
+
+COMMON BUG:
+
+[1,2,3,4,5]
+key = 4
+
+Expected OP: 3
+Received OP: -1
+
+static int linearSearch(int[] arr, int key)
+{
+    int i=0, n = arr.length;
+    for (i=0; i<n; i++)
+    {
+        if (arr[i] == key)
+            return i;
+
+        else
+            return -1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Case 2: Sorted Array
+
 
 
 
