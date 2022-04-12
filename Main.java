@@ -3242,7 +3242,6 @@ error: incompatible types: String cannot be converted to int [in Main.java]
 
 
 
-
 Final Code:
 
 
@@ -3639,11 +3638,337 @@ static int linearSearch(int[] arr, int key)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 12th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+
+- 1 D Array : WIP
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+---------> Insertion in Unsorted Array
+
+
+a = [2 5 1 3 4 7 _ _ _]
+
+Insert 6 at index 1
+
+OP: [2 6 5 1 3 4 7 _ _ ]
+
+
+Steps:
+
+(1) Shift all elements after 2 to the right - O(N)
+(2) a[1] = 6 - O(1)
+
+
+a = [2 5 1 3 4 7 _ _ _]
+
+a = [2 _ 5 1 3 4 7 _ _]
+
+a = [2 6 5 1 3 4 7 _ _]
+
+
+TC: O(N) - Big O
+
+
+
+
+-----> Replacement in Unsorted Array
+
+a = [2 5 1 3 4 7 _ _ ]
+
+Replace 6 at index 1
+
+
+OP: [2 6 1 3 4 7 _ _ ]
+
+
+arr[idx] = val
+TC: O(1)
+
+
+
+Operations                  Time          Space
+    
+Search                      O(N)          O(1)
+Insert                      O(N)          O(1)
+Delete                      O(N)          O(1)
+Replace                     O(1)          O(1)
+
+
+
+
+
+
+
+
+
+
+
 Case 2: Sorted Array
 
 
 
+-------> Search in Sorted Array: Binary Search
 
+Return the index of key if it exists in array, 
+else return -1 (Invalid Index)
+
+
+a = [1 2 3 4 5]
+
+key = 4
+OP: 3
+
+key = 3
+OP: 2
+
+key = 5
+OP: 4
+
+key = 7
+OP: -1
+
+
+
+                            (3)
+Smaller -------L--------   YOU -------R-------- Greater
+
+                           Person
+
+
+
+Approach:
+
+a, b
+
+a == b
+a > b
+a < b
+
+
+
+a = [1 2 3 4 5]
+
+3: mid 
+4: mid+1
+2: mid-1
+5: high
+0: low
+
+key, a[mid]
+
+low = 0, high = n-1 = 4
+mid = (low+high)/2 = (0+4)/2 = 2                          Optimisation
+
+a[mid] = 3
+
+
+(1) key == a[mid] -return mid        key = 3, a[mid] = 3
+(2) key > a[mid]  5 > 3   - Search in RIGHT, Ignore Left Part, 
+Focus Area: [4 5] ---> [mid+1, high]
+(3) key < a[mid]   1 < 3   - Search in LEFT, Ignore Right Part
+Focus Area: [1 2] ----> [low, mid-1]
+
+
+
+
+
+
+Code:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+static int linearSearch(int[] arr, int key)
+{
+    int i=0, n = arr.length;
+    for (i=0; i<n; i++)
+    {
+        if (arr[i] == key)
+            return i;
+    }
+
+    return -1;
+}
+
+    
+static int binarySearch(int[] arr, int key)
+{
+int low = 0, high = arr.length-1;
+int mid = 0;
+      
+while (low<=high)
+{
+    mid = (low+high)/2;  // Optimisation  - Overflow
+    mid = low + (high-low)/2; -- No OVERFLOW
+
+    if (key == arr[mid])
+        return mid;    
+
+    else if (key > arr[mid]) // 5>3, RIGHT, Focus Area: [mid+1, high]
+        low = mid+1;
+
+    else   // 1< , LEFT, Focus Area: [low, mid-1]
+        high = mid-1;
+}
+
+return -1;
+}
+
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+        // arr = [1 2 3 4 5]
+        System.out.println(binarySearch(arr, 1));
+        System.out.println(binarySearch(arr, 2));
+        System.out.println(binarySearch(arr, 5));
+        System.out.println(binarySearch(arr, -2));
+
+    }    
+}
+
+
+
+
+OP:
+
+0
+1
+4
+-1
+
+
+
+
+    mid = (low + high)/2; 
+    mid = low + (high-low)/2;
+
+
+    To Avoid int Overflow
+
+
+    int: -2Bn to +2Bn
+
+    a = 1.5 Bn, b = 1.5 Bn
+    int c = (a+b)/2; -- OVERFLOW
+
+    int c = a + (b-a)/2 -- No Overflow
+
+
+
+
+
+Time Complexity of Binary Search:
+
+
+Mathematical Way:
+ = O(N/2) + O(N/4) + O(N/8) + O(N/16) +..........O(N/2^(K-1))
+
+
+Sum of GP = a(1-r^n)/(1-r), r<1
+
+Here, r = 1/2
+
+
+TC: O(log (base 2) N)
+
+
+
+Theoretical Way:
+
+Master Theorem:
+
+Recurrence Relation
+
+T(N) = T(N/2) + C
+
+
+OP: O(log (base 2) N)
+
+
+
+
+Operations                  Time          Space
+    
+Search                      O(log N)      O(1)
+Insert                      O(N)          O(1)
+Delete                      O(N)          O(1)
+Replace                     O(1)          O(1)
+
+
+
+
+
+
+
+
+
+Production Example:
+
+
+E-Commerce: Search in Search Box 
+Product: Product_id
+
+
+N = 1024
+1 Search = 1 sec
+
+2 Developers
+
+(1) Product_id in Unsorted Array: O(N) : N Iterations = 1024 seconds = 17 Mins 4 Seconds
+
+(2) Product_id in Sorted Array: O(log N): log N Iterations 
+                                        = log (base 2(1024))
+                                        = 10 seconds
+
+2^x = 1024
+
+
+"Amazon loses $7.7 Bn USD for Every 1 sec delay is a year"
 
 
 
