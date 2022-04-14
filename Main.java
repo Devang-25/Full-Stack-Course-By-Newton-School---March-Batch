@@ -3685,7 +3685,7 @@ a = [2 5 1 3 4 7 _ _ _]
 
 Insert 6 at index 1
 
-OP: [2 6 5 1 3 4 7 _ _ ]
+OP: [2 5 1 3 4 7 _ _ ]
 
 
 Steps:
@@ -3782,6 +3782,7 @@ a < b
 
 
 a = [1 2 3 4 5]
+     s   m   e
 
 3: mid 
 4: mid+1
@@ -3805,6 +3806,20 @@ Focus Area: [1 2] ----> [low, mid-1]
 
 
 
+if()
+{
+
+} 
+
+else if ()
+{
+
+}
+
+else
+{
+
+}
 
 
 
@@ -3901,7 +3916,6 @@ OP:
 
 
 
-
 Time Complexity of Binary Search:
 
 
@@ -3969,6 +3983,452 @@ N = 1024
 
 
 "Amazon loses $7.7 Bn USD for Every 1 sec delay is a year"
+
+
+
+
+
+
+
+
+
+Date : 13th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+- 1 D Array : DONE
+
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+
+
+Q: Reverse an Array
+
+
+a = [-1 5 6 1 2 4 0]
+
+OP: [0 4 2 1 6 5 -1]
+
+
+Bonus Points: In Place : SC: O(1)
+
+
+Solutions:
+
+
+(1) Brute Force
+
+Using Extra Array
+b[]
+
+
+for (int i = n-1; i>=0; i--)
+    b[n-1-i] = a[i];  // b[n-1-(n-1)] = a[n-1] --> b[0] = a[n-1]
+
+b = [0 4 2 1 6 5 -1]
+
+TC: O(N)
+SC: O(N)
+
+
+(2) Optimised Solution: Swap / Two Pointers
+
+
+-- SWAP Approach:
+
+a = 10, b = 5
+swap(a,b);
+
+a = 5, b = 10
+
+
+for (i=0; i<n/2; i++)
+    swap(a[i], a[n-1-i]);
+
+
+TC: O(N/2)
+SC: O(1) - In Place
+
+
+a = [1 2 3 4 5]
+
+n = 5
+n/2 = 2
+
+
+for (i=0; i<2; i++)
+  swap(a[i], a[n-1-i]);
+
+i = 0
+swap(a[0], a[n-1]) = swap(1,5) ---> [5 2 3 4 1]
+
+i = 1
+swap(a[1], a[n-1-1]) = swap(2,4) ---> [5 4 3 2 1]: ANS
+
+
+
+
+
+-- Two Pointers Approach
+
+a = [1 2 3 4 5]
+n = 5
+
+start = 0, end = n-1
+while (start<end)
+{
+    swap(a[start],a[end]);
+    start++;
+    end--;
+}
+
+TC: O(N/2)
+SC: O(1)
+
+
+DRY RUN:
+
+start = 0, end = 4
+
+while (0<4)
+{
+    swap(a[0], a[4])---> [5 2 3 4 1]
+    start -> 1
+    end -> 3
+}
+
+while (1<3)
+{
+    swap(a[1],a[3]) ---> [5 4 3 2 1]: ANS
+    start --> 2
+    end --> 2
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q: Max Element in an Array
+
+
+
+MIN_VALUE ............................................MAX_VALUE
+(-2 Bn)                                                (2 Bn)
+
+
+max = Integer.MIN_VALUE;
+min = Integer.MAX_VALUE;
+
+Q-V1: Find Max in Two Values:
+
+a = 5, b = 10
+OP: 10
+
+
+Approach-1:
+
+max = Integer.MIN_VALUE;
+
+if (a>b)
+    max = a;
+else
+    max = b;
+
+
+
+Approach-2:
+
+max = Math.max(a,b)
+
+Math.max(2,5) = 5
+Math.min(2,5) = 2
+
+
+
+Q-V2: Find Max in Three Values:
+
+a = 5, b = 10, c = 15
+OP: 15
+
+
+Approach-1:
+
+int max = Integer.MIN_VALUE;
+int a = 5, b = 10, c = 15;
+
+if (a>b && a>c)
+    max = a;
+
+else if (b>a && b>c)
+    max = b;
+
+else
+    max = c;
+
+
+
+
+Max Among K Values = K-1 Comparisons
+
+
+Approach-2:
+
+
+System.out.println(Math.max(c,Math.max(a,b)));
+
+
+
+
+Q-V3: Max in an Array/ K Numbers
+
+
+a = [1 8 7 -1 9 6 20]
+OP: 20
+
+
+Approach-1: if 
+
+int max = Integer.MIN_VALUE;
+
+for (i=0; i<n; i++)
+{
+    if (arr[i] > max)
+        max = arr[i];
+}
+
+max = 1
+8>1: max = 8
+7>8:
+9>8: max = 9
+20>9: max = 20
+
+
+a = [1 8 7 -1 9 6 20]
+Expected OP: 20
+
+int max = 100;
+
+for (i=0; i<n; i++)
+{
+    if (arr[i] > max)
+        max = arr[i];
+}
+
+OP: 100 : Incorrect
+
+
+a = [-7 -30 -20 -1 -5]
+Expected OP: -1
+
+int max = 0;
+
+for (i=0; i<n; i++)
+{
+    if (arr[i] > max)
+        max = arr[i];
+}
+
+
+OP: 0: Incorrect
+
+
+
+a = [1 8 7 -1 9 6 20]
+Expected OP: 20
+
+int max = arr[0];
+
+for (i=1; i<n; i++)
+{
+    if (arr[i] > max)
+        max = arr[i];
+}
+
+
+OP: 20: Correct
+
+
+Final Code:
+
+import java.util.*;
+import java.io.*;
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+
+    int max = arr[0];
+
+    for (i=1; i<n; i++)
+    {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+
+
+    System.out.println(max);
+
+    }
+}
+
+
+
+
+
+
+Approach-2: Math.max
+
+
+import java.util.*;
+import java.io.*;
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+
+    int max = arr[0];
+
+    for (i=1; i<n; i++)
+    {
+            max = Math.max(max, arr[i]);
+            // SAME AS:
+            // if (arr[i] > max)
+            //    max = arr[i];
+    }
+
+
+    System.out.println(max);
+
+    }
+}
+
+
+
+IP:
+7
+1 8 7 -1 9 6 20
+
+OP:
+20
+
+
+TC: O(N)
+SC: O(1)
+
+
+
+Approach-3: Sort
+
+
+Sorting: Converting/Arranging Unsorted Values into Sorted Fashion
+
+
+[1 5 3 2 4] ---- Sort ---> [ 1 2 3 4 5]
+
+
+Arrays.sort(arr);
+
+TC: O(NlogN)
+
+
+
+In Sorted Array,
+First Value = Min Value
+Last Value = Max Value
+
+
+min = arr[0];
+max = arr[n-1];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q: Min Element in an Array
+
+
+> --> <
+
+
+
+
+
+N = 1024
+
+N*log(base 2) N = 1024*10 = 10240
+
+10240 > 1024
+
+
+
+
+
 
 
 
