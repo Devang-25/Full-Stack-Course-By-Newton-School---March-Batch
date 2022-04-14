@@ -4064,8 +4064,19 @@ swap(a,b);
 a = 5, b = 10
 
 
+Collections.swap(list, idx1, idx2) --> Works only with Lis
+
+For Reversing an Array:
+
+int temp=0;
 for (i=0; i<n/2; i++)
-    swap(a[i], a[n-1-i]);
+{
+    temp = a[i]; 
+    a[i] = a[n-1-i]; 
+    a[n-1-i] = temp; 
+}
+
+swap(a[i], a[n-1-i]);
 
 
 TC: O(N/2)
@@ -4090,10 +4101,46 @@ swap(a[1], a[n-1-1]) = swap(2,4) ---> [5 4 3 2 1]: ANS
 
 
 
+SWAPPING:
+
+
+a = 10, b = 5
+void swap(int a, int b)
+{
+int temp = a; // temp = 10
+a = b; //a = 5
+b = temp; //b = 10
+
+System.out.println(a + " " +b);
+}
+
+
+
+
+
+Pointer:
+
+Variable:
+- Address (Cannot be Changed)
+- Value it contains (Changed)
+
+int a = 20;
+a: 4 Bytes: RAM: Hexadecimal Format (Base 16)
+                : 000x727272a
+
+int *b = &a;
+b = 000x727272a       --- b STORES the Address of a
+
+b --> Pointer
+
+
+
 
 -- Two Pointers Approach
 
 a = [1 2 3 4 5]
+     s       e
+
 n = 5
 
 start = 0, end = n-1
@@ -4199,7 +4246,6 @@ else if (b>a && b>c)
 
 else
     max = c;
-
 
 
 
@@ -4431,6 +4477,317 @@ N*log(base 2) N = 1024*10 = 10240
 
 
 
+
+
+
+
+
+
+
+Date : 14th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+- 1 D Array : DONE
+
+- Assignment Questions
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+---> SWAPPING:
+
+
+(1) Using 3rd Variable
+
+
+a = 10, b = 5
+void swap(int a, int b)
+{
+int temp = a; // temp = 10
+a = b; //a = 5
+b = temp; //b = 10
+
+System.out.println(a + " " +b);
+}
+
+
+
+
+
+(2) Without Using 3rd Variable - Addition/Subtraction
+
+
+a = 10, b = 5
+void swap(int a, int b)
+{
+a = a + b; // a = 15
+b = a - b; // b = 10
+a = a - b; // a = 5
+
+System.out.println(a + " " +b);
+}
+
+
+(3) Without Using 3rd Variable - Multiplication/Division
+
+
+a = 10, b = 5
+void swap(int a, int b)
+{
+a = a * b; 
+b = a / b; 
+a = a / b; 
+
+System.out.println(a + " " +b);
+}
+
+
+
+
+
+
+Q: Divisor Problem
+
+
+
+Sara is solving a math problem in which she has given an integer N and her task is to find the number of operations required to convert N into 1.
+Where in one operation you replace the number with its second-highest divisor.
+
+Input
+User Task:
+Since this will be a functional problem, you don't have to take input. You just have to complete the function DivisorProblem() that takes integer N as argument.
+
+Constraints:-
+1 <= N <= 100000
+Output
+Return the number of operations required.
+Example
+Sample Input:-
+100
+
+Sample Output:-
+4
+
+Explanation:-
+100 - > 50
+50 - > 25
+25 - > 5
+5 - > 1
+
+Sample Input:-
+10
+
+Sample Output:-
+2
+
+
+10-->5
+5-->1
+
+OP: 2
+
+
+
+Solution:
+
+Prime: Only 2 Factors/Divisors (1 and num)
+Composite: Not Prime
+
+
+100: 1,2,4,5,10,20,25,50,100
+Second Highest Divisor: 50
+
+Operation 1: 100 --> 50
+
+50: 1,2,5,10,25,50
+Second Highest Divisor: 25
+
+Operation 2: 50 ---> 25
+
+
+25: 1,5,25
+Second Highest Divisor: 5
+
+Operation 3: 25 ----> 5
+
+5: 1,5
+Second Highest Divisor: 1
+
+
+Operation 4: 5 ----> 1: STOP
+
+
+Final Ans = 4
+
+
+
+
+
+
+
+
+Count Factors/Divisors of a Number
+
+N = 10
+
+10: 1,2,5,10
+OP: 4
+
+
+int cnt=0;
+for(i=1; i<=n; i++)
+{
+    if (n%i == 0)
+        ++cnt;
+}
+
+OP: cnt = 4
+
+
+
+CODE:
+
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main
+{
+    
+    static int DivisorProblem(int N){
+   int count =0;
+   for(int i= N/2; i>0;i--) {
+       if(N%i==0){
+           System.out.println("i is " + i);
+           count++;
+           N = i;
+        System.out.println("N is " + N);
+       }
+        
+   }
+   return count;
+   
+
+}
+    public static void main (String[] args) {
+        
+        System.out.println(DivisorProblem(100));
+        
+        
+    }
+}
+
+
+
+
+
+
+
+
+Q: Sum of Digits of a Number
+
+
+n = 12345
+OP: 1+2+3+4+5 = 15
+
+
+n = 489
+OP: 21
+
+
+
+Left to Right Separation: Not Possible
+12345: 1 + 2345: NO
+
+
+Right to Left Separation: Possible
+
+
+12345%10 = 5
+12345/10 = 1234
+
+1234%10 = 4
+........
+
+
+num % 10 ---> Last Digit
+num/10 ---> Number Removing Last Digit
+
+
+
+
+CODE:
+
+import java.util.*;
+import java.io.*;
+
+public class Main
+{
+    
+    static int sum_of_digit(int num)
+{
+    int sum =0;
+    int rem = 0;
+
+    while (num > 0)
+    {
+        rem = num%10;
+        num = num/10;
+        sum = sum + rem;
+    }
+
+        return sum;
+}
+
+    public static void main (String[] args) {
+        
+        System.out.println(sum_of_digit(489));
+        
+    }
+}
+
+
+
+
+
+
+
+
+Q: Loops - Post Class - Help Sara !(easy version)
+
+
+
+CODE:
+
+
+while(n){
+    p=n;
+    while(n){
+        p= p - n%10;
+        n= n/10;
+    }
+    n=p;
+    cnt++;
+}
 
 
 
