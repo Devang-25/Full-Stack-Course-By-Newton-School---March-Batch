@@ -4795,3 +4795,544 @@ while(n){
 
 
 
+Date : 15th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+- 1 D Array : DONE
+
+- Assignment Questions: WIP
+- 2 D Array
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+Ques: Max numbers
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+Problem Statement
+Given an array A of size N, you need to find its maximum, 2nd maximum and 3rd maximum element.
+
+Try solving it in O(N) per test case
+
+Input
+The first line of the input contains the number of test cases T.
+
+For each test case, the first line of the input contains an integer N denoting the number of elements in the array A. The next line contains N (space separated) elements of A.
+
+
+Constraints:
+1 <= T <= 100
+3 <= N <= 10^6
+1 <= A[i] <= 10^9
+
+Note:-It is guaranteed that the sum of N over all text cases does not exceed 10^6
+Output
+For each test case, output the first, second and third maximum elements in the array.
+Example
+Sample Input:
+3
+5
+1 4 2 4 5
+6
+1 3 5 7 9 8
+7
+11 22 33 44 55 66 77
+
+Sample Output:
+5 4 4
+9 8 7
+77 66 55
+
+Explanation(might now be the optimal solution):
+Testcase 1:
+[1 4 2 4 5]
+First max = 5
+Second max = 4
+Third max = 4
+
+
+
+
+
+IMP: Try solving it in O(N) per test case
+
+
+O(N) --> Single Iteration of Array
+
+
+
+
+Solutions:
+
+(1) Brute Force Solution: Using Sorting
+
+Sorting: Arranging in Increasing Order
+
+[1 4 2 4 5] ---Sorting ----> [1 2 4 4 5]
+
+CODE: Arrays.sort(arr); // O(NlogN)
+
+
+
+[1 2 4 4 5]
+
+1st Maximum Value = arr[n-1]
+2nd Maximum Value = arr[n-2]
+3rd Maximum Value = arr[n-3]
+
+
+Kth Maximum Value = arr[n-k] 
+
+
+
+[1 2 4 4 5]
+
+1st Minimum Value = arr[0]
+2nd Minimum Value = arr[1]
+3rd Minimum Value = arr[2]
+
+Kth Minimum Value = arr[k-1] 
+
+
+TC: O(NlogN) : TLE
+
+
+
+
+
+(2) Optimised Solution: Using Single Traversal
+
+[1 4 2 4 5]
+
+if (arr.length < 3)
+{
+    s.o.p(Invalid Input);
+}
+
+int first,second, third;
+first = second = third = Integer.MIN_VALUE;
+
+for (i=0; i<n; i++)
+{
+    if (arr[i] >= first)
+    {
+        third = second;
+        second = first;
+        first = arr[i];
+    }
+
+    else if (arr[i] >= second)
+    {
+        third = second;
+        second = arr[i];
+    }
+
+    else if (arr[i] >= third)
+    {
+        third = arr[i];
+    }
+}
+
+    S.o.p (first,second, third);
+
+
+
+Case 1: if (arr[i] > first)
+
+[1 2 3 4]
+Until travelling last value
+
+first = 3
+second = 2
+third = 1
+
+arr[i] = 4
+When I come to 4:
+
+first = 3-->4
+second = 2-->3 (previous first)
+third = 1---> 2 (previous second)
+
+
+
+
+Case 2: else if (arr[i] > second)
+
+[1 2 4 3]
+
+Until travelling last value
+
+first = 4
+second = 2
+third = 1
+
+
+arr[i] = 3
+When I come to 3:
+
+3 > 4: NO --> Go to else if
+
+3 > 2: YES
+
+first --> NO CHANGE
+second = 2-->3 
+third = 1-->2 (previous second)
+
+
+Case 3: else if (arr[i] > third)
+
+[1 3 4 2]
+
+Until travelling last value
+
+first = 4
+second = 3
+third = 1
+
+
+arr[i] = 2
+When I come to 2:
+
+2 > 4: NO, Go to else if
+2 > 3: NO, Go to else if (third condition)
+2 > 1: YES
+
+first --> NO CHANGE
+second --> NO CHANGE
+third = 1-->2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Pattern:
+
+Greater than first : ALL WILL CHANGE
+Greater than second : second, third WILL CHANGE
+Greater than third : third WILL CHANGE
+............
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Donation
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+After the decimation, all world went into chaos. People had to rebuild the planet so Shield came up with a donation strategy. They feel all the rich guys need to donate more than the poor guys. So, they make a rule. They would make a donation list in which the donation of each person would be shown. 
+But the rule is that a person can’t pay less than what has already been paid before them. Find the extra amount each person will pay, and also, tell shield the total amount of donation.
+
+Input
+The first line contains n, the total number of people donating. The next line contains n space separated integers denoting the amount of money paid by the people. The amounts are mentioned in the order in which the people paid.
+
+Constraints:-
+1 <= n <= 100000
+0 <= money <= 100000
+Output
+The first line contains the extra money that each student has to pay after their teacher applied the rule. The second line contains the total amount collected by the teacher at the end.
+Example
+Sample Input:-
+10
+1 2 3 2 4 3 6 6 7 6
+
+Sample Output:-
+0 0 0 1 0 1 0 0 0 1
+43
+
+Sample Input:-
+7
+10 20 30 40 30 20 10
+
+Sample Output:-
+0 0 0 0 10 20 30
+220
+
+
+
+
+
+
+
+
+But the rule is that a person can’t pay less than what has already been paid before them. 
+Find the "extra amount" each person will pay, and also, 
+
+tell shield the total amount of donation.
+
+
+1 5 4 3
+
+Donation = 1+5+4+3 = 13
+
+
+arr[i] =  1 = max, No Extra Charges, Donation = 1   Extra = 0 
+arr[i] = 5,  5 > 1: No Extra Charge, Donation = 1+5, Extra = 0
+max = 5:
+
+arr[i] = 4,  4> 5: NO: Extra Charge, Donation: 1+5+4, Extra = max-arr[i] = 5-4 = 1
+
+arr[i] = 3, 3> 5: NO: Extra Charge, Donation: 1+5+4+3, Extra = max-arr[i] = 5-3 = 2
+
+
+
+
+Total Donation = 13 + 3 = 16
+
+Extra Charges: max-arr[i]
+            : 0 0 1 2
+
+Final OP:
+
+0 0 1 2
+16
+
+
+
+
+
+
+
+
+
+
+
+Maximum difference array
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+Given an array of integers of size N, your task is to find the maximum parity index of this array.
+Parity Index is the maximum difference between two indices i and j (1 <= i <= j <= N) of an array A such that Ai < Aj.
+
+Input
+
+First line of contains a single integer N, next line contains N space separated integers depicting the values of array.
+
+Constraints:-
+1 < = N < = 100000
+1 < = Arr[i] < = 100000
+Output
+Print the maximum value of j- i under the given condition, if no pair satisfies the condition print -1.
+Example
+Sample Input:-
+5
+1 2 3 4 5
+
+Sample Output:-
+4
+
+Explanation:
+The maximum difference of jth - ith index is 4:(4th - 0th), also arr[4] > arr[0]
+
+
+Sample Input:-
+5
+5 4 3 2 1
+
+Sample Output:-
+-1
+
+
+
+
+
+maximum difference between two indices i and j (1 <= i <= j <= N) of an array A such that A[i] < A[j].
+
+
+5
+10 20 30 40 50
+
+A[0] = 10
+A[1] = 20, j-i = 1
+A[2] = 30, j-i = 2
+A[3] = 40, j-i = 3
+A[4] = 50, j-i = 4 : MAX- ANS
+
+
+
+Biggest Difference: 1 and 5 (Left and Right)
+
+10: A[0], i = 0
+50: A[4], j = 4
+
+
+Final OP: 4-0 = 4
+
+
+
+
+Edge Case:
+
+- Sorted Array: 
+    Ans = (n-1)-0 = n-1 = last index - first index
+
+- Decreasing Array:
+    Ans = -1
+
+
+
+
+
+
+5
+50 40 30 20 10
+
+A[0] = 50
+A[1] = 40, 
+A[2] = 30, 
+A[3] = 20, 
+A[4] = 10, 
+
+
+Biggest Difference: -1
+
+Final OP: -1
+
+
+
+
+
+Solution:
+
+
+(1) Brute Force Approach:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+    
+    static  int maxDiff(int []arr, int n)
+{
+    int maxDiff = -1;
+    int i,j;
+
+    for (i=0; i<n; i++) // Left Part
+    {
+        for (j=i; j<n; j++) // Right Part
+        {
+            if (arr[i] < arr[j] && (j-i) > maxDiff) 
+                // A[i] < A[j] and Max of (j-i)
+                maxDiff = j-i;
+        }
+    }
+
+    return maxDiff;
+}
+
+    /*
+    // Left to Right Max Diff: 3-0 = 3
+    
+    Find Max Differenece in Index from Left to Right such that left < right
+    
+    arr = 5 25 4 62 1
+    5: 25, diff = 1
+    5: 62, diff = 3: ANS
+        
+    26: 52, diff = 2    
+    4: 62, diff = 1    
+    */
+    
+    public static void main(String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+    System.out.println(maxDiff(arr, n));
+
+    }
+}
+
+
+
+TC: O(N^2), TLE
+
+
+
+
+(2) Optimised Solution:
+
+Binary Search
+
+Approach:
+
+    arr = 5 25 4 62 1
+
+Find the Maximum Value from Right: p
+Find the Minimum Value from Left: q
+
+Ans = Index(p) - Index(q)
+
+
+
+
+
+
+
+
+
+
+
+
+
