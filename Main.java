@@ -5336,3 +5336,474 @@ Ans = Index(p) - Index(q)
 
 
 
+Date : 18th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+- 1 D Array : DONE
+- Assignment Questions: DONE
+
+- Prefix Sum
+- Questions on Prefix Sum
+
+- 2 D Array
+
+TODO:
+- TC and SC, CP Tricks to Pass all TEST Cases
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+t
+n
+n values
+
+
+Constarints:
+
+1<=t<=100
+1<=n<=1000
+
+2
+5
+1 2 3 4 5
+4 
+1 2 3 4
+
+Case 1:
+
+int tc = s.nextInt();
+while (tc -- >0)
+{
+    int n = s.nextInt();
+    int []arr = new int[n];
+    for (i=0; i<n; i++)
+    {
+        arr[i] = s.nextInt();
+    }
+}
+
+Memory: t*N*4 Bytes
+
+
+Case 2: Approach:
+
+
+int tc = s.nextInt();
+int []arr = new int[1000];
+int n=0;
+while (tc -- >0)
+{
+    n = s.nextInt();
+    for (i=0; i<n; i++)
+    {
+        arr[i] = s.nextInt();
+    }
+}
+
+Memory: 4000 Bytes
+
+
+
+
+
+
+
+
+
+
+
+
+
+Concept: Prefix Sum Array/Running Sum Array
+
+
+
+Given an array of size n.
+Prefix Sum Array is another array of same size n such that:
+
+
+prefixsum[i] = a[0] + a[1] + a[2].......+ a[i]
+
+
+prefixsum[1] = a[0...1]
+prefixsum[2] = a[0...2]
+prefixsum[3] = a[0...3]
+prefixsum[4] = a[0...4]
+prefixsum[i] = a[0...i]
+
+
+a = [10 20 10 5 15]
+
+prefixsum = [10 30 40 45 60]
+
+
+
+prefixsum[i] = (a[0] + a[1] + a[2].......+ a[i-1]) + a[i]
+
+prefixsum[i-1] = a[0] + a[1] + a[2].......+ a[i-1] 
+
+prefixsum[i] = prefixsum[i-1] + a[i]  -- TRIGGER ALERT
+
+
+Sum of values till (i)
+= 
+Sum of Values till (i-1)
+ +
+a[i]
+
+
+
+
+
+CODE:
+
+
+public class Main {
+    
+    static void prefixSumArray(int []arr, int n)
+{
+    int[] prefixsum = new int[n];
+    prefixsum[0] = arr[0];
+    int i=0;
+
+         for (i=1; i<n; i++)
+            prefixsum[i] = prefixsum[i-1] + arr[i];    
+
+        for (i=0; i<n; i++)
+            System.out.print(prefixsum[i] + " ");
+}
+
+ 
+    public static void main(String[] args) 
+    {
+         Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int []arr = new int[n];
+        int i=0;
+        
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+        
+        prefixSumArray(arr, n);
+        
+    }
+}
+
+Input:
+5
+10 20 10 5 15
+
+TC: O(N)
+SC: O(N)
+
+
+
+
+Q-1: [Microsoft] Find Equilibrium Index in an Array
+
+
+Equilibrium Index in an Array is an index such that:
+
+sum of elements on its left == sum of elements on its right
+
+If there is no Equilibrium Index, return -1
+
+a = [-7 1 5 2 -4 3 0]
+OP: 3
+
+idx = 3
+left: [-7 1 5]
+right: [-4 3 0]
+
+
+leftsum = -1
+rightsum = -1
+
+
+Edge Cases:
+
+(1) Can Even Size Array have Equilibrium Index ?
+- YES
+
+[6 1 3 3]
+OP: 1
+
+[1 -6 3 3]
+OP: 0
+
+
+Leftsum of arr[0] = 0
+Rightsum of arr[n-1] = 0
+
+
+(2) Can there be Multiple Equilibrium Index in an array ?
+- YES
+
+a = [0 0 0 0]
+- All Indices are Equilibrium Index
+
+
+(3) Answer Not Dependent upon Value in Equilibrium Index
+
+a = [-7 1 5 2 -4 3 0]
+OP: 3
+
+a = [-7 1 5 _ -4 3 0]
+OP: 3
+
+
+
+
+
+Curr Index: i
+Left: arr[0...i-1]
+Right: arr[i+1...n-1]
+
+
+for (j=0; j<i; j++) - Left Values
+
+for (j=i+1; j<n; j++) - Right Values
+
+
+
+Solutions:
+
+
+(1) Brute Force: Two Nested Loops
+
+Approach:
+
+For Every Element, Calculate leftsum and rightsum
+
+if (leftsum == rightsum)
+    return i
+
+
+
+
+CODE:
+
+{
+    int lsum = 0, rsum = 0;
+
+    for (i=0; i<n; i++) // FOR ELEMENTS: O(N)
+    {
+        lsum =0;
+        for (j=0; j<i; j++) // Left Value: arr[0....i-1]
+            lsum+=arr[j]
+
+        rsum =0;
+        for (j=i+1; j<n; j++) // Right Value: arr[i+1.....n-1]
+            rsum+=arr[j]
+
+        if (lsum == rsum)
+            return i;
+    }
+
+    return -1;
+}
+
+
+
+TC: O(N^2), 5/10 TC passed, Rest TLE
+SC: O(1)
+
+
+
+
+(2) Optimised Solution: Prefix Sum Array
+
+Approach:
+
+(1) Initialise leftsum = 0
+(2) Get the total sum/cumulative sum of Array - totalsum
+(3) totalsum = totalsum - a[i]  --- RIGHTSUM
+(4) leftsum == rightsum, return i
+(5) Update leftsum, 
+    leftsum += a[i]
+
+
+
+CODE:
+
+{
+int totalsum = 0;
+int leftsum = 0;
+
+for (i=0; i<n; i++)
+    totalsum += a[i];
+
+for (i=0; i<n; i++)
+{
+    totalsum = totalsum - a[i]; // RIGHTSUM
+
+    if (leftsum == totalsum)
+        return i;
+
+    leftsum += a[i];
+
+}
+
+return -1;
+}
+
+    /*
+        a = [-7 1 5 2 -4 3 0]
+        totalsum = 0
+
+        i = 0
+        totalsum = totalsum - a[0] = 0 - (-7) = 7: RIGHTSUM
+    */
+
+
+
+TC: O(N), All TC Passed
+SC: O(1)
+
+
+
+
+
+
+
+Q-2: [CISCO] Find if there is any subarray with sum = 0
+
+[Google] Find if there is any subarray with sum = k
+
+
+
+Subarray:
+Contiguous Portion of Array
+
+
+a[i...j]: Subarray
+
+[1 2 3 4 5]
+
+Subarrays:
+
+[1]
+[1 2]
+[1 2 3]
+[1 2 3 4]
+[1 2 3 4 5]
+
+[2 1] - NOT
+[1 3] - NOT
+
+
+[2]
+[2 3]
+[2 3 4]
+[2 3 4 5]
+
+
+
+
+Given an array of positive and negative integers.
+Find if there is any subarray with sum = 0
+
+
+a = [4 2 -3 1 6]
+OP: true
+
+Subarray: [2 -3 1]
+
+a = [1 2 3 4 -5]
+OP: false
+
+a = [1 2 3 4 -5 0]
+OP: true
+
+Subarray: [0]
+
+
+30 sec, Approach, TC, SC
+
+
+
+Solutions:
+
+(1) Brute Force
+
+Find All Subarrays, Check if sum == 0
+return true, else return false
+
+
+a = [4 2 -3 1 6]
+Total Subarrays = 15
+
+Subarrays:
+
+[4]
+[4 2]
+[4 2 -3]
+[4 2 -3 1]
+[4 2 -3 1 6]
+
+
+[2]
+[2 -3]
+[2 -3 1]: ANS
+[2 -3 1 6]
+
+.......
+
+
+
+Number of Subarrays starting from 4 = 5, arr[0] = n
+Number of Subarrays starting from 2 = 4, arr[1] = n-1
+Number of Subarrays starting from -3 = 3, arr[2] = n-2
+
+Pattern:
+Number of Subarrays starting from arr[i] = n-i
+
+
+IMP:
+Number of Subarrays of an An Array with Size N ?
+
+= N + N-1 + N-2 +.................1
+= N*(N+1)/2
+
+
+
+CODE:
+
+for (i=0; i<n ; i++)
+{
+    for (j=i; j<n; j++)
+    {
+        Check if sum == 0 for a[i]....a[j] or Not
+    }
+}
+
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
