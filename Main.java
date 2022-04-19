@@ -1,4 +1,4 @@
-wDate : 28th March 2022
+Date : 28th March 2022
 Mentor: DEVANG SHARMA
 Batch: March Batch - 2
 
@@ -5372,7 +5372,7 @@ n
 n values
 
 
-Constarints:
+Constraints:
 
 1<=t<=100
 1<=n<=1000
@@ -5541,15 +5541,15 @@ Edge Cases:
 (1) Can Even Size Array have Equilibrium Index ?
 - YES
 
-[6 1 3 3]
+[6 5 3 3]
 OP: 1
 
 [1 -6 3 3]
 OP: 0
 
 
-Leftsum of arr[0] = 0
-Rightsum of arr[n-1] = 0
+Leftsum of arr[0] = 0 - Leftmost value
+Rightsum of arr[n-1] = 0 - Rightmost value
 
 
 (2) Can there be Multiple Equilibrium Index in an array ?
@@ -5568,7 +5568,8 @@ a = [-7 1 5 _ -4 3 0]
 OP: 3
 
 
-
+[-7 1 5 -4 3 0]
+OP:-1
 
 
 Curr Index: i
@@ -5696,7 +5697,7 @@ a[i...j]: Subarray
 
 [1 2 3 4 5]
 
-Subarrays:
+Subarrays: Contiguous + Order Maintained
 
 [1]
 [1 2]
@@ -5790,11 +5791,15 @@ for (i=0; i<n ; i++)
     for (j=i; j<n; j++)
     {
         Check if sum == 0 for a[i]....a[j] or Not
+        for (k=i; k<=j; k++)
+        {
+            sum+=arr[k];
+        }
     }
 }
 
 
-TC: O(N^2)
+TC: O(N^3), TLE
 SC: O(1)
 
 
@@ -5802,6 +5807,337 @@ SC: O(1)
 
 
 
+(2) Optimised Solution: Prefix Sum Array
+
+prefixsum[i] = A[0].....A[i] Sum
+
+0........i.......
+
+A[0....i] = Subarray
+prefixsum[i] = Always sum of subarray starting from 0
+
+prefixsum[i] == 0
+Sum of A[0].....A[i] = 0
+Subarray starting from 0 to i sum = 0
+
+There exists a Subarray starting from 0 till i with sum = 0
+return true
+
+
+Approach:
+
+Calculate prefixSumArray
+
+    if prefixSum == 0
+        return true
+    OR
+    if prefixSum is REPEATED
+        return true
+
+    else
+       return false
+
+
+if prefixSum == 0
+(Subarray with sum = 0 Starting from 0 Index)
+
+OR
+
+prefixsum is REPEATED
+(Subarray with sum = 0 NOT Starting from 0 Index)
+
+
+
+
+
+
+
+...........i............j...........
+
+
+prefixsum[i] = Sum upto ith index values = arr[0......i] = K
+
+prefixsum[j] = Sum upto jth index values = arr[0......j] = K
+
+Sum of Values from i to j = K-K = 0
+
+arr[i....j]: SUBARRAY, sum = 0
+
+
+a = [4 2 -3 1 6]
+
+prefixsum = [4 6 3 4 10]
+             s     e
+
+Subarray: arr[s+1...e] = arr[1...3]
+
+
+
+
+
+CODE:
+
+{
+HashSet<Integer> set = new HashSet<Integer>();
+int sum =0;
+
+for (i=0; i<n; i++) // O(N)
+{
+    sum += a[i]; // prefix sum
+
+    if (sum == 0 || set.contains(sum)) // O(1)
+        return true;
+
+    set.insert(sum);
+}
+
+return false;
+}
+
+
+TC: O(N), All TC passed
+SC: O(N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 19th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+- Operators: DONE
+- Loops: DONE
+- Functions: DONE
+- Assignment Questions: DONE
+- Nested Loops: DONE
+- Pattern Printing: TEMPLATE: DONE
+- Switch Case: DONE
+- Intro to DSA: DONE
+- Arrays: DONE
+- 1 D Array : DONE
+- Assignment Questions: DONE
+- Prefix Sum: DONE
+- Questions on Prefix Sum: DONE
+
+- Buffered Reader Class
+- Assignment Questions - MLE
+
+
+- 2 D Array
+
+TODO:
+- TC and SC, CP Tricks to Pass all TEST Cases
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+----> Buffered Reader Class
+
+import java.io.__
+
+import java.io.*;
+
+
+        - Scanner: DONE
+        - BufferedReader: 
+        - FileReader
+        - CustomReader
+        - Java 8 : Stream API/Lambda
+
+
+
+
+---> Take Input Using BufferedReader Class 
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        /*
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        */
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        
+        OR
+       
+        InputStreamReader r = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(r);     
+        
+        InputStreamReader r = new InputStreamReader(System.in);
+        BufferedReader br = new BufferedReader(r);     
+        String name = br.readLine();
+        int val = Integer.parseInt(br.readLine());
+        
+        System.out.println(name);
+        System.out.println(val);
+        
+    //        "1234" -> 1234: Type Casting
+     //       "1a234b" -> 1234: PARSING
+        
+    }
+}
+
+
+// System (IDE/Online Editor) ---> Stream (Server of LC) ---> Java
+//  Scanner                       BufferedReader
+
+
+
+
+
+
+---> Arraylist va Arrays
+
+
+ArrayList: Dynamic In Nature: Rubber Band
+
+Arrays: Static in Nature: Log of Wood
+
+
+int []arr = new int[100]; -- Size Specified
+
+ArrayList<Integer> A = new ArrayList<Integer>(); -- NO Size Specified
+
+
+Add Values: .add()
+
+Get Values: .get()
+
+
+
+
+CODE:
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        ArrayList<Integer> A = new ArrayList<Integer>(); 
+        System.out.println("Initial Size: " + A.size());
+        
+        A.add(10);
+        A.add(20);
+        A.add(30);
+        A.add(40);
+                
+        // Print ArrayList At Once
+        System.out.println(A);
+        System.out.println("After Adding - Size: " + A.size());
+        
+        int n = A.size(); // arr.length
+        // Print All Values in ArrayList
+        for (int i=0; i<n; i++)
+            System.out.print(A.get(i) + " ");
+        
+        System.out.println("");
+        // Remove Elements
+        System.out.println("Removing from Arraylist at Index 1");
+        A.remove(1); // Index Removal
+        
+        System.out.println(A);
+        System.out.println("After Removal - Size: " + A.size());
+        
+    }
+}
+
+        // A= [1 2 3]
+//        arr[i]: Array
+//        A.get(i): ArrayList   
+
+
+
+
+
+OP:
+
+
+Initial Size: 0
+[10, 20, 30, 40]
+After Adding - Size: 4
+10 20 30 40 
+Removing from Arraylist at Index 1
+[10, 30, 40]
+After Removal - Size: 3
+
+
+
+
+
+
+
+
+Assignment: Max 3 Elements
+
+
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main(String[] args) {
+        try {
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        int T = Integer.parseInt(input.readLine());
+        while (T-->0) {
+            int N = Integer.parseInt(input.readLine());
+            ArrayList<Integer> A = new ArrayList<>();
+            String [] line = input.readLine().split("\\s+");
+
+            for(int i=0;i<N;i++) {
+                A.add(i,Integer.parseInt(line[i]));
+            }
+            int max, max2, max3;
+            max = max2 = max3 = Integer.MIN_VALUE;
+            for(int i=0;i<N;i++) {
+                if(A.get(i)>=max) {
+                    max3 = max2;
+                    max2 = max;
+                    max = A.get(i);
+                }
+                else if(A.get(i)>=max2) {
+                    max3 = max2;
+                    max2 = A.get(i);
+                }
+                else if(A.get(i)>=max3) {
+                    max3 = A.get(i);
+                }
+            }
+            System.out.println(max + " " + max2 + " " + max3);
+        }
+        }
+            catch(Exception e) {
+                return;
+            }
+    }
+}
 
 
 
