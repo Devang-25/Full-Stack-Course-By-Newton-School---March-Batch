@@ -5814,13 +5814,13 @@ prefixsum[i] = A[0].....A[i] Sum
 0........i.......
 
 A[0....i] = Subarray
-prefixsum[i] = Always sum of subarray starting from 0
+prefixsum[i] = Always sum of subarray starting from Index 0
 
 prefixsum[i] == 0
 Sum of A[0].....A[i] = 0
-Subarray starting from 0 to i sum = 0
+Subarray starting from Index 0 to i sum = 0
 
-There exists a Subarray starting from 0 till i with sum = 0
+There exists a Subarray starting from index 0 till i with sum = 0
 return true
 
 
@@ -5910,8 +5910,6 @@ SC: O(N)
 
 
 
-
-
 Date : 19th April 2022
 Mentor: DEVANG SHARMA
 Batch: March Batch 2 - DRACO
@@ -5968,7 +5966,6 @@ import java.io.*;
 
 
 
-
 import java.io.*;
 import java.util.*;
 
@@ -5984,8 +5981,9 @@ public class Main {
         OR
        
         InputStreamReader r = new InputStreamReader(System.in);
-        BufferedReader br = new BufferedReader(r);     
-        
+        BufferedReader br = new BufferedReader(r); 
+
+
         InputStreamReader r = new InputStreamReader(System.in);
         BufferedReader br = new BufferedReader(r);     
         String name = br.readLine();
@@ -6000,16 +5998,32 @@ public class Main {
     }
 }
 
-
-// System (IDE/Online Editor) ---> Stream (Server of LC) ---> Java
+// System (IDE/Online Editor) ---> Stream (Server of LC) ---> Java (JVM)
 //  Scanner                       BufferedReader
 
 
+---> How to Take Input in Array Using BufferedReader
+
+            ArrayList<Integer> A = new ArrayList<>();
+            String [] line = input.readLine().split("\\s+");
+
+            for(int i=0;i<N;i++) {
+                A.add(i,Integer.parseInt(line[i]));
+            }
+
+IP:
+1 2 3 4 5
+
+
+Taken as: ["1", "2", "3", "4", "5"]
+
+ArrayList = A = [1 2 3 4 5]
 
 
 
 
----> Arraylist va Arrays
+
+---> Arraylist vs Arrays
 
 
 ArrayList: Dynamic In Nature: Rubber Band
@@ -6091,7 +6105,6 @@ After Removal - Size: 3
 
 
 
-
 Assignment: Max 3 Elements
 
 
@@ -6138,6 +6151,321 @@ class Main {
             }
     }
 }
+
+
+
+
+Date : 20th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- Arrays: DONE
+- Binary Search and Time Complexity: DONE
+- Prefix Sum Array- 
+- Questions - 
+- Two Pointer- 
+- Question- 
+
+TODO:
+- Compilation: DONE
+- Execution: DONE
+- Compiled Languages and Interpreted Languages: DONE
+- What is TC and SC- DONE
+- Why O Notation is Required- DONE
+- Order of O Complexity - DONE
+- Compare different algos- faster and slowest - DONE
+
+
+- Total Complexity in multiple functions with different complexities- 
+- How to Find Complexity from Code? - IMP
+- Time and Space Complexity - Real Life Meaning - 
+- Space Complexity - Auxliary and In memory - 
+- CP Trick to Pass all Test Cases-EXTRA
+- Recursion: 
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+------> Time and Space Complexity
+
+
+High Level Languages: Java, C++, C, Py, Go etc
+
+Converter: Compilation: Source Code ----> Machine Code
+
+Machine: 0/1
+
+System.out.println("Devang");
+---> 101010101010101 : Machine
+
+
+
+Compilation:
+
+javac Main.java
+(Java Compile)
+
+java Main
+(Java Run)
+
+Main.java ----------------> Main.class (Byte Code/Machine Code)
+
+Main.class ------ JVM ------> Execute
+
+
+What Happens During Compilation?
+- Check for Syntax Error
+- Check for Compile Time Errors 
+(Calling an undefined function, variable, scope)
+- Allocate Memory to Static Data Structures (Arrays etc)
+- Check for Memory Errors: MLE/Stack Overflow
+- Check for Div by 0 Error
+
+
+
+int a = 10;              4 Bytes: ----> a: 10
+
+int arr[10];             40 Bytes: -----> arr
+
+[.................]
+
+Size in Memory = Size of Array/Length of Array * data type size
+
+
+int arr[10000];
+arr[0] = 1;
+arr[1] = 2;
+
+9998*4 Bytes : Wasted
+
+
+
+
+int a = 10/0;
+
+OP: Exception ---> ArithmeticException
+
+
+java --> util ---> Maths ---> ArithmeticException
+
+
+
+int func()
+{
+    int n = 50;
+    int arr[n]; // 200 Bytes of Contiguous Memory: arr
+
+    .....Operations....
+
+    return arr[0];
+}
+
+After Compilation:
+(1) Success: Machine Code will be Generated ---> .class filke
+(2) Error: No Machine Code will be Generated
+
+
+
+Workflow:
+
+Notepad ----> Java Code ---> javac Main.java -----> Main.class ----> java Main ----> OP
+
+                -----------COMPILATION----------------------- ---EXECUTION-----------
+
+
+
+Execution/Run:
+
+Takes the Machine Code and Executes it
+
+
+
+
+Flow:
+
+Source Code ------> Compilation -----> Machine Code -----> Execution -------> OP
+
+HLL: Compiled Languages: C++, Java, C, C#, Go
+
+
+
+
+
+Compiled Languages:
+- Complete Code is Compiled before Execution
+
+Eg: C, C++, Go, JAVA, C#, PHP, Scala etc
+
+
+50 LOC : 1 .class file
+
+.class: JAVA
+.exe: CPP
+.scal: Scala
+
+Interpreted Languages:
+- Directly Execute Line by Line
+
+Eg: Python, JS
+
+
+1 Line ---> Machine Code ---> OP
+
+
+C++/Go/Java (Compiled Language)
+
+______________
+s.o.p("Devang");
+int a = 4/0;
+
+OP: Exception - Compile Time Error
+
+Python: (Interpreted Language)
+
+______________
+print("Devang")
+a = 4/0 
+
+
+OP: Devang
+    Error
+
+
+
+
+
+Generally, Interpreted Languages are LOOSELY Typed Languages
+
+
+Strongly Typed Languages:
+
+C++, Java, C# etc
+
+
+int a = 10; - Correct
+a = "abc"; - Incorrect
+
+(1) Any variable/constant MUST have a data type
+(2) That variable/constant will USE that data type values ONLY for complete Program
+
+
+
+
+
+Loosely Typed Languages:
+
+Python/JS
+
+p = "Devang"
+typeof(p): String
+
+p = 10
+typeof(p): Number
+
+
+
+
+
+
+
+
+
+Time Complexity:
+- Time Taken to RUN the Program/ Execution Time for a Program
+
+Space Complexity:
+- Memory Occupied during RUN the Program/ Execution for a Program
+
+
+
+Q: Why a Notation is Required ?
+
+
+Same Code: Java: 20 LOC, 2 MB
+
+
+M1 Mac: 1.4 sec
+Windows:
+Unix:
+
+
+Solution:
+
+There must be a GENERIC Template which EVERY Developer Across the Globe Understands
+
+
+Notation:
+
+Big O - Asymptotic Complexity
+Small o
+Theta
+Omega
+Alpha
+Gamma
+
+
+
+
+Big O Notation:
+Used to Define the Time and Space Complexity for a Program
+
+
+Order of Complexity:
+
+O(1) < O(log N) < O(N) < O(NlogN) < O(N^2) < O(N^3) < O(2^N) < O(N!) < O(N^N)
+
+BEST ------------------------------------------------------------------ WORST
+
+
+FASTER ---------------------------------------------------------------- SLOWER
+
+
+Use of Order of Complexity:
+
+(1) Compare Different Algorithms:
+
+Ramesh: O(N)
+Suresh: O(NlogN)
+
+Faster ?
+Ramesh
+
+
+
+Ramesh: O(N) - Linear
+Suresh: O(logn) - Binary
+
+
+Faster?
+Suresh
+
+
+
+
+Algo 1: O(N^2)
+Algo 2: O(NlogN)
+Algo 3: O(N)
+
+Best: O(N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
