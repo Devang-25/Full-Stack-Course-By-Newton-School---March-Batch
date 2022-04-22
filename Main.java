@@ -6625,7 +6625,7 @@ for (i=0; i<n; i++) -- O(N)
 }
 
 
-(2) Ask Each Person to Search for Each Other Person
+(2) Ask Each Person to Search for All Other Person
 
 S1: S1 S2 S3 S4
 S2: S1 S2 S3 S4
@@ -6903,6 +6903,8 @@ Constraints:
 Time Limit: 1 sec per TC
 Memory Limit: 256 MB per TC
 
+0.0 -1.0: passed
+>=1.1 : TLE
 
 Range of Test Cases:
 
@@ -6964,6 +6966,300 @@ CP: Helpful
 
 15 Mins, 3 Questions
 
+
+1 Offcampus Contest: 1000 People
+
+90/180 Mins, 3 Questions
+
+30% People ---> All TC Passed
+
+300 People ---> 50 People
+
+Top 50: Quickest Solutions ---> Interviews
+
+
+CP: 15 Mins: Helpful
+
+
+IMP:
+List of Leetcode Pattern Questions:
+- Blind 75 Questions
+- Grind 50
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 22nd April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- Arrays: DONE
+- Binary Search and Time Complexity: DONE
+- Prefix Sum Array- DONE
+- Questions - DONE
+- Two Pointer- DONE
+- Question- DONE
+- Compilation: DONE
+- Execution: DONE
+- Compiled Languages and Interpreted Languages: DONE
+- What is TC and SC- DONE
+- Why O Notation is Required- DONE
+- Order of O Complexity - DONE
+- Compare different algos- faster and slowest - DONE
+- Total Complexity in multiple functions with different complexities- DONE
+- How to Find Complexity from Code? - IMP - DONE
+- Time and Space Complexity - Real Life Meaning - DONE
+- Space Complexity - Auxliary and In memory - DONE
+- CP Trick to Pass all Test Cases-EXTRA - DONE
+- Recursion: DONE 
+
+
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+RECURSION:
+
+A Function which calls itself inside its defintion, is called Recursion
+
+Movie: Inception, Edge of Tomorrow
+
+
+
+
+Recursion:
+
+int func()
+{
+    ....
+    func();
+}
+
+Not a Recursion:
+
+
+int func()
+{
+    ....
+}
+
+p.s.v.m.()
+{
+    func();
+}
+
+
+
+
+
+Factorial of a Number:
+Product of All Values from 1 to N
+
+N! = 1*2*3.............*N
+
+5! = 5 * 4 * 3 *2 *1 = 120 = 5 * 4!
+4! = 4 * 3 *2 *1 = 24 = 4 * 3!
+3! = 3 *2 *1 = 6 = 3 * 2 !
+
+
+N! = N * (N-1)! ---- TRIGGER ALERT
+Intuition: Can be Solved By Recursion
+
+func(N) = N * func(N-1) ---- RECURSION
+
+
+
+int factorial(int n)
+{
+    return n * factorial(n-1);
+}
+
+factorial(5) = 120?
+
+OP:
+
+factorial(5) 
+= 5 * factorial(4)
+= 20 * factorial(3)
+= 60 * factorial(2)
+= 120 * factorial(1)
+= 120 * factorial(0)
+= 0 * factorial(-1)
+.....Infinite Times
+
+
+Base Condition:
+Tells Recursion to Stop
+
+
+for (i=0; Condition ; i++)
+-- INFINITE Times    
+
+
+
+0! = 1
+
+Complete Code:
+
+// "static void main" must be defined in a public class.
+public class Main {
+
+    static int factorial(int n)
+{
+    if (n == 0 || n == 1)
+        return 1;
+
+    return n * factorial(n-1);
+}
+
+    public static void main(String[] args) {
+
+        System.out.println(factorial(5)); 
+        System.out.println(factorial(4)); 
+        System.out.println(factorial(3)); 
+        System.out.println(factorial(0)); 
+    }
+}
+
+OP:
+
+factorial(5) 
+= 5 * factorial(4)
+= 20 * factorial(3)
+= 60 * factorial(2)
+= 120 * factorial(1)
+= 120 * 1
+= 120
+
+
+
+Constraints:
+
+1 <= N <= 100: if (n==1)
+0 <= N <= 100
+
+
+
+
+
+
+Memory:
+
+During Execution/Run Time - It will know its a Recursion.
+
+HEAP: Dynamic Memory/Run Time Memory - Recursion Calls are stored
+
+Recursion Stack:
+
+factorial(1)
+factorial(2)
+factorial(3)
+factorial(4)
+factorial(5)
+
+
+N Calls, That is Why, O(N) Space Complexity During Recursion - Dynamic Memory (HEAP)
+
+
+Note:
+Recursion Stack--> Created During Run Time --> Stored in Heap
+
+
+Recursion Space Complexity:
+(1) Static Memory: O(1)
+(2) Dynamic Memory: O(N) - Recursion Stack
+
+
+
+
+for (i=0; ;i++)
+{
+    ....
+}
+
+
+OP: Time Limit Exceed (TLE)
+
+
+int func()
+{
+    // No Base Condition
+    func();
+}
+
+OP: Stack Overflow
+
+
+Recursion Stack:
+
+
+.........
+func(n-1)
+func(n)
+
+
+
+
+
+
+
+Fibbonacci Series:
+
+0 1 1 2 3 5 8 13 21.....
+
+
+first = 0
+second = 1
+
+Nth Number = (N-1)th Number + (N-2)th Number ---- TRIGGER ALERT
+
+Intuition: Can be Solved By Recursion
+
+fibbo(n) = fibbo(n-1) + fibbo(n-2) ---- RECURSION
+
+
+
+
+
+Can All Iterative Code be Solved By Recursion?
+- YES
+
+Can All Recursive Code be Solved By Iteration?
+- YES
+
+
+
+
+Note:
+
+(1) Complexity CAN BE Different for SAME Question using Recursion and Iteration
+(2) In case where a Data Structure needs to be traverse again using substructures- Recursion is Preferred
+Eg: Trees -> Subtrees
 
 
 
