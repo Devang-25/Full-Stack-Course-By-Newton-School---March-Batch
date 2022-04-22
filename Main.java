@@ -6264,7 +6264,7 @@ int func()
 }
 
 After Compilation:
-(1) Success: Machine Code will be Generated ---> .class filke
+(1) Success: Machine Code will be Generated ---> .class file
 (2) Error: No Machine Code will be Generated
 
 
@@ -6408,7 +6408,6 @@ Gamma
 
 
 
-
 Big O Notation:
 Used to Define the Time and Space Complexity for a Program
 
@@ -6452,6 +6451,518 @@ Algo 3: O(N)
 Best: O(N)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 21st April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- Arrays: DONE
+- Binary Search and Time Complexity: DONE
+- Prefix Sum Array- DONE
+- Questions - DONE
+- Two Pointer- DONE
+- Question- DONE
+- Compilation: DONE
+- Execution: DONE
+- Compiled Languages and Interpreted Languages: DONE
+- What is TC and SC- DONE
+- Why O Notation is Required- DONE
+- Order of O Complexity - DONE
+- Compare different algos- faster and slowest - DONE
+- Total Complexity in multiple functions with different complexities- DONE
+- How to Find Complexity from Code? - IMP - DONE
+- Time and Space Complexity - Real Life Meaning - 
+
+TODO:
+- Space Complexity - Auxliary and In memory - DONE
+- CP Trick to Pass all Test Cases-EXTRA
+- Recursion: 
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+
+(2) Total Complexity in multiple functions with different complexities- 
+
+
+int f1() - Printing an Array
+{
+    O(N)
+}
+
+
+int f2() - Binary Search
+{
+    O(log N)
+}
+
+Total TC of Program?
+
+TC: O(N) + O(log N) ~= O(N)
+
+10000 + 1 ~= 10000
+
+Ans: ALWAYS HIGHEST COMPLEXITY (Slowest on Execution)
+
+
+
+
+Train: 10 Compartments
+
+Compartment 1: 1 Km/h
+Compartment 2: 2 Km/h
+Compartment 3: 3 Km/h
+
+......................
+Compartment 10: 10 Km/h
+
+
+Speed of Train ?
+
+
+- 10
+- 1: ANS
+- Average
+- Median
+
+
+
+Limiting Reagent
+Element which reacts slowest determines the rate of reaction.
+
+
+Chain Chain Game
+
+1-2-3-4-5: Chain
+
+6: Free
+
+Who will determine the speed of chain?
+- SLOWEST Person determine speed of chain
+
+
+
+O(N) + O(log N) + O(N^2) = O(N^2)
+
+O(N!) + O(N^2) + O(N*logN) = O(N!)
+
+
+
+N = 100
+N^2 = 10000
+log N = 6.56
+
+
+
+
+
+
+-------> How to Find Complexity from Code? - IMP
+
+Theoretical Way:
+Master Theorem - Recurrence Relation
+
+
+Practical Way:
+
+"Always Find Complexity based upon Approach"
+
+
+TRICK:
+
+Number of Traversal/Iterations ----> O() ---> Time Complexity
+
+
+4 Students in a Class
+Pen is Lost
+Task: Search for Pen
+
+
+(1) Make Everyone stand in a line and search one by one
+
+
+S1 S2 S3 S4
+= 4 Traversal/Iterations
+
+N People: N Traversal
+
+Approach: Traverse Over ALL Elements one by one
+O(N): Linear Time Complexity 
+
+
+CODE:
+
+for (i=0; i<n; i++) -- O(N)
+{
+    ////
+}
+
+
+(2) Ask Each Person to Search for Each Other Person
+
+S1: S1 S2 S3 S4
+S2: S1 S2 S3 S4
+S3: S1 S2 S3 S4
+S4: S1 S2 S3 S4
+
+Total Traversal: 4*4 = 4^2 = 16 
+
+4----> N: Traversal: O(N*N) = O(N^2)
+
+
+CODE:
+
+
+for (i=0; i<n; i++)    -- O(N)
+{
+    for (j=0; j<m; j++) -- O(M)
+    {
+        ....
+    }
+}
+
+
+TC: O(N*M)
+
+
+(3) Pen Found in Pocket
+
+O(1): Constant Time
+
+for (i=0; i<4; i++)
+{
+
+}
+
+TC: O(1)
+
+
+for (i=0; i<n; i++)
+{
+
+}
+
+TC: O(N)
+
+
+CODE:
+
+(1) int val = 10;
+(2) System.out.println(arr[0]);
+
+
+
+(4) Logarithmic Time
+
+Approach:
+
+Make All Stand in 1 Line, Search Half of them at each step
+
+
+                          S1 S2 S3 S4
+                        [S1 S2] [S3 S4]
+                        [S1][S2] [S3][S4]
+
+At Every Iteration ----> Divide into Half
+
+
+TC: O(log (base 2) N) -- Binary Search
+
+
+
+
+Q-1: 
+for (i=0; i<n; i++)
+
+TC: O(N)
+
+
+Q-2: 
+for (i=0; i<n/2; i++)
+
+TC: O(N/2)
+
+
+Q-3: 
+for (i=0; i<n; i+=2)
+
+TC: O(N/2)
+
+
+N = 6
+
+for (i=0; i<6; i+=2)
+    0, 2, 4: 3 Times: O(N/2) : 6/2: 3 Times
+
+
+
+
+
+Q-4: 
+for (i=0; i<n; i+=3)
+
+TC: O(N/3)
+
+
+Q-5: 
+for (i=0; i<n; i+=K)
+
+TC: O(N/K)
+
+
+Ans: O(), O(), O(), O(), O()
+
+
+
+
+Diff between O(N/2) and O(log N)
+
+
+64 ---> 32: O(N/2)
+
+64 --> 32 ---> 16 --> 8 --> 4 ---> 2 --> 1: O(log N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------> Space Complexity - Auxliary and In memory -
+
+
+Stack: Compile Time Memory: Static Memory - In Memory
+
+Heap: Run Time Memory: Dynamic Memory - Auxiliary Memory
+
+
+
+
+Space Complexity Trick:
+
+(1) Static Data Structures
+- Array
+- Stack
+- Queue
+- Set
+- Map
+
+O(N) Space in Static Memory: STACK - In Memory
+
+
+CODE Example:
+
+int arr[n];
+SC: O(N) in Static Memory
+
+
+(2) Dynamic Data Structures
+- ArrayList
+- Vectors etc
+
+CODE Example:
+
+ArrayList<Integer> al = new ArrayList<Integer>();
+for (i=0; i<n; i++)
+    al.add(i);
+
+
+SC: O(N) in Dynamic Memory
+
+
+
+
+Code Example:
+
+TC-1:
+
+int func(int n)
+{
+    int arr[n];
+
+
+.................
+    return arr[0];
+}
+
+
+func(5);
+func(500);
+
+
+SC: O(N) - Stack
+
+TC-2:
+
+int func(int n)
+{
+
+ArrayList<Integer> al = new ArrayList<Integer>();
+for (i=0; i<n; i++)
+    al.add(i);
+
+
+.................
+    return arr[0];
+}
+
+
+SC: O(N) - Heap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------> CP Trick to Pass all Test Cases-EXTRA
+
+CP: Competitive Programming
+
+
+Constraints: 
+The Upper Limit/Threshold which will be used to test your code
+
+(1) Range of Values -----> data type
+
+int: -2 Bn to +2 Bn: <= 10^9
+long: -40 Tn to +40 Tn > 10^9
+
+1 <= arr[i] <= 10^9
+int []arr = new int[n];
+
+1 <= arr[i] <= 10^12
+int []arr = new int[n]; - WA - Incorrect
+long []arr = new long[n]; - Correct
+
+
+(2) Time and Space Complexity Required to Pass all Test Cases.
+
+
+
+Constraints:
+
+1 <= arr[i] <= 10^9
+1 <= N <= 10^6
+
+Time Limit: 1 sec per TC
+Memory Limit: 256 MB per TC
+
+
+Range of Test Cases:
+
+TC-1: arr[i] = 10^9
+TC-2: arr[i] = 1
+.................
+
+
+Time Limit Exceed: Test Cases takes more time than allocated time: TLE
+Memory Limit Exceed: Test Cases takes more memory than allocated memory: MLE
+
+
+
+
+
+
+
+
+
+Time Limit: 1 sec per TC
+Memory Limit: 256 MB per TC
+
+
+1 sec = 10^8 Computations/Traversal/Iterations: CONSTANT
+(Platform Independent)
+
+
+
+1 <= N <= 10^4       O(N^2) = 10^4*10^4 = 10^8 Computations: All TC Passed
+
+1 <= N <= 10^5       O(N^2) = 10^5*10^5 = 10^10 > 10^8 Computations: Not All TC passed
+                                                        Eg: 7 Passed, 3 TLE            
+
+1 <= N <= 10^5       O(N) = 10^5 Computations: All TC Passed
+
+
+
+
+Algo: Complexity
+
+(1) Binary Search: O(log N)
+(2) Two Pointer: O(N/2)
+........................
+
+
+
+
+
+
+Trick:
+(1) Read the Constraints -- Find the Upper Limit
+(2) Select the data type, and you know the complexity to pass all TC
+(3) Reverse Engineer the Complexity to Algorithm
+(4) Code and Submit: Pass all TC
+
+
+
+CP: Helpful
+
+15 Mins, 3 Questions
 
 
 
