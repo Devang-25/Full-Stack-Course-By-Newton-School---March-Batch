@@ -7278,3 +7278,525 @@ Eg: Trees -> Subtrees
 
 
 
+Date : 25th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- Arrays: DONE
+- Binary Search and Time Complexity: DONE
+- Prefix Sum Array- DONE
+- Questions - DONE
+- Two Pointer- DONE
+- Question- DONE
+- Compilation: DONE
+- Execution: DONE
+- Compiled Languages and Interpreted Languages: DONE
+- What is TC and SC- DONE
+- Why O Notation is Required- DONE
+- Order of O Complexity - DONE
+- Compare different algos- faster and slowest - DONE
+- Total Complexity in multiple functions with different complexities- DONE
+- How to Find Complexity from Code? - IMP - DONE
+- Time and Space Complexity - Real Life Meaning - DONE
+- Space Complexity - Auxliary and In memory - DONE
+- CP Trick to Pass all Test Cases-EXTRA - DONE
+- Recursion: DONE 
+- Assignment Questions: DONE
+- XOR and Questions: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+
+- Single Number: https://leetcode.com/problems/single-number/
+- Two Sum Question - 3 Approaches
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+Hip Hip Array
+View Solution
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+Problem Statement
+
+You will be given an array of N numbers. 
+Your task is to first reverse the array (first number becomes last, 2nd number becomes 2nd from the last and so on) and then 
+print the sum of the numbers at even indices and print the product of the numbers at odd indices.
+
+Input
+First line contains single integer N: number of elements
+Second line contains N different integers separated by spaces
+
+constraints:-
+1 <= N <= 35
+1 <= a[i] <= 10
+Output
+Two space separated integers representing sum of the numbers at even places and the product of the numbers at odd places.
+
+Example
+Sample Input:
+6
+1 2 3 4 5 6
+
+Sample Output:
+9 48
+
+Explanation:-
+After reversing 1 2 3 4 5 6 becomes 6 5 4 3 2 1
+
+        [6 5 4 3 2 1]
+Index:   0 1 2 3 4 5
+Index:   1 2 3 4 5 6
+
+Hence sum of the numbers at even indices : 5+3+1=9 --- 1 Based Indexing
+product of the numbers at odd indices: 6*4*2=48
+
+Sample Input:
+3
+1 2 3
+
+Sample Output:
+2 3
+
+
+
+
+Solution:
+
+(1) 1 Based Indexing
+
+
+i%2==0: EVEN: 0 Based Indexing
+
+
+CODE:
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main
+{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        int i=0, t=0;
+        for(i=0;i<n;i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        
+        // Reversing an Array Using Swap
+     for (i=0; i<n/2; i++)
+     {
+            t = arr[i];
+            arr[i] = arr[n - i - 1];
+            arr[n - i - 1] = t;
+     }
+        
+       long sum=0, prod = 1;        
+       for (i=0; i<n; i++)
+       {
+           if ((i+1)%2==0) // 1 Based Indexing
+               sum += arr[i];
+           else
+               prod *= arr[i];
+       }
+        
+      System.out.print(sum + " " + prod);        
+    }
+}
+
+
+
+
+
+
+Minimum adjacent difference in a circular array
+View Solution
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+Problem Statement
+Given an array Arr of N integers arranged in a circular fashion. Your task is to find the minimum "absolute difference" between adjacent elements.
+Input
+The input line contains T, denoting the number of testcases. Each testcase contains two lines. The first line contains N(size of array). The second line contains N elements of array separated by space.
+
+Constraint:
+1 <= T <= 100
+2 <= N <= 10^5
+-10^6 <= Arr[i] <= 10^6
+Sum of N over all testcases is less than equal to 10^6
+Output
+For each testcase in new line print the minimum absolute difference.
+Example
+Input:
+3
+7
+8 -8 9 -9 10 -11 12
+8
+10 -3 -4 7 6 5 -4 -1
+8
+-1 40 -14 7 6 5 -4 -1
+
+Output:
+4
+1
+0
+
+Explanation:
+Testcase 1: The absolute difference between adjacent elements in the given array are as such: 16 17 18 19 21 23 4(first and last). Among the calculated absolute difference the minimum is 4.
+Testcase 2: The absolute difference between adjacent elements in the given array are as such: 13 1 11 1 1 9 3 11(first and last). Among the calculated absolute difference, the minimum is 1.
+Testcase 3: The absolute difference between adjacent elements in the given array are as such: 41 54 21 1 1 9 3 0(first and last). Among the calculated absolute difference, the minimum is 0.
+
+
+
+
+
+Solution:
+
+Circular Array:
+
+After Index n-1 --> Go to Index 0
+
+
+[1 2 3 4 5]
+
+After 5----> 1
+
+
+
+
+
+8 -8 9 -9 10 -11 12
+Circular Array,
+After 12 ----> 8 
+Adjacent to 12 ---> 8
+
+Difference in Adjacent Values: arr[i] - arr[i-1]
+
+
+8 -(-8) = 16
+9-(-8) = 17
+-9-(9) = 18
+
+............
+
+12-8 = 4: MIN
+
+16 17 18 19 21 23 4
+
+
+OP: 4
+
+
+
+
+
+CODE:
+
+
+int min = Integer.MAX;
+
+for(i=0; i<n-1; i++)    
+    min = Math.min(min, Math.abs(arr[i], arr[i+1]));
+
+min = Math.min(min, Math.abs(arr[0] - arr[n-1]));
+
+return min;
+
+
+
+
+
+for (i=0; i<n; i++)
+{
+    s.o.p(arr[i]);
+}
+
+
+for (i=0; i<n; i++)
+{
+    s.o.p(arr[i-1]); // arr[-1] : ISSUE
+}
+
+
+for (i=1; i<=n; i++)
+{
+    s.o.p(arr[i-1]);  // NO ISSUES
+}
+
+
+
+for (i=0; i<n; i++)
+{
+    s.o.p(arr[i+1]); //  arr[n]: ISSUE
+}
+
+
+for (i=0; i<n-1; i++)
+{
+    s.o.p(arr[i+1]); // NO ISSUES
+}
+
+
+
+
+
+
+
+
+
+
+
+
+-----> Bit Manipulation
+
+
+XOR Operations:
+
+
+
+AND, OR, NOT
+
+
+AND, OR: Binary
+NOT: Unary
+
+
+
+&&: AND
+||: OR
+!: NOT
+
+
+XOR Gate:
+
+0 XOR 1 = 1
+1 XOR 0 = 1
+0 XOR 0 = 0
+1 XOR 1 = 0
+
+Inputs Different: OP - True/1
+Inputs Same: OP - False/0
+
+
+Extended Version of XOR on Bits on Numbers:
+
+
+Apply on Numbers ----> Perform Bitwise XOR on Binary Equivalent of Numbers
+^: XOR
+
+Example:
+
+        10 -> Binary
+        15 -> Binary
+            
+        10101 ^ 10110 = 00011    
+         10      15      5
+
+
+(1) A^A = 0
+
+5^5 = 0
+101 ^ 101 = 0000 = 0
+
+
+CODE:
+
+     int a=2000;
+     int ans = a^a;
+     System.out.println(ans);
+
+
+(2) Commutative Property:
+
+A OR B = B OR A
+A + B = B + A
+A * B = B * A
+
+A^B = B^A
+
+
+CODE:
+
+            int a=10, b = 20;
+            int c = a^b;
+            int d = b^a;
+            System.out.println(c==d);
+
+
+
+
+(3) A^0 = A
+
+Code:
+
+            int a = 5;
+            int ans = a^0;
+            System.out.println(a==ans);
+
+
+
+(4) A^A = 0
+    A^0 = A
+
+
+(A^A)^A = 0^A = A^0 = A
+A^A^A^A = 0
+
+
+
+A^A^A^A........: Even Times: 0
+                 Odd Times: A       
+
+
+
+(5) A^A^B = B^A^A = A^B^A = B
+Position DOES NOT Matter
+
+
+
+
+
+
+
+
+Leetcode Ques: Single Number
+
+Given a non-empty array of integers nums, every element appears twice except for one. 
+Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+ 
+
+Example 1:
+
+Input: nums = [2,2,1]
+Output: 1
+
+
+Solution:
+
+
+(1) Using XOR
+
+Duplicate Values (Even Frequency): XOR = 0
+Single Value: XOR: Single Value
+
+
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        int ans =0;
+        // Duplicate Values (Even Frequency): XOR = 0
+        // Single Value: XOR: Single Value
+
+        for (int i=0; i<nums.length; i++)
+            ans^= nums[i];
+        
+        return ans;
+    }
+}
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+(2) Sorting:
+
+
+[2 2 1] ---> [1 2 2]
+
+All Duplicates will be Together
+Single Value will be different from Adjacent.
+
+
+
+class Solution {
+    public int singleNumber(int[] nums) {
+        Arrays.sort(nums);
+        int i=1;
+        int n = nums.length;
+        for (i=1; i<n; i+=2)
+        {
+            if (nums[i]!= nums[i-1])
+                return nums[i-1];            
+        }
+        
+        return nums[n-1];
+            
+    }
+}
+
+
+TC: O(NlogN)
+SC: O(1)
+
+
+[4,1,2,1,2] ---> [ 1 1 2 2 4]
+                     i   i   
+
+
+
+(3) HashMap
+
+Key: Value
+
+Element: Frequency
+
+if freq == 1
+    ans = elem
+
+
+[4,1,2,1,2]
+
+4: 1 - ANS
+1: 2
+2: 2
+
+
+TC: O(N)
+SC: O(N)
+
+
+(4) Convert into Set
+Find Sum*2 of Set
+Ans  = Sum*2 of Set - Sum of Array
+
+[4 1 2 1 2]
+OP: 4
+
+
+HashSet-Unique = [1 2 4]
+Sum of Unique Values*2 = 7*2 = 14
+Sum of Array = 10
+
+OP: Sum of Unique Values*2  - Sum of Array = 14-10 = 4 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
