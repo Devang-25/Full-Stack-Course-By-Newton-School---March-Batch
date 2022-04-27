@@ -8019,7 +8019,7 @@ BUG:
 
 
 
-(3)  Sorting and Checking Vlaues
+(3)  Sorting and Checking Values
 
 
 - Sort the Array
@@ -8157,18 +8157,33 @@ class Main {
             res = Math.max(res, arr[i]+arr[n-i-1]);
         }
 
+
         System.out.println(res);
 
     }
 }
 
 
+Min X such that Pair Sum is Maximum
 
+[1 2 3 4 5 6]
 
+(1)Take Only Min Values
 
+[1 2]: 2+1 = 3
 
+(2) Take Only Max Values - Same as Approach 1
 
+[5 6] = 5+6 = 11
 
+(3) Take 1 value from BEGINNING and 1 from END
+(After Sorting)
+
+[1+6] = 7
+[2+5] = 7
+[3+4] = 7
+
+Ans = 7
 
 
 
@@ -8214,6 +8229,18 @@ OP: [-3,1], [-1,-1]
 
 Solutions:
 
+(1) Brute Force Solution: Two Nested Loops: T: O(N^2), S: O(1)
+
+(2) Sorting and Two Pointer: T: O(NlogN), S: O(1)
+
+(3) Hashing Solution: T: O(N), S: O(N)
+
+(4) Remainder Based Approach: O(N+x)
+
+
+
+
+
 (1) Brute Force Solution: Two Nested Loops
 
 a + b == target
@@ -8241,6 +8268,133 @@ SC: O(1)
 
 
 
+(2) Sorting and Two Pointer
+
+
+- Sort the Array
+- Two Pointer
+
+
+
+
+CODE:
+
+
+Arrays.sort(arr); // N*logN
+int l =0, r = n-1;
+while (l<=r)
+{
+    if (arr[l] + arr[r] == target) // curr_sum == target
+    {
+        ++count;
+        l++;
+        r--;
+    }
+
+    else if (arr[l] + arr[r] < target)
+        l++; // curr_sum < target: RIGHT
+
+    else
+        r--;  // curr_sum > target: LEFT
+}
+
+TC: O(NlogN)
+SC: O(1)
+
+
+DRY RUN:
+
+a[] = [0,-1,2,-3,1,-1]
+target = -2
+
+
+After Sorting:
+
+[-3 -1 -1 0 1 2]
+l             r
+
+target = -2
+
+l = 0
+r = 5
+
+
+arr[l] + arr[r] = [-3+2] = -1
+
+curr_sum is -1, I need -2
+
+-2 < -1: HENCE, Go Left
+
+right--;
+
+r = 5---> 4
+
+arr[l] + arr[r] = [-3+1] = -2: ANS
+
+
+
+
+(3) Hashing - Set or Map
+
+
+a + b == target
+temp = b = target - a
+
+
+target: 6
+In Hand: 1
+Need: 6-1 = 5 (target-a)
+
+
+Approach:
+
+If I have arr[i], 
+AND
+target-arr[i] ALSO Exist in Array ---> Got the Answer
+
+a + (target-a) = target
+
+
+If I have arr[i]: Loop from i=0 to N
+AND
+target-arr[i] ALSO Exist in Array: Linear Search: O(N)
+
+
+
+for (i=0; i<N; i++): O(N)
+{
+    Find temp in arr: O(N)
+}
+
+TC: O(N^2)
+
+-- No Optimisation
+
+
+Intuition: Hahsing (Set or Map)
+
+
+
+for (i=0; i<N; i++): O(N)
+{
+    Find temp in _: O(1)
+}
+
+TC: O(N)
+
+-- Optimisation
+
+What do I Need?
+- A Data Structure which can find whether a value exist in it in O(1) Time
+
+
+SET or MAP
+
+set.contains(val);  - O(1)
+map.containsKey(val);  - O(1)
+
+TC: O(N)
+SC: O(N)
 
 
 
@@ -8251,6 +8405,268 @@ SC: O(1)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 27th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+
+- 2D Arrays and Questions: WIP
+- Jagged Arrays
+- Prime, GCD
+- Strings
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------> Error Messages and Compiler Messages
+
+(1) NZEC: RE Error
+
+Reasons:
+- Stack is Overflow
+- Infinite Loop with Memory Operations inside it
+
+
+Recursion without a base case: Stack Overflow: NZEC
+
+Solution: Check for Base Case
+
+int i=0;
+for (i=0; ; i++) - Infinite
+{
+
+}
+
+OP: TLE
+
+
+int i=0;
+for (i=0; ; i++) - Infinite
+{
+    int []arr = new int[n]; - Infinite Memory
+}
+
+OP: NZEC : Stack Overflow
+
+
+
+(2) WA: Wrong Answer
+
+- 10/10 WA
+Logic is incorrect
+Solution: Correct your Code
+
+
+- 8 Passed, 2 WA
+
+Logic is correct, Edge Case is Missing
+
+int sum = int + int: OVERFLOW (Garbage Value) --> WA
+
+Note: Silent Killer
+
+int: 10^9
+long: 10^15
+long long: 10^21
+BigInteger: 10^25
+
+(3) TLE
+
+- 5/10 TC Passed, Rest TLE
+
+Time Complexity is More - TLE
+
+Solution: Reduce Time Complexity
+
+(4) MLE
+
+- 8/10 TC Passed, 2 MLE
+
+Memory Limit: 256 MB per TC 
+
+Solution: Reduce Space Complexity 
+
+for (i,1,Test Cases)
+{
+    int []arr = new int[100000];
+}
+
+- Possibly MLE
+
+
+Better Way:
+
+int []arr = new int[100000];
+for (i,1,Test Cases)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- 2D Arrays and Questions
+
+1-D Array:
+
+[1 2 3 4 5]
+Index: arr[i]
+
+Indexing: To Uniquely Identify an element in array
+
+1 Value is Sufficient to 
+
+for (int i=0; i<n; i++)
+{
+    arr[i]: Iterating Iver Index
+}
+
+for (int val: arr)
+    val: Iterating Over Values
+
+
+
+2-D Arrays/Matrix
+
+mat = 
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+Each Value: 1D Array
+
+
+2nd Row: 
+
+mat[2] --> Incomplete Information to Uniquely Identify
+mat[1][1] = 5 
+
+Both Rows and Cols are MANDATORY to Uniquely Identify a Value in Matrix.
+
+
+Indexing in Matrix:
+
+matrix[m][n]
+Rows: m
+Cols: n
+
+Row: 0 to m-1
+Col: 0 to n-1
+
+
+mat = 
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+
+1st Value: mat[0][0] = 1
+Last Value: mat[m-1][n-1] = 9
+
+Test:
+
+mat[1][2] = 6
+mat[2][0] = 7
+
+
+
+Q-1: Print All Values in a Matrix
+
+M*N Matrix:
+
+OP:
+
+1 2 3 
+4 5 6
+7 8 9
+
+
+CODE:
+
+public class Main {
+    
+    static void printMatrix(int[][] arr, int m, int n)
+{
+for(int i=0;i<m;i++)
+{
+     for(int j=0;j<n;j++)
+         {
+             System.out.print(arr[i][j]+" ");
+       }
+         System.out.println();
+}
+}
+    
+    public static void main(String[] args) 
+    {
+        int mat[][] = {{1,2,3}, {4,5,6}, {7,8,9}};
+        int row = mat.length; 
+        // Each Element in 2D Array is 1D Array
+        
+        int col = mat[0].length;
+// Number of Cols = Size of Row = row.length
+// mat[1].length ---> mat[i].length
+// There is NO Guarantee that mat[1][]  exist, BUT mat[0][] will ALWAYS Exist, That's why --> col = mat[0].length
+
+        printMatrix(mat, row, col);
+    }
+}
+
+
+
+TC: O(M*N)
+SC: O(1)
+
+
+If Rows == Cols --> Square Matrix
+Else, ---> Recatangular Matrix
 
 
 
