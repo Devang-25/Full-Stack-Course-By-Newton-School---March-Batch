@@ -7596,13 +7596,27 @@ Example:
         15 -> Binary
             
         10101 ^ 10110 = 00011    
-         10      15      5
+         10   ^  15   =   5
 
+
+
+5%2 = 1
+2%2 = 0
+      1
+
+
+(101) (Binary) = 5(Decimal)
+
+
+101
+
+1*2^2 + 0*2^1 +  1*2^0 = 5
+        
 
 (1) A^A = 0
 
 5^5 = 0
-101 ^ 101 = 0000 = 0
+101 ^ 101 = 000 = 0
 
 
 CODE:
@@ -7686,7 +7700,7 @@ Solution:
 (1) Using XOR
 
 Duplicate Values (Even Frequency): XOR = 0
-Single Value: XOR: Single Value
+Single Value ^ 0: Single Value
 
 
 
@@ -7748,6 +7762,9 @@ SC: O(1)
 (3) HashMap
 
 Key: Value
+"name": "devang"
+
+JSON Structure
 
 Element: Frequency
 
@@ -7779,6 +7796,451 @@ Sum of Unique Values*2 = 7*2 = 14
 Sum of Array = 10
 
 OP: Sum of Unique Values*2  - Sum of Array = 14-10 = 4 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 26th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches
+- Error Messages and Compiler Messages
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+Q: Mohit and array
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+Mohit has an array of N integers containing all elements from 1 to N, somehow he lost one element from the array.
+Given N-1 elements your task is to find the missing one.
+Input
+First line of input contains a single integer N, the next line contains N-1 space separated integers.
+
+Constraints:-
+1 < = N < = 1000
+1 < = elements < = N
+Output
+Print the missing element
+Example
+Sample Input:-
+3
+3 1
+
+Sample Output:
+2
+
+Sample Input:-
+5
+1 4 5 2
+
+Sample Output:-
+3
+
+
+
+
+
+Solution:
+
+(1) XOR
+
+
+[3,1]: Missing: 2
+
+
+(3^1)^1^2^3 = 2
+
+Array Values XOR [1...N] = Missing Number
+
+
+1..N ^ 1....N = 0
+
+1.._ ..N ^ 1....N = Missing Number
+
+
+TC: O(N)
+SC: O(1)
+
+
+CODE:
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main
+{
+    public static void main (String[] args) throws java.lang.Exception
+    {
+    
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[] = new int[n-1];
+        int i=0;
+        for(i=0;i<n-1;i++){
+            a[i]=sc.nextInt();
+        }
+
+        int ans =0;
+        
+        for (i=1; i<=a.length; i++) // i = 1 to n
+            ans = ans^i^a[i-1];// index: 0 to n-1 =i-1
+        
+        // i = n
+        ans = ans^i;
+        System.out.println(ans);
+
+    }
+}
+
+
+
+
+
+
+
+(2) SUM and Formula
+
+
+N Numbers: 1 Value Missing
+
+Sum of N Numbers = 1....N = N*(N+1)/2
+Sum of Array = Sum excluding 1 missing number
+Ans = Sum of N Numbers - Array Sum
+
+TC: O(N)
+SC: O(1)
+
+
+3
+[1 3]  
+
+OP: 2
+
+
+Sum of 1 to 3 = 6 
+Sum of Array = [1+3] = 4
+Diff = 6-4 = 2: OP
+
+
+
+
+
+--> MIGHT GIVE OVERFLOW
+
+
+  public int missingNumber(int[] nums) 
+{
+    int i=0, n = nums.length;
+    int sum = n*(n+1)/2;
+
+    for (i=0; i<n; i++)
+        sum -= nums[i];
+
+    return sum;
+}
+
+
+
+NOTE: ALWAYS THINK ABOUT OVERFLOW While Taking SUM or PRODUCT
+
+
+10 - 7 Passed, 3 WA
+
+Logic is Correct
+TLE - Optimise Code
+MLE - Optimise Memory
+
+3 WA - 
+
+int a = 5Bn; // OVERFLOW
+a = Garbage Value = -1344235145
+
+a != Right Answer --> WA
+
+
+
+
+BUG:
+
+             int: -2 Bn to +2bn
+             int: 10^9
+        
+              1<= n<=10^4
+              n*(n+1) = 10^8: int
+              
+              1<=n<=10^6
+              n*(n+1) = 10^12: NO int
+
+
+
+
+--> CORRECT CODE:
+
+  public int missingNumber(int[] nums) 
+{
+    int i=0, n = nums.length;
+    long sum = n*(n+1)/2;
+
+    for (i=0; i<n; i++)
+        sum -= nums[i];
+
+    return sum;
+}
+
+
+
+
+(3)  Sorting and Checking Vlaues
+
+
+- Sort the Array
+- Check for nums[i] != (i+1)
+
+3
+1 3
+
+OP: 2
+
+
+TC: O(NlogN) + O(N)
+
+(4) Sorting and Binary Search
+- Sort the Array
+- Check for nums[i] != (i+1) using Binary Search
+
+TC: O(NlogN) + O(log N)
+
+
+(5) O(N^2) Approach
+
+Nested Loops:
+(1) Outer Loop: 1 to N
+(2) Inner Loop: arr[0...n-1]
+
+
+
+
+
+
+
+
+Q: Pair Em Up (Contest)
+
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+
+Given an array of N elements where N is even. 
+You have to pair up the elements into N/2 pairs such that each element is in exactly 1 pair. 
+You need to find minimum possible X such that there exists a way to pair the N elements and for no pair sum of its elements is greater than X.
+
+Input
+First line contains N.
+Second line contains N space separated integers, denoting array.
+
+Constraints:
+1 <= N <= 100000
+1 <= elements of the array <= 1000000000 or 10^9
+
+Output
+Print a single integer, minimum possible X.
+Example
+Sample Input
+4
+3 1 1 4
+
+Sample Output
+5
+
+Explanation: we can pair (1, 3) and (1, 4) so all pairs have sum less than or equal to 5.
+
+
+
+
+Understanding:
+
+N values -> Even
+No of Pairs --> N/2
+
+
+Min X such that "no pair sum of its elements is greater than X"
+
+
+
+
+N/2 Pairs ---> Max Sum: Ans
+
+
+4
+3 1 1 4
+
+Two Pairs
+(1,3), (1,4)
+
+Sum of 1st Pair = 1+3 = 4
+Sum of 2nd Pair = 1+4 = 5: MAX
+
+OP: 5
+
+
+
+Max X ---> Pair of Largest 2 Values and sum: X
+
+
+
+Approach:
+
+- Sort
+- int max = max(max, a[i]+ a[n-i-1]);
+
+TC: O(NlogN)
+SC: O(1)
+
+
+
+CODE:
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) 
+    {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+
+        int [] arr = new int[n];
+        int i=0;
+        for (i=0; i<n; i++)
+        {
+            arr[i] = s.nextInt();
+        }
+
+        int res =0;
+        Arrays.sort(arr);
+
+        for (i=0; i<n; i++)
+        {
+            res = Math.max(res, arr[i]+arr[n-i-1]);
+        }
+
+        System.out.println(res);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+arr[i] <= 10^9
+n <= 10^5
+
+int arr[i] --> <=10^9: CORRECT
+
+int sum = Max Sum --> Each value is 10^9 (max Value)
+        ---> 10^9 + 10^9 +..... N Times
+         ---> N * 10^9    
+         ---> 10^5 * 10^9 = 10^14: int ---> WRONG
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Two Sum Question - 3 Approaches
+
+Given an array a[] of n size and a number target.
+Find me the count of pair(s) with sum == target
+
+
+a[] = [0,-1,2,-3,1,-1]
+target = -2
+
+OP: [-3,1], [-1,-1]
+
+
+
+Solutions:
+
+(1) Brute Force Solution: Two Nested Loops
+
+a + b == target
+
+
+a: Outer Loop 
+b: Inner Loop
+
+
+int count =0;
+for (i=0; i<n; i++) // a
+{
+    for (j=i+1; j<n; j++)  // b
+    {
+        if (arr[i] + arr[j] == target)
+            ++count; 
+         s.o.p (arr[i], arr[j]);
+    }
+}
+
+
+
+TC: O(N^2)
+SC: O(1)
+
+
+
 
 
 
