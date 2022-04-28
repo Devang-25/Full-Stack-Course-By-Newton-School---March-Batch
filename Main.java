@@ -8371,7 +8371,7 @@ TC: O(N^2)
 -- No Optimisation
 
 
-Intuition: Hahsing (Set or Map)
+Intuition: Hashing (Set or Map)
 
 
 
@@ -8397,6 +8397,8 @@ TC: O(N)
 SC: O(N)
 
 
+Set: No Duplicate Values in Array
+Map: Duplicate Values in Array
 
 
 
@@ -8459,6 +8461,7 @@ Batch: March Batch 2 - DRACO
 -------> Error Messages and Compiler Messages
 
 (1) NZEC: RE Error
+NZEC: Non Zero Exit Code
 
 Reasons:
 - Stack is Overflow
@@ -8581,7 +8584,7 @@ mat =
  [4 5 6]
  [7 8 9]]
 
-Each Value: 1D Array
+Each Element/Value: 1D Array
 
 
 2nd Row: 
@@ -8646,13 +8649,13 @@ for(int i=0;i<m;i++)
     
     public static void main(String[] args) 
     {
-        int mat[][] = {{1,2,3}, {4,5,6}, {7,8,9}};
+        int mat[][] = {{1,2,3},{4,5,6},{7,8,9}};
         int row = mat.length; 
         // Each Element in 2D Array is 1D Array
         
         int col = mat[0].length;
 // Number of Cols = Size of Row = row.length
-// mat[1].length ---> mat[i].length
+// mat[1].length ---> mat[i].length   Eg: {{1,2,3}} : 1x3
 // There is NO Guarantee that mat[1][]  exist, BUT mat[0][] will ALWAYS Exist, That's why --> col = mat[0].length
 
         printMatrix(mat, row, col);
@@ -8665,8 +8668,546 @@ TC: O(M*N)
 SC: O(1)
 
 
-If Rows == Cols --> Square Matrix
-Else, ---> Recatangular Matrix
+If Rows == Cols --> Square Matrix (M==N)
+Else, ---> Recatangular Matrix (M!=N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 28th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment:DONE
+
+- Prime, GCD, Geometry
+- Strings
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+----> Jagged Arrays:
+
+When Each Row has Different Number of Columns, It is called Jagged Arrays.
+
+
+
+Eg:
+
+[
+[1 2 3]
+[1 2 3 4]
+[1 2 3 4 5]
+]
+
+1st Row: 3 Cols
+2nd Row: 4 Cols
+3rd Row: 5 Cols
+
+mat[0].length = ? -- NO
+
+mat[i].length: Correct
+
+mat[0].length = 3
+mat[1].length = 4
+mat[2].length = 5
+
+
+
+
+
+
+
+
+-----> Print Sum of All Rows in a Matrix
+
+
+
+
+1 2 3 : 6
+4 5 6 : 15
+7 8 9 : 24
+
+OP: 6 15 24
+
+
+CODE:
+
+
+public class Main {
+    
+    
+    static void printRowSum(int[][] mat, int row, int col)
+{
+        long rowsum=0;
+        System.out.println("Rowsum is: ");
+
+        for(int i=0;i<row;i++)
+{   
+     rowsum=0;
+     for(int j=0;j<col;j++)
+         {
+             rowsum+= mat[i][j];
+       }
+         System.out.print(rowsum + " ");
+}
+    
+}
+
+ 
+    
+    static void printColSum(int[][] mat, int row, int col)
+{
+        long colsum=0;
+        System.out.println("");
+        System.out.println("Colsum is: ");
+
+        for(int j=0;j<col;j++)
+{   
+     colsum=0;
+     for(int i=0;i<row;i++)
+         {
+             colsum+= mat[i][j];
+       }
+         System.out.print(colsum + " ");
+}
+    
+}
+
+
+    
+    static void printMatrix(int[][] arr, int m, int n)
+{
+for(int i=0;i<m;i++)
+{
+     for(int j=0;j<n;j++)
+         {
+             System.out.print(arr[i][j]+" ");
+       }
+         System.out.println();
+}
+}
+    
+    public static void main(String[] args) 
+    {
+        int mat[][] = {{1,2,3}, {4,5,6}, {7,8,9}, {10,11,12}};
+        int row = mat.length; 
+        // Each Element in 2D Array is 1D Array
+        
+        int col = mat[0].length;
+// Number of Cols = Size of Row = row.length
+// mat[1].length ---> mat[i].length
+// There is NO Guarantee that mat[1][]  exist, BUT mat[0][] will ALWAYS Exist, That's why --> col = mat[0].length
+
+        printMatrix(mat, row, col);
+        printRowSum(mat, row, col);
+        printColSum(mat, row, col);
+    }
+}
+
+
+TC: O(M*N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------> Transpose of a Matrix
+
+[1 2 3 10]
+[4 5 6 11]
+[7 8 9 12]
+
+Size: 3x4 matrix
+
+
+Transpose: Row Becomes Cols and Vice-Versa
+
+
+1 4 7
+2 5 8 
+3 6 9 
+10 11 12
+
+Size: 4x3
+
+
+Orig Matrix: M*N
+Transpose Matrix: N*M
+
+
+Q: Given a M*N Matrix, Print its Transpose
+
+
+Solutions:
+
+
+(1) Using Extra Matrix
+
+
+int[][] transpose = new int[n][m];
+
+for (i=0; i<m; i++)
+{
+    for (j=0; j<n; j++)
+    {
+        transpose[i][j] = mat[j][i];
+    }
+}
+
+
+TC: O(M*N)
+SC: O(N*M)
+
+
+(2) Without Using Extra Matrix
+
+for (j=0; j<n; j++)
+{
+    for (i=0; i<m; i++)
+    {
+        s.o.p(orig[i][j]);
+    }
+}
+
+TC: O(N*M)
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------> Difference of Sum of Diagonal Elements in A Matrix
+
+Hackerrank Link: https://www.hackerrank.com/challenges/diagonal-difference/problem
+
+
+Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+
+For example, the square matrix  is shown below:
+
+1 2 3
+4 5 6
+7 8 9  
+
+OP: 2
+
+Primary Diagonal: mat[0][0] to mat[m-1][n-1]
+Secondary Diagonal: mat[m-1][0] to mat[0][n-1]
+
+
+Primary Diagonal Sum = 1+5+9 = 15
+Secondary Diagonal Sum = 3+5+9 = 17
+
+Abs Diff = 2
+
+
+Solution:
+
+
+Primary Diagonal:
+
+1: mat[0][0]
+5: mat[1][1]
+9: mat[2][2]
+
+Condition: i == j
+
+
+Secondary Diagonal:
+
+3: mat[0][2]
+5: mat[1][1]
+7: mat[2][0]
+
+
+Condition: i+j == n-1
+
+
+(1) Using Two Loops:
+
+{
+int psum=0, ssum=0;
+for (i=0; i<n; i++)
+{
+    for (j=0; j<n; j++)
+    {
+        if (i==j)
+            psum += mat[i][j];
+
+        if (i+j==n-1)
+            ssum+= mat[i][j];
+    }
+}
+    return Math.abs(psum-ssum);
+}
+
+TC: O(N^2)
+SC: O(1)
+
+(2) Using One Loop:
+
+
+{
+int psum=0, ssum=0;
+for (i=0; i<n; i++)
+{
+    psum += mat[i][i]; // i == j
+    ssum += mat[i][n-1-i]; // i + j == n-1 ---> j = n-1-i
+}
+    return Math.abs(psum-ssum);
+}
+
+TC: O(N)
+SC: O(1)
+
+
+
+CODE:
+
+public class Main {
+    
+    static void diagonalDiff(int[][] mat, int row, int col)
+{
+int psum=0, ssum=0;
+        int i=0, j=0;
+for (i=0; i<row; i++)
+{
+    psum += mat[i][i]; // i == j
+    ssum += mat[i][row-1-i]; // i + j == n-1 ---> j = n-1-i
+}
+        System.out.println();
+    System.out.print("Diagonal Diff: " + Math.abs(psum-ssum));
+}
+    
+    
+    static void printRowSum(int[][] mat, int row, int col)
+{
+        long rowsum=0;
+        System.out.println("Rowsum is: ");
+
+        for(int i=0;i<row;i++)
+{   
+     rowsum=0;
+     for(int j=0;j<col;j++)
+         {
+             rowsum+= mat[i][j];
+       }
+         System.out.print(rowsum + " ");
+}
+    
+}
+
+ 
+    
+    static void printColSum(int[][] mat, int row, int col)
+{
+        long colsum=0;
+        System.out.println("");
+        System.out.println("Colsum is: ");
+
+        for(int j=0;j<col;j++)
+{   
+     colsum=0;
+     for(int i=0;i<row;i++)
+         {
+             colsum+= mat[i][j];
+       }
+         System.out.print(colsum + " ");
+}
+    
+}
+
+
+    
+    static void printMatrix(int[][] arr, int m, int n)
+{
+for(int i=0;i<m;i++)
+{
+     for(int j=0;j<n;j++)
+         {
+             System.out.print(arr[i][j]+" ");
+       }
+         System.out.println();
+}
+}
+    
+    public static void main(String[] args) 
+    {
+        int mat[][] = {{1,2,3}, {4,5,6}, {20,8,9}};
+        int row = mat.length; 
+        // Each Element in 2D Array is 1D Array
+        
+        int col = mat[0].length;
+// Number of Cols = Size of Row = row.length
+// mat[1].length ---> mat[i].length
+// There is NO Guarantee that mat[1][]  exist, BUT mat[0][] will ALWAYS Exist, That's why --> col = mat[0].length
+
+        printMatrix(mat, row, col);
+        printRowSum(mat, row, col);
+        printColSum(mat, row, col);
+        diagonalDiff(mat, row, col);
+    }
+}
+
+
+
+
+
+
+
+Q: Simple-Determinant
+
+
+Problem Statement
+
+You are given a 2X2 square matrix. You need to find the determinant of the matrix.
+
+Input
+The input contains two-line, each line contain two integers separated by spaces.
+
+Each element of the matrix is from 1 to 100.
+
+Output
+
+Output a single integer, the determinant of the matrix.
+
+Example
+Sample Input
+4 5
+2 3
+
+Sample Output
+2
+
+Sample Input
+2 10
+10 40
+
+Sample Output
+-20
+
+
+
+
+Determinant = [(-1)^(i+j) A[i][j]] (m...n)
+
+
+
+2x2 Matrix:
+
+[1 2]
+[3 4]
+
+Determinant = (arr[0][0] * arr[1][1]) - (arr[1][0] * arr[0][1])
+
+
+
+3*3 Matrix
+
+[1 2 3]
+[4 5 6]
+[7 8 9]
+
+Row Wise Determinant:
+
+= (-1)^(0+0)(4)[5 6 8 9] + (-1)^(1+0)[2 3 8 9] + (-1)^(2+0)[2 3 5 6]
+
+
+
+
+
+CODE:
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+
+        int ans = a*d - b*c;
+        System.out.println(ans);
+
+    }
+}
+
+TC: O(1)
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
