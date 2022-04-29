@@ -8717,7 +8717,6 @@ Batch: March Batch 2 - DRACO
 When Each Row has Different Number of Columns, It is called Jagged Arrays.
 
 
-
 Eg:
 
 [
@@ -8938,7 +8937,7 @@ SC: O(1)
 Hackerrank Link: https://www.hackerrank.com/challenges/diagonal-difference/problem
 
 
-Given a square matrix, calculate the absolute difference between the sums of its diagonals.
+Given a "square matrix", calculate the absolute difference between the sums of its diagonals.
 
 For example, the square matrix  is shown below:
 
@@ -8976,6 +8975,8 @@ Secondary Diagonal:
 5: mat[1][1]
 7: mat[2][0]
 
+3x3 matrix
+n = 3
 
 Condition: i+j == n-1
 
@@ -9197,6 +9198,516 @@ class Main {
 TC: O(1)
 SC: O(1)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 29th April 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+
+- GCD
+- GCD Using Euclid Algo 
+- Geometry
+- Strings
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+-----> Prime Numbers:
+
+Only 2 Factors, 1 and the Number Itself
+
+Eg: 2,3,5,7,11,13,17......
+
+
+
+------> Primality Test
+
+To Check if a Number is Prime or Not?
+
+Q: Check if a Number N is Prime or Not?
+
+(1) Check for All Numbers from 2 to N-1
+
+Prime: Only 2 Factors: 1 and N
+
+Run a Loop from 2 to N-1: 
+- If any number is factor: NOT PRIME
+- Else: PRIME
+
+
+
+CODE:
+
+
+public class Main {
+    
+static boolean isPrime(int N)
+{
+    for (int i=2;i<N; i++) // 2 To N-1
+    {
+        if (N % i == 0)
+            return false;
+    }
+
+    return true;
+}
+    
+    public static void main(String[] args) 
+    {
+        System.out.println(isPrime(5));
+        System.out.println(isPrime(10));
+        System.out.println(isPrime(31));
+        System.out.println(isPrime(2));
+    }
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+(2) Check for All Numbers from 1 to N -- Count the Number of Factorss
+
+Prime: Only 2 Factors: 1 and N
+
+Run a Loop from 1 to N: 
+- If Count == 2: Prime
+- Else: Not Prime
+
+
+CODE:
+
+
+public class Main {
+    
+static boolean isPrime(int N)
+{
+    int cnt=0;
+    for (int i=1;i<=N; i++) // 2 To N-1
+    {
+        if (N % i == 0)
+            ++cnt;
+    }
+
+    if (cnt == 2)
+        return true;
+    else
+        return false
+}
+    
+    public static void main(String[] args) 
+    {
+        System.out.println(isPrime(5));
+        System.out.println(isPrime(10));
+        System.out.println(isPrime(31));
+        System.out.println(isPrime(2));
+    }
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+(3) Check for All Numbers from 2 to N/2
+2 to N-1: Factor
+
+Approach/Intuition: 
+If N is NOT Prime, Its factor MUST lie between 2 to N/2
+
+N: 20 
+N/2: 10
+
+
+N = 10
+N/2 = 5
+
+i = Loop from 2 to N/2
+N % i == 0
+
+CODE:
+
+public class Main {
+    
+static boolean isPrime(int N)
+{
+    for (int i=2;i<=N/2; i++) // 2 To N/2
+    {
+        if (N % i == 0)
+            return false;
+    }
+
+    return true;
+}    
+    public static void main(String[] args) 
+    {
+        System.out.println(isPrime(5));
+        System.out.println(isPrime(10));
+        System.out.println(isPrime(31));
+        System.out.println(isPrime(2));
+        System.out.println(isPrime(74));
+
+    }
+}
+
+
+TC: O(N/2)
+SC: O(1)
+
+
+
+(4) Check for All Numbers from 2 to Sqrt(N)
+
+
+Euclid Theorem:
+- Any Number if its does not have any factor till sqrt(N), 
+It wont have Any Factor after.
+
+
+N = 10
+sqrt(10) = 3.1868
+
+2...3: 2 is factor of 10 and 2 < sqrt(10)
+
+
+N = 50
+sqrt(N) = 7.18
+
+2...7: 5 is a factor of 50 and 5 < sqrt(50)
+
+
+N = 41
+sqrt(41) = 6.487
+
+2...6: No Factor of 41 till sqrt(41)
+Hence, 41 is a prime
+
+
+
+
+
+
+CODE:
+
+
+public class Main {
+    
+static boolean isPrime(int N)
+{
+    for (int i=2; i*i<=N; i++) // 2 To sqrt(N)
+    {
+        if (N % i == 0)
+            return false;
+    }
+
+    return true;
+}    
+    public static void main(String[] args) 
+    {
+        System.out.println(isPrime(5));
+        System.out.println(isPrime(10));
+        System.out.println(isPrime(31));
+        System.out.println(isPrime(2));
+        System.out.println(isPrime(74));
+
+    }
+}
+
+
+
+TC: O(sqrt(N))
+SC: O(1)
+
+
+
+
+(5) Sieve of Eratosthenes
+
+Eratosthenes: Mathematician
+Use Case: Find Count of Prime Numbers between Range of Values: [L,R]
+
+
+- Print Prime Numbers Until N (2 to N)
+
+N = 5
+OP: [2 3 5]
+
+N = 11
+OP: [2 3 5 7 11]
+
+
+
+Approach:
+(1) Use Euclid Theorem for Optimisation
+(2) If a Number is Prime, Its Multiple CANNOT be Prime
+(3) ANY Number which is NOT PRIME MUST HAVE atleast 1 Prime Factor
+
+Code:
+
+
+void seiveofEratosthenes(int N)
+{
+boolean[] prime = new boolean[N+1]; //To keep in index range: 2 to 11
+for (int i=0; i<=N; i++)
+    prime[i] = true;
+
+for (int p=2; p*p<=N; p++) // p = 2, p = 3
+{
+    if (prime[p] == true) // p = 2, p = 3
+    {
+        for (int i = p*p; i<=N; i+=p) //p = 2, i = 4, i = 6, i = 8, i = 10
+            // p = 3, i = 9
+            prime[i] = false;
+    }
+}
+
+for (i=2; i<=N; i++)
+    if (prime[i] == true) // N+1 because of keeping in index
+        System.out.print(i + " ");
+}
+
+
+TC: O(N*log(log N))
+SC: O(N)
+
+
+
+
+
+
+
+
+DRY RUN:
+
+N = 10
+OP: [2 3 5 7]
+
+
+for (int p=2; p*p<=10; p++)
+----> p = 2, p = 3
+
+
+
+2: TRUE
+3: TRUE
+4: FALSE
+5: TRUE
+6: FALSE
+7: TRUE
+8: FALSE
+9: FALSE
+10: FALSE
+
+
+
+
+
+
+CODE:
+
+public class Main {
+    
+static void seiveofEratosthenes(int N)
+{
+boolean[] prime = new boolean[N+1]; //To keep in index range: 2 to 11
+int i=0;
+    
+    for (i=0; i<=N; i++)
+        prime[i] = true;
+
+for (int p=2; p*p<=N; p++) // p = 2, p = 3
+{
+    if (prime[p] == true) // p = 2, p = 3
+    {
+        for (i = p*p; i<=N; i+=p) //p = 2, i = 4, i = 6, i = 8, i = 10
+            // p = 3, i = 9
+            prime[i] = false;
+    }
+}
+
+for (i=2; i<=N; i++)
+    if (prime[i] == true) // N+1 because of keeping in index
+        System.out.print(i + " ");
+    
+    System.out.println(" ");  
+}
+    public static void main(String[] args) 
+    {
+        seiveofEratosthenes(10);
+        seiveofEratosthenes(15);
+        seiveofEratosthenes(20);
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Q: Leetcode 204- Count Numbers: https://leetcode.com/problems/count-primes/
+
+Given an integer n, return the number of prime numbers that are strictly less than n.
+
+ 
+
+Example 1:
+
+Input: n = 10
+Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+Example 2:
+
+Input: n = 0
+Output: 0
+Example 3:
+
+Input: n = 1
+Output: 0
+ 
+
+Constraints:
+
+0 <= n <= 5 * 10^6
+
+
+
+
+Solutions:
+
+(1) O(N): From 1 to N
+(2) O(N/2): From 1 to N/2
+(3) O(sqrt(N)): From 1 to sqrt(N)
+(4) O(N*log(log N)): Seive of Eratosthenes
+
+
+
+
+
+
+
+Q: Codechef: https://www.codechef.com/problems/EXCG1806
+
+
+Sexy primes Problem Code: EXCG1806
+
+Sexy prime is a prime number n such that n+6 is also prime.
+
+Input: A single integer n
+Output: The number of sexy prime factors of the given number n.
+
+Constraints: 1≤n≤100
+
+
+Eg: N = 5: PRIME
+    N+6 = 11: PRIME
+
+Hence, 5 is Sexy Prime Number
+
+
+
+Eg: N = 17: PRIME
+    N+6 = 23: PRIME
+
+Hence, 23 is Sexy Prime Number
+
+
+5-11, 11-17, 13-19, 17-23, 23-29 etc
+
+
+Sexy Prime: 5, 7, 11, 13, 17, 23 etc
+
+
+
+
+
+
+
+Solution:
+
+int solution(int N)
+{
+boolean[] prime = new boolean[N+1]; //To keep in index range: 2 to 11
+int i=0;
+    
+    for (i=0; i<=N; i++)
+        prime[i] = true;
+
+for (int p=2; p*p<=N; p++) // p = 2, p = 3
+{
+    if (prime[p] == true) // p = 2, p = 3
+    {
+        for (i = p*p; i<=N; i+=p) //p = 2, i = 4, i = 6, i = 8, i = 10
+            // p = 3, i = 9
+            prime[i] = false;
+    }
+}
+
+int countofSexyPrimes=0;
+for (i=2; i<=N-6; i++)
+{
+    if (prime[i] && prime[i+6]) // Both are Prime and Diff is 6
+        ++countofSexyPrimes;
+}
+
+return countofSexyPrimes;
+}
+
+
+
+TC: O(N*log(logN)) + O(N)
+SC: O(N)
 
 
 
