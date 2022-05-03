@@ -9328,7 +9328,7 @@ public class Main {
 static boolean isPrime(int N)
 {
     int cnt=0;
-    for (int i=1;i<=N; i++) // 2 To N-1
+    for (int i=1;i<=N; i++) // 1 To N
     {
         if (N % i == 0)
             ++cnt;
@@ -9359,6 +9359,8 @@ SC: O(1)
 
 Approach/Intuition: 
 If N is NOT Prime, Its factor MUST lie between 2 to N/2
+
+Reason: N/2 is the Biggest Factor of Any Number N (2 to N/2)
 
 N: 20 
 N/2: 10
@@ -9463,6 +9465,12 @@ static boolean isPrime(int N)
 TC: O(sqrt(N))
 SC: O(1)
 
+
+i^2 = N
+i = sqrt(N)
+
+i^2 <= N: i*i<=N
+i <= sqrt(N)
 
 
 
@@ -9587,7 +9595,8 @@ for (i=2; i<=N; i++)
 
 
 
-
+[L,R]: Closed Interval: L and R Both are Included
+(L,R): Open Interval: L and R are Not Included
 
 
 
@@ -9607,10 +9616,12 @@ Example 1:
 Input: n = 10
 Output: 4
 Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+
 Example 2:
 
 Input: n = 0
 Output: 0
+
 Example 3:
 
 Input: n = 1
@@ -9708,6 +9719,460 @@ return countofSexyPrimes;
 
 TC: O(N*log(logN)) + O(N)
 SC: O(N)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 2nd May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+
+- Geometry
+- Strings
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+-----> GCD
+
+HCF: GCD
+- Highest Common Factor
+- Greatest Common Divisor
+
+
+Eg: 
+GCD(12,8) = HCF(12,8) = 4
+
+12 = 1,2,3,4,6,12 
+8 = 1,2,4,8
+Highest Common = 4
+
+
+12 = 2*2*3 = 2^2 * 3^1
+8 = 2^3
+HCF/GCD = 2^(Min Common) = 2^2 = 4
+
+
+
+
+
+
+------> Calculate GCD:
+
+(1) Basic Way
+
+GCD/HCF: Highest Common Factor to Both
+
+HCF/GCD = 5,7 = 1
+
+Min Value of GCD/HCF = 1
+
+
+
+int a = 12, b = 8, gcd = 1;
+
+i<=a && i<=b: Minimum of (a,b)
+OR
+i<= Math.min(a,b)
+
+
+for (int i=1; i<=a && i<=b; i++)
+{
+    if (a%i==0 && b%i==0)
+        gcd = i;  // a = 12, b = 8:  i = 1,2,4: gcd
+}
+
+return gcd;
+
+
+
+
+
+CODE:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+
+    static int gcd(int a, int b)
+    {
+    int gcd=1;
+    for (int i=1; i<=a && i<=b; i++)
+    {
+        if (a%i==0 && b%i==0)
+            gcd = i;  // a = 12, b = 8:  i = 1,2,4: gcd
+    }
+    return gcd;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(gcd(12,8));
+        System.out.println(gcd(5,7));
+
+    }
+}
+
+
+TC: O(min(a,b))
+SC: O(1)
+
+
+
+
+
+
+
+(2) Euclid Algo - Optimised Way
+
+Euclid Algo for GCD:
+
+
+3 Conditions:
+
+(1) If A == 0
+GCD(A,B) = B
+
+(2) If B == 0
+GCD(A,B) = A
+
+(3) A = B*Q + R  (A>B)
+GCD = Keep Dividig A with Remainder till A becomes 0
+
+
+
+
+
+int gcd(int a, int b)
+{
+    if (b==0)
+        return a;
+
+    gcd(b, a%b);    
+}
+
+
+
+
+HCF(12,0) = 
+
+
+0: Multiple of Any Number
+
+HCF(num,0) = HCF(0,num) = num: GCD
+
+12: 1,2,3,4,6,12
+0: Infinite
+
+
+
+CODE:
+
+
+// "static void main" must be defined in a public class.
+public class Main {
+
+    static int gcd(int a, int b)
+    {
+        if (b==0)
+         return a;
+
+        return gcd(b, a%b); 
+ // gcd(8, 12%8) = gcd(8,4) = gcd(4, 8%4) = gcd(4,0) --> Ans: 4 
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(gcd(12,8));
+        System.out.println(gcd(5,7));
+
+    }
+}
+
+
+
+
+
+
+
+
+-----> ASSIGNMENT QUESTIONS:
+
+
+
+Q: Generator - Super Prime
+
+For a given integer N, super primes are those integers from 1 to N whose multiples (other than themselves) 
+do not exist in the range [1, N].
+Your task is to generate all super primes <= N in sorted order.
+
+Note: Super primes are not related to primes in any way.
+
+
+Sample Input:-
+5
+
+Sample Output:-
+3 4 5
+
+Sample Input:-
+4
+
+Sample Output:-
+3 4
+
+
+Factors of N:
+
+N: 1,____,N
+
+Super Prime Numbers: 1, No MULTIPLE,N
+
+
+Dry Run:
+
+
+Input: N = 5
+
+5: 1 2 3 4 5
+
+1: NEVER a Superprime
+2: Multiple 4 in Range[1,5]: Not a Superprime
+3: NO Multiple in Range[1,5]: YES
+4: NO Multiple in Range[1,5]: YES
+5: NO Multiple in Range[1,5]: YES
+
+
+OP: 3 4 5
+
+
+
+Solution:
+
+(1) Brute Force Way:
+
+Loop i from 2 to N:
+If i has multiple apart from i itself --> Superprime
+
+
+(2) Smart Way:
+
+Biggest Factor of a Number, apart from itself: N/2
+
+[1................N/2...................N] 
+
+
+N/2 is the BIGGEST Value for Which a Multiple can Exist in [1,N]
+
+[1....N/2]: Multiple WILL Exist in [1,N]
+[N/2+1....N]: Multiple WILL NOT Exist in [1,N] --> Superprimes
+
+
+
+
+
+CODE:
+
+for (int i = N/2+1; i<=N; i++)
+    System.out.print(i, " ");
+
+
+
+N = 5
+OP: 3 4 5
+
+N = 4
+OP: 3 4
+
+
+
+
+
+
+
+
+Q: Divisors Of N
+
+Problem Statement
+Given an integer N, the task is to find the number of divisors of N which are divisible by 2.
+
+Input
+The input line contains T, denoting the number of testcases. First line of each testcase contains integer N
+
+Constraints:
+1 <= T <= 50
+1 <= N <= 10^9
+
+
+Output
+For each testcase in new line, you need to print the number of divisors of N which are exactly divisble by 2
+
+Example
+
+Input:
+2
+9
+8
+
+Output
+0
+3
+
+
+
+Understanding:
+Count Number of Factors which are divisible by 2 in [1,N]
+
+
+
+Edge Case:
+
+N : Odd
+Ans: 0
+
+
+N: Even
+Count of Factors divisible by 2 : Optmised Approach: Seive Code
+
+
+
+
+
+
+
+Q: 
+Closest Prime (Contest)
+
+Problem Statement
+
+Given an integer N, find the closest prime number to N. 
+If there are multiple print the smaller one.
+
+
+Input
+The input contains a single integer N.
+
+Constraints:
+1 <= N <= 1000000000
+
+Output
+Print the closest prime to N.
+
+Example
+Sample Input 1
+12
+
+Sample Output 1
+11
+
+Explanation: Closest prime to 12 is 11 and 13 smaller of which is 11.
+
+Sample Input 2
+17
+
+Sample Output 2
+17
+
+Explanation: Closest prime to 17 is 17.
+
+
+
+
+Prime Numbers: 2,3,5,7,11,13...
+
+12: Nearest: 11 and 13, Both are at diff: 1
+OP: 11: Smaller
+
+
+
+(1) If Number is Prime: 
+OP: Number Itself
+
+(2) Else:
+OP: Closest Prime
+
+
+Solution:
+
+
+Pseudo Code:
+
+
+         5 7 11 12 13 17 19
+.............. Num................
+      v1                v2
+
+v1: Biggest Prime Number less than Num (11)
+v2: Smallest Prime Number Greater than Num (13)
+
+
+(1) Both v1 and v2 are Prime: sqrt(N)
+(2) Ans = Min(Num-v1, v2-Num)
+(3) If Ans == Same (12-11 = 1, 13-12 =1)
+(2) Ans = Min(v1,v2) //Min(11,13): 11
+
+Edge Case: 
+if (n==1), ans = 2
+
+
+
+DSA:
+
+Leetcode
+GFG
+Newton School
+
+CP:
+
+Beginner: Codechef
+Intermediate: Codeforces
+Advanced: Google Code Jam, Hacker Cup, Kick Start, Hash Code
+Experts: Topcoder
+
+
 
 
 
