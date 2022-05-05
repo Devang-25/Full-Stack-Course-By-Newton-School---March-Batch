@@ -10526,7 +10526,7 @@ Solution:
 
 1st Way: Normal Way
 
-long sum = 0;
+long sum = 0; // To Avoid int overflow
 for (int i=L; i<= R; i++)
     sum += prime[i]
 
@@ -10604,6 +10604,353 @@ Ans = rangeSum[R] - rangeSum[L-1]
     = rangeSum[5] - rangeSum[4]
     = 28-17
     = 11: OP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 5th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+
+- Strings
+- Substrings/Subarrays, Subsequences, Subsets
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+STRINGS:
+
+
+String: Array of Characters
+
+
+public class Main {
+    
+    public static void main(String[] args) 
+    {
+        char[] ch = {'d','e','v','a','n','g'};
+        String s1 = new String(ch);
+        System.out.println(s1);
+        
+        String s2 = "devang";
+        System.out.println(s2);
+        
+    }
+}
+
+
+
+
+Syntax:
+
+
+String str = "value";
+
+
+Iterate over string
+
+s = "devang";
+for (i=0; i<s.length(); i++)
+    System.out.print(s.charAt(i));
+
+
+
+
+CODE:
+
+
+public class Main {
+    
+    public static void main(String[] args) 
+    {
+    String s = "devang";
+        // Length: Gives the Length
+        // charAt(i): Character at Index i
+    for (int i=0; i<s.length(); i++)
+        System.out.print(s.charAt(i) + " ");        
+    
+    
+    System.out.println(""); 
+    
+    // contains Function - boolean - true/false - O(1)
+    // Tells whether a character or SEQUENCE of characters is present in a string or not
+    
+    System.out.println(s.contains("d")); 
+    System.out.println(s.contains("q")); 
+    System.out.println(s.contains("dev")); 
+    System.out.println(s.contains("dve")); 
+
+  // Equals(): Two Strings are Equal or Not?
+    // True or False
+        
+    System.out.println(s.equals("devang"));         
+    System.out.println((s == "devang"));         
+    System.out.println(s.equals("dev"));  
+        
+        
+    // isEmpty(): Empty or Not - True or False 
+        System.out.println(s.isEmpty());
+        String s2= "";
+        System.out.println(s2.isEmpty());
+        System.out.println(s2.length());
+        
+    // concat(): Concatenate/Append String to another String        
+        System.out.println(s.concat(" sharma"));
+        System.out.println(s + " sharma");
+        
+        
+    // replace(): Replaces All occurences of the given character/ sequence of character
+        System.out.println(s.replace("a","b"));
+        s2 = "aaaaab";
+        System.out.println(s2.replace("a","b"));
+        System.out.println(s.replace("dev","abc"));
+        
+    // equalsIgnoreCase(): Checks if two strings are equal irrespective of cases
+      System.out.println(s); //devang 
+      String  str = "DEVANG";  // DEVANG
+      System.out.println(s.equals(str));  // false
+      System.out.println(s.equalsIgnoreCase(str)); // true   
+        
+      //toLowerCase(): Converts to Lower Case
+      System.out.println(str.toLowerCase());
+      str = "aBcD#@%67189q!";  
+      System.out.println(str.toLowerCase());        
+      
+     //toUpperCase(): Converts to Lower Case
+      System.out.println(s.toUpperCase());
+      System.out.println(str.toUpperCase());    
+        
+    // indexOf(): Gives Index of character/Sequence of Characters in a String        
+     System.out.println(s.indexOf('d'));
+     System.out.println(s.indexOf("ev"));  // "devang": "ev": 1....
+     System.out.println(s.indexOf('q'));
+        
+    }
+}
+
+OP:
+
+d e v a n g 
+true
+false
+true
+false
+true
+true
+false
+false
+true
+0
+devang sharma
+devang sharma
+devbng
+bbbbbb
+abcang
+devang
+false
+true
+devang
+abcd#@%67189q!
+DEVANG
+ABCD#@%67189Q!
+0
+1
+-1
+
+
+
+
+
+
+NOTE: Subarray/Substrings vs Subsequences vs Subsets
+
+
+
+Substring: String
+Subarray: Array
+
+
+
+(1) Smaller Part of String
+(2) MUST be Contiguous
+(3) Order Must be Maintained
+
+
+__,________,____
+
+
+"devang"
+
+- "dev": YES 
+- "ang": YES 
+- "eva": YES
+- "dvg": NO
+- "ved": NO
+- "dve": NO
+- "devang": YES
+- "d","e"....: YES
+
+
+
+Subsequences:
+(1) Smaller Part of String
+(2) Need NOT be Contiguous 
+(No issues if Contigious)
+(3) Order Must be Maintained
+
+
+"devang"
+
+- "dev": YES 
+- "ang": YES 
+- "eva": YES
+- "dvg": YES
+- "ved": NO
+- "dve": NO
+- "devang": YES
+- "d","e"....: YES
+
+
+Subsets:
+"ANY COMBINATION OF STRING"
+
+(1) Smaller Part of String
+(2) Need NOT be Contiguous 
+(3) Order Need NOT be Maintained
+
+
+
+"devang"
+
+- "dev": YES
+- "dvg": YES
+- "dgv": YES
+- "ved": YES
+- "pqr": NO
+
+
+
+Subset: 
+    - Subsequences: 
+        - Substrings: 
+
+
+"All Substrings are Subsequences and All Subsequences are Subsets"        
+
+- Syllogism
+
+
+
+
+Q: Check if a String "b" is a Substring of another String "a" or Not?
+
+
+a = "devang"
+b = "dev"
+
+OP: true
+
+
+a = "devang"
+b = "dvg"
+
+OP: false
+
+
+
+boolean checkSubstring(String a, String b)
+{
+
+}
+
+
+
+Solution:
+
+(1) a.contains(b) - True or False
+
+
+boolean checkSubstring(String a, String b)
+{
+    return a.contains(b);
+}
+
+TC: O(1)
+SC: O(1)
+
+
+(2) Using indexOf()
+
+boolean checkSubstring(String a, String b)
+{
+    if (a.indexOf(b)!=-1)
+        return true;
+    else
+        return false;
+}
+
+TC: O(1)
+SC: O(1)
+
+
+
+(3) Brute Force- Compare Char by Char
+
+
+for (i=0; i<m; i++)
+{
+    for (j=0; j<n; j++)
+    {
+        if (a.charAt(i)==b.charAt(j))
+            continue;
+
+    }
+}
+
+TC: O(N*M)
+SC: O(1)
+
 
 
 
