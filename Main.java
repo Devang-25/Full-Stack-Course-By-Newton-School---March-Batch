@@ -10195,3 +10195,429 @@ Experts: Topcoder
 
 
 
+Date : 4th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+
+- Geometry
+- Strings
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+Q: A Boolean Matrix Problem
+
+Problem Statement
+
+You are given a matrix Mat of m rows and n columns. The matrix is boolean so the elements of the matrix can only be either 0 or 1.
+Now, if any row of the matrix contains a 1, then you need to fill that whole row with 1. After doing the mentioned operation, you need to print the modified matrix.
+
+Input
+
+The first line of input contains T denoting the number of testcases. T testcases follow.
+The first line of each testcase contains m and n denoting number of rows and number of columns.
+Then next m lines contain n elements denoting the elements of the matrix.
+
+Constraints:
+1 <= T <= 20
+1 <= m, n <= 700
+Mat[I][j] ∈ {0,1}
+Output
+For each testcase, in a new line, print the modified matrix.
+
+Example
+
+Input:
+2
+5 4
+1 0 0 0
+0 0 0 0
+0 1 0 0
+0 0 0 0
+0 0 0 1
+1 2
+0 0
+
+Output:
+1 1 1 1
+0 0 0 0
+1 1 1 1
+0 0 0 0
+1 1 1 1
+0 0
+
+
+Understanding:
+
+
+
+1 0 0 0: All 1 : i = 0
+0 0 0 0: No Change
+0 1 0 0: All 1
+0 0 0 0: No Change
+0 0 0 1: All 1
+
+1 1 1 1
+0 0 0 0
+1 1 1 1
+0 0 0 0
+1 1 1 1
+
+
+Solution:
+
+(1) Modify Matrix, Then Print
+
+if (mat[i][j] == 1)
+    Store Row Number
+
+Row Number: All Cols: mat[i][j] == 1
+
+i = 0, There is A 1.
+
+for (j=0; j<col; j++)
+    mat[0][j] = 1;
+
+
+
+(2) Don't Modify Matrix, Directly Print
+
+if (mat[i][j] == 1)
+    Store Row Number
+
+Row Number: All Cols: mat[i][j] == 1
+
+i = 0, There is A 1.
+
+for (j=0; j<col; j++)
+    s.o.p("1 ");
+
+
+
+
+
+
+
+
+Q: Chess Board
+
+Problem Statement
+Tom loves Chess boards. 
+He admires its symmetry and how the black and white colours are placed adjacently along both the axis.
+
+More formally, a chessboard like coloring implies that 
+"no two adjacent cells have the same color and all the cells are painted either white or black"
+
+On his birthday, Tom has been gifted a board which is in the form of a N*N grid. Every cell is painted either black or white. Since Tom loves the placement of colours in a chessboard, he will try to convert the board that has been gifted to him, identical to a chessboard. He has both black and white colours available to him. Help him find out the minimum number of the cell he will have to recolour to paint his board similar to chessboard.
+Input
+First line contains an integer N, denoting the size of the board
+Each of the next N lines contains N space separated integers and each integer being either '0' or '1'
+'1' represent black cell
+'0' represents white cell
+
+Constraints
+1 <= N <= 1000
+Output
+A single integer that is the minimum number of cells that Tom will have to re-color in his board to convert the given board to a chess board like coloring.
+Example
+
+
+Input:
+3
+1 1 1
+1 1 1
+1 1 1
+
+Output:
+4
+
+Explanation:
+Convert to
+1 0 1
+0 1 0
+1 0 1
+Thus we will have to colour 4 cells.
+
+
+
+
+
+1 1 1                    1 0 1  
+1 1 1     4 Changes:     0 1 0
+1 1 1                    1 0 1
+
+
+OP: Min(4,5) = 4
+
+
+1 1 1                    0 1 0  
+1 1 1     5 Changes:     1 0 1
+1 1 1                    0 1 0
+
+
+
+
+Two Approaches:
+
+(1) Can Replace 1 with 0: c1
+(2) Can Replace 0 with 1: c2
+
+
+Ans = Min(c1,c2)
+
+
+
+Row No, Col No
+
+
+(i + j) % 2 --> 0 or 1
+
+Row Val + Col Value : Divisible by 2: Black
+Else: White
+
+%2 == 0: Divisble by 2
+%2 == 1: Not Divisble by 2
+
+Case 1:
+(i + j) % 2 == 0 and mat[i][j] == 0
+Repaint: ++zero (White)
+
+Case 2:
+Else
+Repaint: ++ones (Black)
+
+Ans = min(zero,one)
+
+
+
+CODE:
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+        BufferedReader br = null;
+        try{
+        br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int [][] A = new int[1000][1000];
+        int i, j;
+
+            int tot_index = 0;
+            int one = 0;
+            int zero = 0;
+            for(i=0; i<N; i++){
+                String [] line = br.readLine().split("\\s+");
+                for(j=0; j<N; j++) {
+                    A[i][j] = Integer.parseInt(line[j]);
+                    tot_index = (i + j)%2;
+            // If Row + Col is Divisible by 2 and its Black or Not
+                    if(tot_index == A[i][j]) {
+                    // Repaint Black Ones to White
+                        zero++;
+                    }
+                    else {
+            // Repaint White Ones to Black
+                        one++;
+                    }
+                }
+            }
+            int mincell = Math.min(one,zero);
+            System.out.print(mincell);
+        }
+        catch(Exception e) {
+            return;
+        }
+    }
+}
+
+
+
+
+
+Q: Simple Prime (Contest)
+
+Problem Statement
+
+Let's define P[i] as the ith Prime Number. 
+Therefore, P[1]=2, P[2]=3, P[3]=5, so on.
+Given two integers L, R (L<=R), find the value of P[L]+P[L+1]+P[L+2]...+P[R].
+
+Input
+The first line of the input contains an integer T denoting the number of test cases.
+The next T lines contain two integers L and R.
+
+Constraints
+
+1 <= T <= 50000
+1 <= L <= R <= 50000
+
+Output
+For each test case, print one line corresponding to the required value
+
+Example
+
+
+Sample Input
+4
+1 3
+2 4
+5 5
+1 5
+
+Sample Output
+10
+15
+11
+28
+
+Primes: 
+
+2 3 5 7 11 13 17 19 23 29
+
+Test Case 1: 
+
+P[i]: ith Prime Number
+
+L = 1, R = 3
+P[1] = 2
+P[2] = 3
+P[3] = 5
+
+P[1] + P[2] + P[3] = 10
+
+
+
+Solution:
+
+(1) Seive of Values: Highest Value (50000)-  Once Only Not for All Test Case
+(2) prime[l]....prime[r]: SUM - For Each test Case
+
+
+1st Way: Normal Way
+
+long sum = 0;
+for (int i=L; i<= R; i++)
+    sum += prime[i]
+
+TC: O(R-L+1) - Each test case
+
+Total TC: O(T) * O(R-L+1)
+SC: O(1)
+
+2nd Way: Range Sum Query
+
+Another Array With Sum: rangeSum
+
+
+rangeSum[0] = 0
+rangeSum[i] = prime[0] + .......prime[i]
+
+
+2 3 5 7 11 13 17 19 23 29
+
+rangeSum[0] = 0
+rangeSum[1] = 0+2 = 2
+rangeSum[2] = 0+2+3 = 5
+rangeSum[3] = 0+2+3+5 = 10
+
+Pre- Calculate the rangeSum[] before my test cases.
+TC: O(50000) - Only Once
+
+Each Test Case:
+Ans = rangeSum[R] - rangeSum[L-1];  -- O(1)
+
+SC: O(N)
+
+
+Dry Run:
+
+1 3
+2 4
+
+
+OP: 
+10
+15
+
+rangeSum[0] = 0
+rangeSum[1] = 0+2 = 2
+rangeSum[2] = 0+2+3 = 5
+rangeSum[3] = 0+2+3+5 = 10
+rangeSum[4] = 0+2+3+5+7 = 17
+rangeSum[5] = 0+2+3+5+7+11 = 28
+
+Test Case-1: 
+
+L =1, R = 3
+Ans = rangeSum[R] - rangeSum[L-1] 
+    = rangeSum[3] - rangeSum[0]
+    = 10-0 
+    = 10: OP
+
+
+Test Case-2: 
+
+L = 2, R = 4
+Ans = rangeSum[R] - rangeSum[L-1] 
+    = rangeSum[4] - rangeSum[1]
+    = 17-2
+    = 15: OP
+
+
+
+Test Case-3:
+
+ L = 5, R= 5, OP: 11
+
+Ans = rangeSum[R] - rangeSum[L-1] 
+    = rangeSum[5] - rangeSum[4]
+    = 28-17
+    = 11: OP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
