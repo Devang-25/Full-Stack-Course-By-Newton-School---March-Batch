@@ -10695,6 +10695,15 @@ for (i=0; i<s.length(); i++)
     System.out.print(s.charAt(i));
 
 
+- Iteration Over Indices:
+
+for (int i=0; i<arr.length; i++)
+    System.out.print(arr[i] + " ");
+
+- Iteration Over Values:
+
+for (int val: arr)
+    System.out.print(val + " ");
 
 
 CODE:
@@ -10723,6 +10732,10 @@ public class Main {
 
   // Equals(): Two Strings are Equal or Not?
     // True or False
+
+    s = "devang" = x0162728
+    "devang" = x0162728
+    s = "sharma" = x1782829
         
     System.out.println(s.equals("devang"));         
     System.out.println((s == "devang"));         
@@ -10742,6 +10755,7 @@ public class Main {
         
     // replace(): Replaces All occurences of the given character/ sequence of character
         System.out.println(s.replace("a","b"));
+
         s2 = "aaaaab";
         System.out.println(s2.replace("a","b"));
         System.out.println(s.replace("dev","abc"));
@@ -10800,6 +10814,20 @@ ABCD#@%67189Q!
 
 
 
+IMP:
+
+public class Main {
+    
+   public static void main(String[] args) 
+    {
+       String s = "devang";
+       System.out.println(s.replace("a","b"));
+       s = s.replace("a","b");
+       System.out.println(s); 
+    }
+}
+
+- Immutability based upon references NOT on Values.
 
 
 
@@ -10954,6 +10982,369 @@ SC: O(1)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 9th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+- Strings: DONE
+- Substrings/Subarrays, Subsequences, Subsets: DONE
+
+
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+-----> Maths and Modulo Arithmetic
+
+Bitwise Manipulation: XOR, AND, OR, NOT, >> (Divide by 2), << (Multiply By 2)
+
+int a =10;
+System.out.println(a>>2); //5
+a = 10;
+System.out.println(a<<2); //20
+
+
+
+
+int: 4 Bytes = 32 bits
+
+
+_ _ _ _ _ _ ....32 Spaces
+
+Put: 0 or 1
+
+
+Total No of Ways = 2 * 2 * 2.....32 Times = 2^32
+
+
+Positive and Negative Integers:
+Only first bit is different
+
+
++5: 0101
+-5: 1101 (2's Complement)
+
++K, -K: Only first Bit is Different
+
+
+
+
+Positive int: 0 to 2^32-1 (unsigned int)
+unsigned int a = 10;
+
+Positive and Negative: -2^31 to 2^31-1 (int) (-2 Bn to +2 Bn)
+int a = -10;
+
+
+
+
+int a = 150000000; (1.5 Bn) // CORRECT
+int b = 150000000; (1.5 Bn) // CORRECT
+
+
+int c = a + b; ---> OVERFLOW
+
+print(c) 
+c ---> GARBAGE VALUE
+
+
+10 TC, 8 Passed, 2 WA
+
+int c = a*b; ---> OVERFLOW
+c --> Garbage Value
+
+
+int --> long
+
+long: -40Tn to +40Tn
+
+int: 4 Bytes
+long: 8 Bytes
+
+
+Space Limit: 256 MB per TC
+
+int solution --> 150 MB
+
+150 < 256: NO MLE
+But, Giving Overflow
+
+
+long solution: 150*2 = 300 MB > 256 MB: MLE
+No Overflow, But MLE
+
+
+Solution:
+
+(1) long: 8 Bytes
+long long int: 10 Bytes
+
+(2) Use Modulus:
+
+10^9 + 7
+const MOD = 1e9+7;
+1000000007;
+
+
+Reason:
+Large Number % Large Number ---> Small Number
+
+1000 % 999 = 1
+
+
+Eg: 
+
+int a = 1010101010101;
+int b = 1010101010101;
+
+(a+b) --> OVERFLOW
+
+
+int mod = 1e9+7;
+
+(a % mod) --> Small Number (Within Range of int)
+
+(b % mod) --> Small Number (Within Range of int)
+
+
+(small + small) % mod --> EVEN SMALLER VALUE ----> NO OVERFLOW
+
+
+
+a, b
+
+a + b : OVERFLOW
+a * b : OVERFLOW
+a - b : OVERFLOW, b<0 or a<0
+a/b: No Overflow
+
+
+a/b > a
+-> b < 1
+
+
+Note: When Taking Sum or Multiplication, ALWAYS Think about Overflow.
+
+
+
+Solve Overflow:
+(1) Use long or long long int
+(2) Use Modulus
+
+
+
+Formula for Modulo Arithmetic:
+
+(Addition/ Subtraction/ Multiplication)
+
+
+(a + b) mod m = ((a mod m) + (b mod m)) mod m
+
+(a * b) mod m = ((a mod m) * (b mod m)) mod m
+
+LHS = Overflow
+RHS = No Overflow
+
+a = 12
+b = 13
+m = 7
+
+LHS = 25%7 = 4
+RHS = (12%7 + 13%7)%7 = 11%7 = 4
+
+LHS = RHS
+
+
+
+
+Q: Find a+b with mod 1e9+7
+a = 1.5 Bn, b = 1.5 Bn
+
+(1) First Approach:
+
+int ans = (a+b) % 1e9+7; 
+OP: WA
+
+(2) Second Approach:
+
+int ans = ((a % 1e9+7) + (b % 1e9+7)) % 1e9+7;
+OP: Correct Ans
+
+
+
+
+"Since Answer Can be Very Large, Hence Print Modulo 1e9+7"
+
+Expected Ans! = (a+b)
+Expected Ans = (a + b) mod 1e9+7
+
+a = 1.5 Bn, b = 1.5 Bn
+
+(a + b) mod 1e9+7: Overflow : WA
+
+((a mod 1e9+7) + (b mod 1e9+7)) mod 1e9+7: Accepted
+
+
+
+
+Amazon SDE-1 Offcampus - OA - HackerEarth
+
+Q: N! under Modulo P
+
+N! = N * (N-1) * (N-2) * .....1
+
+N = 5, P = 13
+OP: 3
+
+5!= 120
+120%13 = 3
+
+
+
+Constraints:
+0 <= N <= 500
+
+
+Edge Case:
+
+N % P == 0, OP: 0
+
+N = 6
+P = 2
+
+OP: 0
+
+6!= 720
+720%2=0
+
+
+
+
+---- EDITABLE ------
+int fact(int n, int p)
+{
+
+}
+
+---- NON EDITABLE ------
+int main()
+{
+    int ans = fact(n,p);
+}
+
+
+
+Solution:
+
+
+N!= Very Large Number
+
+
+N = 100
+100!= 52 Digits
+
+21! = 32 Digits
+
+
+(1) Calculate N! then Calculate Modulo P
+
+
+int fact(int n, int p)
+{
+    if (n%p == 0)
+        return 0;
+
+    int res = 1;
+    for (i=1; i<=n; i++)
+        res*=i; // OVERFLOW
+
+    return res%p;
+}
+
+
+OP: WA
+
+
+(2) Use Modulo P while Calculating N!
+
+int fact(int n, int p)
+{
+    if (n%p == 0)
+        return 0;
+
+    int res = 1;
+    for (i=1; i<=n; i++)
+        res=(res*i)%p; // OVERFLOW
+
+    return res;
+}
+
+OP: WA
+
+
+(a * b) mod m = ((a mod m) * (b mod m)) mod m
+
+LHS = Overflow
+RHS = No Overflow
+
+
+
+CORRECT:
+
+int fact(int n, int p)
+{
+    if (n%p == 0)
+        return 0;
+
+    int res = 1;
+    for (i=1; i<=n; i++)
+        res=((res%p) * (i%p))%p; // NO OVERFLOW
+
+    return res;
+}
+
+OP: All TC Passed
 
 
 
