@@ -11069,7 +11069,6 @@ Only first bit is different
 
 
 
-
 Positive int: 0 to 2^32-1 (unsigned int)
 unsigned int a = 10;
 
@@ -11345,6 +11344,499 @@ int fact(int n, int p)
 }
 
 OP: All TC Passed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 9th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+- Strings: DONE
+- Substrings/Subarrays, Subsequences, Subsets: DONE
+- Modulo Arithmetic: DONE
+- Avoid Overflow: DONE
+- Amazon OA Question: DONE
+
+TODO:
+- Leetcode Questions on Strings
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+Hashing: Concept
+
+Morphing a value into another value is called Hashing
+OR
+Converting a Large Value to Smaller Value -> Hashing
+
+
+Hashing = Encoding + Decoding
+
+"7687367816382" -> abc
+
+
+Eg:
+
+URL Shortener
+
+bit.ly 
+tinyurl
+
+
+"Large Url" ----> bit.ly/abcd12
+
+https://github.com/Devang-25/Edyst-Classes/blob/main/Newton%20School%20Classes/Leetcode/Hashing.java
+ --> bit.ly
+----> https://bit.ly/3M9wKmw
+
+
+ENCODING
+
+
+https://bit.ly/3M9wKmw
+---> Browser
+ ----> https://github.com/Devang-25/Edyst-Classes/blob/main/Newton%20School%20Classes/Leetcode/Hashing.java
+
+
+DECODING
+
+
+
+
+Data Structures built on Concept of Hashing:
+
+Map : Mapping
+
+- HashMap and HashSet
+
+
+- HashMap:
+
+Key: Value
+
+Eg: JSON Response:
+
+{
+"name": devang,
+"title": Lead Developer,
+"companies": [Google, Cisco, Grab, OYO]
+}
+
+
+key: value (1:1 or 1:N)
+
+
+
+- HashSet:
+Store Only Unique Values
+
+
+a = [1,1,2,2,3,4]
+set = [1,2,3,4]
+
+
+
+
+
+
+
+
+CODE:
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    
+    // Create a Hash Map
+    public static void main(String[] args) {
+        
+        
+       // Create Hash Map
+        HashMap<String, String> map = new HashMap<String, String>();
+        
+        map.put("1", "one");
+        map.put("2", "two");
+        map.put("3", "three");
+        map.put("4", "four");
+        map.put("4", "five"); // OVERWRITE
+        map.put("5", "five");
+        
+        //Print Hash Map
+        System.out.println("Hash Map: " + map);
+
+
+        // Print Size of Hash Map
+        System.out.println("Size of Hash Map: " + map.size()); 
+
+        // Check if Hash Map is Empty
+        System.out.println("Is Hash Map Empty? " + map.isEmpty()); // false
+
+        // Check if Hash Map contains a Key
+        System.out.println("Contains Key 1? " + map.containsKey("1")); // true
+
+        // Check if Hash Map contains a Key
+        System.out.println("Contains Key 10? " + map.containsKey("10")); // false
+        
+        // Check if Hash Map contains a Value
+        System.out.println("Contains Value four? " + map.containsValue("four")); // true
+
+        // Check if Hash Map contains a Value
+        System.out.println("Contains Value Six? " + map.containsValue("Six")); // false
+        
+        
+        // Get Value from Hash Map
+        System.out.println("Value for Key 1: " + map.get("1")); // one
+    
+        // Get Value from Hash Map
+        System.out.println("Value for Key 4: " + map.get("4")); // five
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("Set: ");
+
+
+        // Create Hash Set
+        HashSet<String> set = new HashSet<String>();
+        set.add("one"); // Insert- O(1)
+        set.add("two");  //- OP, NO OVERWRITE
+        set.add("three");
+        set.add("two"); // Not Accept
+
+        // Print Hash Set
+        System.out.println("Hash Set: " + set);
+
+        // Print Size of Hash Set
+        System.out.println("Size of Hash Set: " + set.size());
+
+        // Remove values from Hash Set
+        set.remove("three");
+
+        // Print Hash Set
+        System.out.println("Hash Set: " + set);
+
+        // Check if Hash Set contains a value
+        System.out.println("Contains two: " + set.contains("two")); // Search- O(1)
+
+        // Check if Hash Set contains a value
+        System.out.println("Contains five: " + set.contains("five")); // Search- O(1)
+
+    }
+
+}
+
+
+
+
+OP:
+
+Hash Map: {1=one, 2=two, 3=three, 4=five, 5=five}
+Size of Hash Map: 5
+Is Hash Map Empty? false
+Contains Key 1? true
+Contains Key 10? false
+Contains Value four? false
+Contains Value Six? false
+Value for Key 1: one
+Value for Key 4: five
+
+
+
+
+Set: 
+Hash Set: [one, two, three]
+Size of Hash Set: 3
+Hash Set: [one, two]
+Contains two: true
+Contains five: false
+
+
+
+
+Leetcode: https://leetcode.com/problems/valid-anagram/
+
+
+Anagram: Variation/Permutation of Word
+- All Permutations of characters of a Word
+
+
+Eg: 
+
+cat - tac, cta, act: Anagrams 
+
+rat - rta, tar, tra, atr, art: Anagrams
+
+cat, rat: Not Anagrams
+
+
+
+
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 5 * 10^4
+s and t consist of lowercase English letters.
+ 
+
+IMP: Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+
+
+
+
+
+
+public boolean isAnagram(String s, String t) 
+{
+
+
+        
+}
+
+
+
+t.contains(s) - Substring NOT ANAGRAM
+
+Eg:
+rat - rta
+rat.contains("rta")
+
+
+
+
+
+Set:
+
+"aba", "abaa"
+OP: false
+
+set1 = [a,b]
+set2 = [a,b]
+
+OP: true - Incorrect
+
+
+
+
+
+Strings Checking with Contains
+
+s: "aba", t: "abaa"
+OP: false
+
+for (i=0; i<s.length(); i++)
+{
+    t.contains(s.charAt(i));
+}
+
+OP: true - Incorrect
+
+
+
+
+Solution:
+
+
+Edge Cases:
+
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false
+
+
+
+
+Approaches:
+
+
+(1) Sorting
+
+Anagram: All Characters present with SAME Frequency
+
+s: "abca"
+t: "aabc" 
+
+
+s:
+
+a: 2
+b: 1
+c: 1
+
+t:
+
+a: 2
+b: 1
+c: 1
+
+
+
+Sort Both Strings: All Same Characters would be adjacent
+
+- Sort Both Strings
+- Compare Two Strings
+
+
+s: "abca"
+t: "aabc" 
+
+After Sorting:
+
+s: "aabc"
+t: "aabc" 
+
+
+(2) Hashing - Map
+
+
+Anagram: All Characters present with SAME Frequency
+
+s: "abca"
+t: "aabc" 
+
+
+s:
+
+a: 2
+b: 1
+c: 1
+
+t:
+
+a: 2
+b: 1
+c: 1
+
+
+
+Map: 
+- Char:Integer
+
+
+
+public boolean isAnagram(String s, String t) 
+{
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false
+
+int i=0;
+HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
+HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
+
+
+for (i=0; i<s.length(); i++)
+    map1[s.charAt(i)]++;
+
+for (i=0; i<t.length(); i++)
+    map2[t.charAt(i)]++;
+
+return map1.equals(map2);      
+}
+
+
+
+TC: O(N) + O(N)
+SC: O(N) + O(N)
+
+
+
+
+s: "abca"
+t: "aabc" 
+
+
+map1
+a: 2
+b: 1
+c: 1
+
+map2:
+a: 2
+b: 1
+c: 1
+
+
+
+
+for (i=0; i<s.length(); i++)
+    map1[s.charAt(i)]++;
+
+
+s: "abca"
+map1['a']: 0->1->2
+map1['b']: 0->1
+map1['c']: 0->1
+
+map1
+a: 2
+b: 1
+c: 1
+
+
+
+DNA Sequence: ATGC
+
+ATGCAT.....Millions of Sequence
 
 
 
