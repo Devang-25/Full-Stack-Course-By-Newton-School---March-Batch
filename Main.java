@@ -11358,7 +11358,7 @@ OP: All TC Passed
 
 
 
-Date : 9th May 2022
+Date : 10th May 2022
 Mentor: DEVANG SHARMA
 Batch: March Batch 2 - DRACO
 
@@ -11497,7 +11497,7 @@ public class Main {
         map.put("4", "four");
         map.put("4", "five"); // OVERWRITE
         map.put("5", "five");
-        
+
         //Print Hash Map
         System.out.println("Hash Map: " + map);
 
@@ -11620,6 +11620,7 @@ Example 1:
 
 Input: s = "anagram", t = "nagaram"
 Output: true
+
 Example 2:
 
 Input: s = "rat", t = "car"
@@ -11841,6 +11842,169 @@ ATGCAT.....Millions of Sequence
 
 
 
+(3) Optimisation on Hashing:
+
+
+
+class Solution 
+{
+    
+public boolean isAnagram(String s, String t) 
+{
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false;
+
+int i=0;
+HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+    
+for (i=0; i<s.length(); i++)
+{
+    if (map.get(s.charAt(i)) == null)
+        map.put(s.charAt(i), 0);
+    
+        map.put(s.charAt(i), map.get(s.charAt(i)) +1);
+}
+// map[s[i]]++;
+    
+    
+    for (i=0; i<t.length(); i++)
+    {
+        if (map.get(t.charAt(i)) == null)
+            return false;
+        else{
+            map.put(t.charAt(i),map.get(t.charAt(i)) - 1);
+            
+            if (map.get(t.charAt(i))==0)
+                map.remove(t.charAt(i));
+        }
+    }
+    // map[t[i]]--;
+    
+    if (map.size()!=0)
+        return false;
+    else
+        return true;
+}
+    
+}
+
+
+TC: O(N) 
+SC: O(26) 
+
+
+
+Map: Keys: 'a'-'z': 26 Keys
+
+
+
+map
+s: 
+
+a: 2
+b: 1
+c: 1
+
+
+t: 
+
+a: 2
+b: 1
+c: 1
+
+
+for (i=0; i<s.length(); i++)
+    map[s.charAt(i)]++;
+    map[t.charAt(i)]--;
+
+
+s: "abca"
+map['a']: 0->1->2
+map['b']: 0->1
+map['c']: 0->1
+
+t = "aabc"
+map['a']: 0->1->2->1->0
+map['b']: 0->1->0
+map['c']: 0->1->0
+
+
+
+s: "abcad"
+map['a']: 0->1->2
+map['b']: 0->1
+map['c']: 0->1
+map['d']: 0->1
+
+t = "aabc"
+map['a']: 0->1->2->1->0
+map['b']: 0->1->0
+map['c']: 0->1->0
+
+
+
+"aaaaaaaaa"
+String Size: 9 (N)
+
+Map: 
+"a": 9
+
+Map Size: 1 (Unique Chars in String)
+
+
+
+(4) Space Optimisation:
+
+int[] arr = new int[26];
+
+arr[s.charAt(i)-'a']++;
+arr[t.charAt(i)-'a']--;
+
+if val!=0
+    return false
+
+CODE:
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s==t) 
+            return true;
+
+    if (s.length()!=t.length())
+        return false;
+
+        int[] answer = new int[26];
+        for (int i=0; i<s.length(); i++)
+        {
+            answer[s.charAt(i)-'a']++;
+            answer[t.charAt(i)-'a']--;
+        }
+        
+        for (int val: answer)
+            if (val!=0)
+                return false;
+        
+        return true;
+    }
+}
+
+
+TC: O(N)
+SC: O(26)
+
+
+Unicode Characters: ASCII: 256 Characters
+
+
+Map: No Change
+
+Array Approach:
+int []arr = new int[26];
 
 
 
@@ -11848,6 +12012,200 @@ ATGCAT.....Millions of Sequence
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 13th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+- Strings: DONE
+- Substrings/Subarrays, Subsequences, Subsets: DONE
+- Modulo Arithmetic: DONE
+- Avoid Overflow: DONE
+- Amazon OA Question: DONE
+
+TODO:
+- Leetcode Questions on Strings
+- Valid Anagrams: https://leetcode.com/problems/valid-anagram/
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+----> "Palindrome"
+
+Left to Right, Right to Left: SAME
+
+"katak": L to R
+"tenet":
+"madam":
+
+
+12321: Palindrome
+
+
+
+
+boolean isPalindrome(String s)
+{
+
+}
+
+Solutions:
+
+(1) Reverse String and Check
+
+s2 = reverse(s.begin(), s.end());
+return s == s2;
+
+
+TC: O(N)
+SC: O(1)
+
+(2) Two Pointers:
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    static boolean isPalindrome(String s)
+{
+int n = s.length();
+
+for (int i =0; i<n/2; i++)
+{
+    if (s.charAt(i)!=s.charAt(n-i-1))
+        return false;
+}
+
+return true;
+}
+    public static void main(String[] args) {
+            System.out.println(isPalindrome("abcd"));
+            System.out.println(isPalindrome("katak"));
+            System.out.println(isPalindrome("aa"));
+
+    }
+}
+
+
+
+
+
+
+TC: O(N/2)
+SC: O(1)
+
+
+
+
+
+
+
+
+Different Maps in Java:
+
+a = [1,3,2,4,1,5,6,2]
+Map:
+{
+    "1": 2
+    "3": 1
+    "2": 2
+    "4": 1
+    "5": 1
+    "6": 1
+}
+
+
+
+(1) HashMap: Does Not Maintains Insertion Order
+DS: BST (Binary Search Tree)
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+OP: {1:2, 2:2, ....} OR {6:1, 4:1,....}
+
+(2) LinkedHashMap: Maintains Insertion Order
+DS: Linked Lists + BST
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+OP: {1:2, 3:1, 2:2 ....}
+
+(3) TreeMap: Always Stores in Increasing/Sorted Order:
+DS: RBT (Red Black Trees)
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+
+OP: {1:2, 2:2, ....}
+
+
+
+Note: 
+If Order is required to be Maintained - LinkedHashMap
+If Need Sorted Values - TreeMap
+Just Need Mapping - HashMap
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        int a = 10;
+        // Right Shift Operator, Shifts binary to right - Divide By 2
+        int k = a>>1; 
+        System.out.println(k);
+        // Left Shift Operator, Shifts binary to left - Multiply By 2
+        k = a<<1; 
+        System.out.println(k);
+        
+        // OP:
+        // 5
+        // 20
+    }
+}
 
 
 
