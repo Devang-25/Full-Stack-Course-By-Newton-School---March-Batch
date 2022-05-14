@@ -11069,7 +11069,6 @@ Only first bit is different
 
 
 
-
 Positive int: 0 to 2^32-1 (unsigned int)
 unsigned int a = 10;
 
@@ -11356,6 +11355,857 @@ OP: All TC Passed
 
 
 
+
+
+
+Date : 10th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+- Strings: DONE
+- Substrings/Subarrays, Subsequences, Subsets: DONE
+- Modulo Arithmetic: DONE
+- Avoid Overflow: DONE
+- Amazon OA Question: DONE
+
+TODO:
+- Leetcode Questions on Strings
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+Hashing: Concept
+
+Morphing a value into another value is called Hashing
+OR
+Converting a Large Value to Smaller Value -> Hashing
+
+
+Hashing = Encoding + Decoding
+
+"7687367816382" -> abc
+
+
+Eg:
+
+URL Shortener
+
+bit.ly 
+tinyurl
+
+
+"Large Url" ----> bit.ly/abcd12
+
+https://github.com/Devang-25/Edyst-Classes/blob/main/Newton%20School%20Classes/Leetcode/Hashing.java
+ --> bit.ly
+----> https://bit.ly/3M9wKmw
+
+
+ENCODING
+
+
+https://bit.ly/3M9wKmw
+---> Browser
+ ----> https://github.com/Devang-25/Edyst-Classes/blob/main/Newton%20School%20Classes/Leetcode/Hashing.java
+
+
+DECODING
+
+
+
+
+Data Structures built on Concept of Hashing:
+
+Map : Mapping
+
+- HashMap and HashSet
+
+
+- HashMap:
+
+Key: Value
+
+Eg: JSON Response:
+
+{
+"name": devang,
+"title": Lead Developer,
+"companies": [Google, Cisco, Grab, OYO]
+}
+
+
+key: value (1:1 or 1:N)
+
+
+
+- HashSet:
+Store Only Unique Values
+
+
+a = [1,1,2,2,3,4]
+set = [1,2,3,4]
+
+
+
+
+
+
+
+
+CODE:
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    
+    // Create a Hash Map
+    public static void main(String[] args) {
+        
+        
+       // Create Hash Map
+        HashMap<String, String> map = new HashMap<String, String>();
+        
+        map.put("1", "one");
+        map.put("2", "two");
+        map.put("3", "three");
+        map.put("4", "four");
+        map.put("4", "five"); // OVERWRITE
+        map.put("5", "five");
+
+        //Print Hash Map
+        System.out.println("Hash Map: " + map);
+
+
+        // Print Size of Hash Map
+        System.out.println("Size of Hash Map: " + map.size()); 
+
+        // Check if Hash Map is Empty
+        System.out.println("Is Hash Map Empty? " + map.isEmpty()); // false
+
+        // Check if Hash Map contains a Key
+        System.out.println("Contains Key 1? " + map.containsKey("1")); // true
+
+        // Check if Hash Map contains a Key
+        System.out.println("Contains Key 10? " + map.containsKey("10")); // false
+        
+        // Check if Hash Map contains a Value
+        System.out.println("Contains Value four? " + map.containsValue("four")); // true
+
+        // Check if Hash Map contains a Value
+        System.out.println("Contains Value Six? " + map.containsValue("Six")); // false
+        
+        
+        // Get Value from Hash Map
+        System.out.println("Value for Key 1: " + map.get("1")); // one
+    
+        // Get Value from Hash Map
+        System.out.println("Value for Key 4: " + map.get("4")); // five
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("Set: ");
+
+
+        // Create Hash Set
+        HashSet<String> set = new HashSet<String>();
+        set.add("one"); // Insert- O(1)
+        set.add("two");  //- OP, NO OVERWRITE
+        set.add("three");
+        set.add("two"); // Not Accept
+
+        // Print Hash Set
+        System.out.println("Hash Set: " + set);
+
+        // Print Size of Hash Set
+        System.out.println("Size of Hash Set: " + set.size());
+
+        // Remove values from Hash Set
+        set.remove("three");
+
+        // Print Hash Set
+        System.out.println("Hash Set: " + set);
+
+        // Check if Hash Set contains a value
+        System.out.println("Contains two: " + set.contains("two")); // Search- O(1)
+
+        // Check if Hash Set contains a value
+        System.out.println("Contains five: " + set.contains("five")); // Search- O(1)
+
+    }
+
+}
+
+
+
+
+OP:
+
+Hash Map: {1=one, 2=two, 3=three, 4=five, 5=five}
+Size of Hash Map: 5
+Is Hash Map Empty? false
+Contains Key 1? true
+Contains Key 10? false
+Contains Value four? false
+Contains Value Six? false
+Value for Key 1: one
+Value for Key 4: five
+
+
+
+
+Set: 
+Hash Set: [one, two, three]
+Size of Hash Set: 3
+Hash Set: [one, two]
+Contains two: true
+Contains five: false
+
+
+
+
+Leetcode: https://leetcode.com/problems/valid-anagram/
+
+
+Anagram: Variation/Permutation of Word
+- All Permutations of characters of a Word
+
+
+Eg: 
+
+cat - tac, cta, act: Anagrams 
+
+rat - rta, tar, tra, atr, art: Anagrams
+
+cat, rat: Not Anagrams
+
+
+
+
+
+Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "anagram", t = "nagaram"
+Output: true
+
+Example 2:
+
+Input: s = "rat", t = "car"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 5 * 10^4
+s and t consist of lowercase English letters.
+ 
+
+IMP: Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
+
+
+
+
+
+
+public boolean isAnagram(String s, String t) 
+{
+
+
+        
+}
+
+
+
+t.contains(s) - Substring NOT ANAGRAM
+
+Eg:
+rat - rta
+rat.contains("rta")
+
+
+
+
+
+Set:
+
+"aba", "abaa"
+OP: false
+
+set1 = [a,b]
+set2 = [a,b]
+
+OP: true - Incorrect
+
+
+
+
+
+Strings Checking with Contains
+
+s: "aba", t: "abaa"
+OP: false
+
+for (i=0; i<s.length(); i++)
+{
+    t.contains(s.charAt(i));
+}
+
+OP: true - Incorrect
+
+
+
+
+Solution:
+
+
+Edge Cases:
+
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false
+
+
+
+
+Approaches:
+
+
+(1) Sorting
+
+Anagram: All Characters present with SAME Frequency
+
+s: "abca"
+t: "aabc" 
+
+
+s:
+
+a: 2
+b: 1
+c: 1
+
+t:
+
+a: 2
+b: 1
+c: 1
+
+
+
+Sort Both Strings: All Same Characters would be adjacent
+
+- Sort Both Strings
+- Compare Two Strings
+
+
+s: "abca"
+t: "aabc" 
+
+After Sorting:
+
+s: "aabc"
+t: "aabc" 
+
+
+(2) Hashing - Map
+
+
+Anagram: All Characters present with SAME Frequency
+
+s: "abca"
+t: "aabc" 
+
+
+s:
+
+a: 2
+b: 1
+c: 1
+
+t:
+
+a: 2
+b: 1
+c: 1
+
+
+
+Map: 
+- Char:Integer
+
+
+
+public boolean isAnagram(String s, String t) 
+{
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false
+
+int i=0;
+HashMap<Character, Integer> map1 = new HashMap<Character, Integer>();
+HashMap<Character, Integer> map2 = new HashMap<Character, Integer>();
+
+
+for (i=0; i<s.length(); i++)
+    map1[s.charAt(i)]++;
+
+for (i=0; i<t.length(); i++)
+    map2[t.charAt(i)]++;
+
+return map1.equals(map2);      
+}
+
+
+
+TC: O(N) + O(N)
+SC: O(N) + O(N)
+
+
+
+
+s: "abca"
+t: "aabc" 
+
+
+map1
+a: 2
+b: 1
+c: 1
+
+map2:
+a: 2
+b: 1
+c: 1
+
+
+
+
+for (i=0; i<s.length(); i++)
+    map1[s.charAt(i)]++;
+
+
+s: "abca"
+map1['a']: 0->1->2
+map1['b']: 0->1
+map1['c']: 0->1
+
+map1
+a: 2
+b: 1
+c: 1
+
+
+
+DNA Sequence: ATGC
+
+ATGCAT.....Millions of Sequence
+
+
+
+
+(3) Optimisation on Hashing:
+
+
+
+class Solution 
+{
+    
+public boolean isAnagram(String s, String t) 
+{
+
+if (s==t) 
+    return true;
+
+if (s.length()!=t.length())
+    return false;
+
+int i=0;
+HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+    
+for (i=0; i<s.length(); i++)
+{
+    if (map.get(s.charAt(i)) == null)
+        map.put(s.charAt(i), 0);
+    
+        map.put(s.charAt(i), map.get(s.charAt(i)) +1);
+}
+// map[s[i]]++;
+    
+    
+    for (i=0; i<t.length(); i++)
+    {
+        if (map.get(t.charAt(i)) == null)
+            return false;
+        else{
+            map.put(t.charAt(i),map.get(t.charAt(i)) - 1);
+            
+            if (map.get(t.charAt(i))==0)
+                map.remove(t.charAt(i));
+        }
+    }
+    // map[t[i]]--;
+    
+    if (map.size()!=0)
+        return false;
+    else
+        return true;
+}
+    
+}
+
+
+TC: O(N) 
+SC: O(26) 
+
+
+
+Map: Keys: 'a'-'z': 26 Keys
+
+
+
+map
+s: 
+
+a: 2
+b: 1
+c: 1
+
+
+t: 
+
+a: 2
+b: 1
+c: 1
+
+
+for (i=0; i<s.length(); i++)
+    map[s.charAt(i)]++;
+    map[t.charAt(i)]--;
+
+
+s: "abca"
+map['a']: 0->1->2
+map['b']: 0->1
+map['c']: 0->1
+
+t = "aabc"
+map['a']: 0->1->2->1->0
+map['b']: 0->1->0
+map['c']: 0->1->0
+
+
+
+s: "abcad"
+map['a']: 0->1->2
+map['b']: 0->1
+map['c']: 0->1
+map['d']: 0->1
+
+t = "aabc"
+map['a']: 0->1->2->1->0
+map['b']: 0->1->0
+map['c']: 0->1->0
+
+
+
+"aaaaaaaaa"
+String Size: 9 (N)
+
+Map: 
+"a": 9
+
+Map Size: 1 (Unique Chars in String)
+
+
+
+(4) Space Optimisation:
+
+int[] arr = new int[26];
+
+arr[s.charAt(i)-'a']++;
+arr[t.charAt(i)-'a']--;
+
+if val!=0
+    return false
+
+CODE:
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s==t) 
+            return true;
+
+    if (s.length()!=t.length())
+        return false;
+
+        int[] answer = new int[26];
+        for (int i=0; i<s.length(); i++)
+        {
+            answer[s.charAt(i)-'a']++;
+            answer[t.charAt(i)-'a']--;
+        }
+        
+        for (int val: answer)
+            if (val!=0)
+                return false;
+        
+        return true;
+    }
+}
+
+
+TC: O(N)
+SC: O(26)
+
+
+Unicode Characters: ASCII: 256 Characters
+
+
+Map: No Change
+
+Array Approach:
+int []arr = new int[26];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 13th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+- XOR and Questions: DONE
+- Single Number: https://leetcode.com/problems/single-number/: DONE
+- Missing Number: https://leetcode.com/problems/missing-number/: DONE
+- Assignment Questions: DONE
+- Two Sum Question - 3 Approaches: DONE
+- Error Messages and Compiler Messages: DONE
+- 2D Arrays and Questions: DONE
+- Jagged Arrays: DONE
+- Transpose of a Matrix: DONE
+- Sum of Diagonal Elements in Matrix: DONE
+- Assignment: DONE
+- Prime Numbers: DONE
+- Primality Test: DONE
+- Seive Of Erastothenes: DONE
+- Count Primes:https://leetcode.com/problems/count-primes/: DONE
+- Sexy Primes: https://www.codechef.com/problems/EXCG1806: DONE
+- GCD: DONE
+- GCD Using Euclid Algo: DONE
+- Assignment Questions: DONE
+- Range Sum Query- CP: DONE
+- Strings: DONE
+- Substrings/Subarrays, Subsequences, Subsets: DONE
+- Modulo Arithmetic: DONE
+- Avoid Overflow: DONE
+- Amazon OA Question: DONE
+
+TODO:
+- Leetcode Questions on Strings
+- Valid Anagrams: https://leetcode.com/problems/valid-anagram/
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+----> "Palindrome"
+
+Left to Right, Right to Left: SAME
+
+"katak": L to R
+"tenet":
+"madam":
+
+
+12321: Palindrome
+
+
+
+
+boolean isPalindrome(String s)
+{
+
+}
+
+Solutions:
+
+(1) Reverse String and Check
+
+s2 = reverse(s.begin(), s.end());
+return s == s2;
+
+
+TC: O(N)
+SC: O(1)
+
+(2) Two Pointers:
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    static boolean isPalindrome(String s)
+{
+int n = s.length();
+
+for (int i =0; i<n/2; i++)
+{
+    if (s.charAt(i)!=s.charAt(n-i-1))
+        return false;
+}
+
+return true;
+}
+    public static void main(String[] args) {
+            System.out.println(isPalindrome("abcd"));
+            System.out.println(isPalindrome("katak"));
+            System.out.println(isPalindrome("aa"));
+
+    }
+}
+
+
+
+
+
+
+TC: O(N/2)
+SC: O(1)
+
+
+
+
+
+
+
+
+Different Maps in Java:
+
+a = [1,3,2,4,1,5,6,2]
+Map:
+{
+    "1": 2
+    "3": 1
+    "2": 2
+    "4": 1
+    "5": 1
+    "6": 1
+}
+
+
+
+(1) HashMap: Does Not Maintains Insertion Order
+DS: BST (Binary Search Tree)
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+OP: {1:2, 2:2, ....} OR {6:1, 4:1,....}
+
+(2) LinkedHashMap: Maintains Insertion Order
+DS: Linked Lists + BST
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+OP: {1:2, 3:1, 2:2 ....}
+
+(3) TreeMap: Always Stores in Increasing/Sorted Order:
+DS: RBT (Red Black Trees)
+
+TC: O(1) - Best Case, Worst Case: O(log N)
+
+
+OP: {1:2, 2:2, ....}
+
+
+
+Note: 
+If Order is required to be Maintained - LinkedHashMap
+If Need Sorted Values - TreeMap
+Just Need Mapping - HashMap
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    public static void main(String[] args) {
+        int a = 10;
+        // Right Shift Operator, Shifts binary to right - Divide By 2
+        int k = a>>1; 
+        System.out.println(k);
+        // Left Shift Operator, Shifts binary to left - Multiply By 2
+        k = a<<1; 
+        System.out.println(k);
+        
+        // OP:
+        // 5
+        // 20
+    }
+}
 
 
 
