@@ -12511,6 +12511,15 @@ Window: from l to r
 Sliding: Movable in Nature
 
 
+7-3 = 4
+
+    3 4 5 6 7
+    1 2 3 4 5
+cnt = 5 
+
+b-a: a -Exclusive  , b- Inclusive
+b-a+1: Both Inclusive
+
 Approach:
 
 
@@ -12692,6 +12701,479 @@ TC: O(1) : Constant Time
 Last Element Inserted == First Element Deleted
 
 Most Recently Used Element = Top Most Element
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 17th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+TODO:
+
+Stacks 
+- Applications- 
+- Use Case- DONE
+- Code- 
+
+
+Questions
+- Reverse Array/String- 
+- Balanced Parentheses - Google/Flipkart- 
+- Balanced Parentheses Variation- Google (LC-921)- 
+
+- NGE - Amazon
+
+Queues
+- Applications- 
+- Use Case- 
+- Code- 
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+-------> Applications:
+
+(1) Ctrl + Z: Undo
+    Ctrl + Y: Redo
+
+
+Real Life Example:
+Type "devang" in keyboard, Press Ctrl + Z, and Ctrl + Y to see.
+
+
+
+Insertion:
+
+1
+2
+3
+4
+5: RECENT
+
+
+
+
+Ctrl + Z: Undo: Last/Most Recent Operation is Reverted
+Redo: Revert of Undo
+
+Stack:
+
+5: TOP                  4: TOP                5: TOP
+4                       3                     4      
+3   Ctrl + Z            2      Ctrl + Y       3
+2   (5: Deleted)        1    (5: Added)       2
+1                                             1
+
+ans: 1 Stack + 1 temp variable
+
+Use of storing in temp value ---> RESTORE (Redo Operations)
+
+
+Ctrl + Z;
+stack.pop();
+
+5: Variable: temp
+
+
+Ctrl + Y;
+stack.push(temp);
+
+
+
+(2) Browser History:
+
+Github: 6:30 
+Medium: 6:35
+Linkedin: 6:40
+
+History: (Reverse Chronological Order)
+
+
+Linkedin
+Medium
+Github
+
+- STACK
+
+
+(3) Recursion
+
+
+Recursion Stack: O(N) - Auxiliary Memory
+
+
+void add(c)
+{
+    if (c==5)
+        return;
+
+    add(c+1);
+}
+
+p.s.v.m()
+{
+    add(1);
+}
+
+
+
+Recursion Stack: O(N) - Heap
+
+add(5)
+add(4)
+add(3)
+add(2)
+add(1)
+
+
+(4) Memory Management Techniques 
+
+(5) Graphs:
+
+DFS: Stacks
+BFS: Queues
+
+
+
+
+CODE:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) 
+    {
+       Stack<Integer> s = new Stack<Integer>();
+       s.push(1);
+       s.push(2);
+       s.push(3);
+       
+       System.out.println("Stack: " + s); // [1 2 3: TOP]
+       System.out.println("Top Value: " + s.peek());  
+       System.out.println("Size: " + s.size());  
+        
+       System.out.println("Deleted: " + s.pop()); //3: Deleted 
+       System.out.println("Size: " + s.size());  
+       System.out.println("Stack: " + s); // [1 2: TOP]
+        
+       System.out.println("Is Empty: " + s.isEmpty()); // false
+        
+        System.out.println("Stack Traversal: ");
+        while (!s.isEmpty())
+        {
+            System.out.print(s.pop() + " ");
+        }
+    }
+}
+
+
+OP:
+
+Stack: [1, 2, 3]
+Top Value: 3
+Size: 3
+Deleted: 3
+Size: 2
+Stack: [1, 2]
+Is Empty: false
+Stack Traversal: 
+2 1 
+
+
+ArrayList<Integer> al = new ArrayList<Integer>();
+
+Default Size: 256
+
+Java 6: New Arraylist Size = 1.5 x Previous Arraylist Size
+
+Java 8: New Arraylist Size = 2 x Previous Arraylist Size
+
+Already Inserted 256 Values, try to insert 257th value:
+New Size = 1.5 * 256
+
+Internal Working of ArrayList in Java
+https://www.javatpoint.com/internal-working-of-arraylist-in-java
+
+
+
+
+
+Complexity of Operations:
+
+Insertion: TOP
+Deletion: TOP
+
+
+(1) Push - Add Item
+
+Stack == Full
+"Overflow"
+
+CODE:
+s.push(5);
+
+TC: O(1)
+
+
+(2) Pop - Delete Item
+
+Stack == Empty
+"Underflow"
+
+CODE:
+s.pop(); --> Deletes Top Most Value
+
+TC: O(1)
+
+Packet of Bread:
+
+
+(3) Peek - Top Element
+
+CODE:
+s.peek()
+
+TC: O(1)
+
+(4) s.isEmpty() - true/false
+Empty or Not
+
+
+boolean empty()
+{
+    return (s.peek()==null);
+}
+
+TC: O(1)
+
+
+
+OPEN
+
+__5__ : TOP: PICK
+__4__
+__3__
+__2__
+__1__
+
+
+
+Ternary Operators:
+
+Ternary: Three
+
+Operator Requires 3 Operands
+
+
+Using If - Else
+
+if (a==10)
+{
+    s.o.p("yes");
+}
+
+else if (a==15)
+{
+       s.o.p("abc");
+ 
+}
+
+else
+{
+    s.o.p("no");
+}
+
+Using Ternary:
+
+(a==10) ? s.o.p("yes") : { (a==15) ? s.o.p("abc") : s.o.p("no")};
+
+? : If
+: Else
+
+
+
+
+
+Application Questions:
+
+
+1 2 3 ----> Stack ---> 3 2 1
+
+Order of Insertion of Values == Opposite of Order of Values in Stack 
+
+
+Q: Reverse an Array/String
+
+IP: "abc"
+OP: "cba"
+
+
+Ways?
+
+
+(1) Inbuilt Functions:
+    
+    S.reverse(); - JAVA
+    reverse(s.begin(), s.end());- C++
+    A[::-1] - Py
+
+TC: O(N)
+SC: O(1)    
+
+
+(2) Create Extra Array/String, Traverse from R to L
+
+int[] b = new int[n];
+for (i=n-1; i>=0; i--)
+    b[i] = a[n-1-i];
+
+TC: O(N)
+SC: O(N)
+
+(3) Swap
+
+for (i=0; i<n/2; i++)
+    swap(a[i], a[n-1-i]);
+
+TC: O(N/2)
+SC: O(1)
+
+
+(4) Two Pointer:
+
+l = a[i], r = a[n-i-1]
+while (l<=r)
+{
+    swap(a[l], a[r]);
+    l++;
+    r--;
+}
+
+TC: O(N/2)
+SC: O(1)
+
+(5) Recursion
+
+(6) Stack:
+
+for (i: str)
+    stack.push(i);
+
+s.o.p.(stack);
+
+TC: O(N)
+SC: O(N) - Stack
+
+
+
+
+Q: LC - 20: Valid/Balanced Parentheses - Flipkart/Amazon
+https://leetcode.com/problems/valid-parentheses/
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+
+Example 3:
+
+Input: s = "(]"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of parentheses only "()[]{}".
+
+
+Opening:
+{,[,(
+
+Closing:
+},],)
+
+Curly, Square, Round
+
+
+
+
+
+Input: s = "{[()]}"
+Output: true
+
+
+
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+(==), [==], {==}: If-Else/Switch
+
+Open brackets must be closed in the correct order.
+ 
+
+
+TRICK:
+
+Order of Opening Brackets == Reverse of Order of Closing Brackets
+-- Valid/Balanced
+Else --- Not Valid/Not Balanced
+
+DS: Stack
+
+
+
+
+CODE:
+
+Next Class
+
+
+
+
+Q: [FB, Google] LC-921
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
