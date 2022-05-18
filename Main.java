@@ -12913,7 +12913,6 @@ https://www.javatpoint.com/internal-working-of-arraylist-in-java
 
 
 
-
 Complexity of Operations:
 
 Insertion: TOP
@@ -12941,7 +12940,6 @@ s.pop(); --> Deletes Top Most Value
 
 TC: O(1)
 
-Packet of Bread:
 
 
 (3) Peek - Top Element
@@ -12963,6 +12961,7 @@ boolean empty()
 TC: O(1)
 
 
+Packet of Bread:
 
 OPEN
 
@@ -13136,10 +13135,10 @@ Output: true
 
 An input string is valid if:
 
-Open brackets must be closed by the same type of brackets.
+- Open brackets must be closed by the same type of brackets.
 (==), [==], {==}: If-Else/Switch
 
-Open brackets must be closed in the correct order.
+- Open brackets must be closed in the correct order.
  
 
 
@@ -13154,14 +13153,391 @@ DS: Stack
 
 
 
+
+
+
+
+
+
+
+
+
+Date : 18th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Stacks 
+- Applications- 
+- Use Case- DONE
+- Code- 
+
+
+Questions
+- Reverse Array/String- 
+- Balanced Parentheses - Google/Flipkart- 
+- Balanced Parentheses Variation- Google (LC-921)- 
+
+- NGE - Amazon
+
+Queues
+- Applications- 
+- Use Case- 
+- Code- 
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+STACK:
+
+Approach:
+
+Iterate Over String
+
+Opening Bracket - Push to Stack
+Closing Bracket - Pop from Stack and Compare with the Closing Bracket
+
+If its same type - continue
+else - return false
+
+
+Complete String Traversed:
+No Brackets left in Stack, return true
+else return false
+
+
+DRY RUN:
+
+"{[()]}"
+
+STACK:
+
+(: TOP    [: TOP    {: TOP   Stack:Empty
+[         {  
+{
+
+check = st.peek();
+st.pop();
+
+
+pop: ( == ): TRUE - continue;
+
+pop: [ == ]: TRUE - continue;
+
+pop: { == }: TRUE - continue;
+
+Complete String Traversed, No Brackets Left
+OP: true
+
+
+
+
+B = "{[(]}...................................."
+
+
+Stack:
+
+(: TOP   [: TOP
+[        {
+{
+
+pop: ( == ]: FALSE
+"NOT BALANCED"
+
+
+C = "}..........."
+OP: "NOT BALANCED"
+
+D = "...........{"
+OP: "NOT BALANCED"
+
+
+
+
 CODE:
 
-Next Class
+// TC: O(N)
+// SC: O(N) - Stack
+
+class Solution 
+{
+    public boolean isValid(String s) 
+    {
+        // Edge Case:
+        if (s.charAt(0) == '}' || s.charAt(0) == ']' || s.charAt(0) == ')')
+            return false;
+        
+        Stack<Character> st = new Stack<Character>();
+        int i=0;
+        
+        for (i=0; i<s.length(); i++)
+        {
+            char c = s.charAt(i);
+            
+            // Push Opening Brackets to Stack
+            if (c == '[' || c=='(' || c == '{')
+            {
+                st.push(c);
+                continue;
+            }
+            
+            if (st.isEmpty()) // No Opening Brackets
+                return false;
+            
+            char check;
+            
+            switch (c)
+            {
+                    
+                case ')': 
+                    check = st.peek();
+                    st.pop();
+                    if (check == '{' || check == '[' )
+                        return false;
+                    break;
+
+                case ']':
+                    check = st.peek();
+                    st.pop();                
+                    if (check == '{' || check == '(' )
+                        return false;
+                    break;     
+                    
+                case '}': 
+                    check = st.peek();
+                    st.pop();
+                    if (check == '(' || check == '[' )
+                        return false;
+                    break;                        
+                
+            }
+        }
+        
+        return st.isEmpty();
+        }
+    }
 
 
 
 
-Q: [FB, Google] LC-921
+a = str.charAt(i) - Closing Bracket
+b = stack.peek() - Opening Bracket
+
+a , b
+( == )
+
+if (a=='(' and b== ')')
+    continue;
+else 
+    break;
+
+
+
+check = st.peek();
+st.pop();
+
+
+
+
+
+Q: [FB, Google] LC-921: Minimum Add to Make Parentheses Valid
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+A parentheses string is valid if and only if:
+
+It is the empty string,
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+You are given a parentheses string s. In one move, you can insert a parenthesis at any position of the string.
+
+For example, if s = "()))", you can insert an opening parenthesis to be "(()))" or a closing parenthesis to be "())))".
+Return the minimum number of moves required to make s valid.
+
+ 
+
+Example 1:
+
+Input: s = "())"
+Output: 1
+Example 2:
+
+Input: s = "((("
+Output: 3
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+s[i] is either '(' or ')'.
+
+
+
+
+Simple Terms:
+
+Valid/Balanced Logic: Same
+
+Minimum Number of Parentheses to Add to make the String Valid/Balanced:
+- Can Add '(' or ')'
+- Can Add Anywhere
+
+
+
+
+"())" ---> "(())"
+
+1 ( Add
+OP: 1 
+
+
+"()"
+OP: 0
+
+
+")))"
+OP: 3 (Opening Brackets)
+
+
+")(" ---> "()()"
+OP: 2
+
+"()()"
+OP: 0
+
+
+
+Incorrect Approach: NO ORDER/Sequence Maintained
+
+Count No of Opening And Brackets, Return Abs Difference
+
+(- count: a
+)- count: b
+
+return Math.abs(a-b);
+
+
+
+"()))(("
+opening: 3
+closing: 3
+ans = 0
+Expected: 4
+
+
+
+
+Solutions:
+
+(1) With Stack:
+Brackets Not Matching: ++count
+
+TC: O(N), SC: O(N)
+
+(2) Without Stack:
+
+Two Pointers
+TC: O(N), SC: O(1)
+
+
+
+
+DRY RUN:
+
+"()": 0
+open = 0
+close = 0 -> 1 -> 0
+
+return open+close = 0
+
+
+")))": 3
+open = 0->1->2->3
+close = 0 
+
+return open+close = 3
+
+
+"()))((": 4
+open = 0->1->2
+close = 0->1->0->1->2
+
+return open+close = 4
+
+
+
+Detailed Approach:
+
+open = 0, close = 0
+
+(1) Found '(' --> ++close
+(Must Add closing bracket to make it balanced)
+
+(2) Found ')'
+
+Two Cases:
+
+(A) close > 0 ---> --close
+(Sufficient Number of Closing Bracket)
+
+(B) Else --> ++open
+(Increase the Opening Bracket)
+
+
+return open+close
+
+
+
+CODE:
+
+
+// TC: O(N)
+// SC: O(1)
+// Author: @devangs
+// Approach: Two Pointers
+
+class Solution {
+    public int minAddToMakeValid(String s) {
+        int open=0, close=0;
+        int len = s.length();
+        int i=0;
+        
+        
+        for (i=0; i<len; i++)
+        {
+            if (s.charAt(i) == '(')
+                ++close;
+            else if (close>0)
+                --close;
+            else
+                ++open;
+        }
+        
+        return open+close;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
