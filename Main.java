@@ -12004,7 +12004,7 @@ Unicode Characters: ASCII: 256 Characters
 Map: No Change
 
 Array Approach:
-int []arr = new int[26];
+int []arr = new int[256];
 
 
 
@@ -12206,6 +12206,1359 @@ public class Main {
         // 20
     }
 }
+
+
+
+
+
+
+Date : 16th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+TODO:
+- String - Theory: DONE
+- Anagram: DONE
+- Palindrome: DONE
+- Leetcode Questions on Strings
+- Valid Anagrams: https://leetcode.com/problems/valid-anagram/: DONE
+- Q: LC - 3 Longest Substring Without Repeating Characters: DONE
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+Q: LC- 387: First Unique Character in a String: DONE
+
+- Geometry: Assignments Questions
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+Timeline: 28th May
+
+- Arrays
+- Matrices
+- Hashing
+- Strings
+- Stacks
+- Queues
+- Sorting
+
+
+
+
+Hashing: Concept
+DS: HashSet, HashMap
+Algo: RSA, SHA-256, SHA-512, 
+
+
+
+
+
+Q: LC- 387: First Unique Character in a String
+
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode"
+Output: 0
+
+Example 2:
+
+Input: s = "loveleetcode"
+Output: 2
+
+Example 3:
+
+Input: s = "aabb"
+Output: -1
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s consists of only lowercase English letters. (26)(a-z)
+
+
+
+Ordering is Important:
+
+l:1,c:1,o:1,d:1
+
+Map: Hashmap - Incorrect  Ans
+    Treemap - Incorrect Ans
+    LinkedHashMap - Correct Map
+
+c:1, o:1, d:1 l:1
+ans: c
+
+
+
+Sort the Array: Not Correct
+
+
+
+Solutions:
+
+(1) Brute Force: Two Nested Loops
+
+
+For Each char --> Check in right if duplicate exist
+If not, return ans
+
+
+int ans = -1;
+for (int i=0; i<n; i++)
+{
+    for (int j=i+1; j<n; j++)
+    {
+        if (s[i] == s[j])
+            break;
+    }
+
+    if (j==n)
+        ans = i;
+
+}
+
+return ans;
+
+
+"aba"
+
+i=0, j=1,2
+i=0, j=2: BREAK
+ 
+i = 1, j = 2
+ b: 1: ans
+
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+(2) Mapping
+
+- char: freq
+
+
+Travelling Over LinkedHashMap to Compare the Non Repeating Character    
+
+if (freq == 1)
+    return index;
+
+Order:
+
+LinkedHashMap: Java
+unordered_map: C++
+
+TC: O(N) - Put in Map + O(unique char in string) - Traverse in LinkedHashMap
+SC: O(unique char in string)
+
+
+(3) Solving Using HashMap than LinkedHashMap
+
+
+- char: freq
+
+
+if (freq == 1)
+    return index;
+
+
+Travelling Over String to Compare the Non Repeating Character    
+
+
+
+
+"abcaca"
+String Size = 6
+
+a: 2
+b: 1
+c: 1
+
+OP: b - 1
+
+
+HashMap:
+
+c: 1
+a: 2
+b: 1
+
+if (map.get(str.charAt(i)) == 1)
+    return i;
+
+Drawback: 2 Times Traversing String
+
+TC: O(N) - Put in Map + O(N) - Checking in Map
+SC: O(unique char in string)
+
+
+
+DNA Sequence: A,T,G,C
+Size of String: 200 Million
+
+
+
+(4) Array
+
+freq[26]
+
+
+TC: O(N) + O(unique Values)
+SC: O(26)
+
+
+CODE:
+
+class Solution {
+    public int firstUniqChar(String s) {
+        int freq[] = new int[26];
+        int i=0;
+        
+        for (i=0; i<s.length(); i++)
+            freq[s.charAt(i)-'a']++;
+        
+        for (i=0; i<s.length(); i++)
+            if (freq[s.charAt(i)-'a'] == 1)
+                return i;
+        
+        return -1;
+        
+    }
+}
+
+
+
+
+
+
+
+Q: LC - 3 Longest Substring Without Repeating Characters
+
+https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+
+TC:
+"pwwkkew" -> 3 (kew)
+
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+
+Constraints:
+
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces. (256)
+
+
+
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+OR
+
+Given a string s, find the length of the "longest substring with unique characters".
+
+
+
+
+
+
+Intuition:
+Non Repeating characters ---> Unique Characters: Set or Map (Put Key as character)
+
+Set: Unique Values
+Map: Mapping (1:1, 1:N)
+
+
+
+Two Pointer:
+l = 0, r = n-1
+l++, r--
+
+Sliding Window:
+
+_ l _ r _ 
+
+Window: from l to r
+Sliding: Movable in Nature
+
+
+7-3 = 4
+
+    3 4 5 6 7
+    1 2 3 4 5
+cnt = 5 
+
+b-a: a -Exclusive  , b- Inclusive
+b-a+1: Both Inclusive
+
+Approach:
+
+
+_i_ _ _ _j __
+
+
+"Need Largest WINDOW with All Unique Characters"
+
+- If Unique Character (Not Present in Set), Increase Window Size: j++
+
+- If Repeating Character (Present in Set), Decrease Window Size: i++
+
+- Ans = Max(j-i+1)
+
+Dry Run:
+
+"abcabcbb"
+Expected OP: 3
+
+i = 0, j=1
+s[i] = a, s[j] = b: Not Present in Set: Increase Window
+Set: [a]
+j++
+ans = max(j-i+1) = 2
+
+i = 0, j = 2
+s[i] = a, s[j] = c: Not Present in Set: Increase Window
+Set: [a,b]
+j++
+ans = max(j-i+1) = 3
+
+i = 0, j = 3
+s[i] = a, s[j] = a: Present in Set: Decrease Window 
+Set: [a,b,c]
+i++
+ans = max(j-i+1) = 3- MAX
+
+i = 1, j = 3
+s[i] = b, s[j] = a: Not Present in Set: Increase Window 
+Set: [b,c,a]
+j++
+ans = max(j-i+1) = 3
+
+
+i = 1, j = 4
+s[i] = b, s[j] = b: Present in Set: Decrease Window 
+Set: [b,c,a]
+i++
+ans = max(j-i+1) = 2
+
+
+Final OP: 3
+
+
+
+Code:
+
+
+
+// Approach: Sliding Window + Set
+// TC: O(N)
+// SC: O(N)
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) 
+    {
+        int i=0, j=0, max =0;
+        HashSet<Character> set = new HashSet<Character>();
+        
+        while (j < s.length())
+        {
+            // Not Contained in Set, Increase Window
+            if (!set.contains(s.charAt(j)))
+            {
+                set.add(s.charAt(j));
+                j++;
+                max  = Math.max(max,set.size());
+            }
+            
+            else
+            {
+                // Already Contained in Set, Decrease Window
+                set.remove(s.charAt(i));
+                i++;
+            }
+        }
+            
+            return max;
+         
+        
+    }
+}
+
+
+
+
+
+
+
+-----> STACKS and QUEUES
+
+
+Stacks:
+- Applications
+- Use Case
+- Code
+
+Queues:
+- Applications
+- Use Case
+- Code
+
+
+
+Questions:
+- Reverse Strings/Array
+- Balanced Parethesis: Flipkart, Amazon
+- LC 921 - Google, FB
+- NGE: Amazon
+
+- Longest TIme for Ride: Queue
+
+
+
+
+
+
+
+
+- What (Use Case/Problem)
+- Why (Applications)
+- How (Coding/Implementation)
+
+
+MAP/SET:
+Use Case: 
+- Insertion: O(1) TC
+- Retrieve: O(1) TC
+
+
+STACKS:
+
+Use Case: Most Recently Used Element in O(1) Time
+
+Most Recently Used Element = Top Element
+
+LIFO Order: Last In First Out
+            (Last Inserted, First Deleted)
+
+
+Real Life Example:
+
+Packet of Bread:
+
+OPEN
+
+__5__ : TOP: PICK
+__4__
+__3__
+__2__
+__1__
+
+100 Breads Below 1
+
+Breads are placed one above another in a stack
+
+First Bread: Top of Packet
+5 Breads: 1 to 5
+
+
+5th Bread on Top - Open the Packet - Access the 5th Bread First
+
+
+To Access the Top Most Element (5th Bread) ---> No Iterations
+TC: O(1) : Constant Time
+
+
+
+Last Element Inserted == First Element Deleted
+
+Most Recently Used Element = Top Most Element
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 17th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+TODO:
+
+Stacks 
+- Applications- 
+- Use Case- DONE
+- Code- 
+
+
+Questions
+- Reverse Array/String- 
+- Balanced Parentheses - Google/Flipkart- 
+- Balanced Parentheses Variation- Google (LC-921)- 
+
+- NGE - Amazon
+
+Queues
+- Applications- 
+- Use Case- 
+- Code- 
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+-------> Applications:
+
+(1) Ctrl + Z: Undo
+    Ctrl + Y: Redo
+
+
+Real Life Example:
+Type "devang" in keyboard, Press Ctrl + Z, and Ctrl + Y to see.
+
+
+
+Insertion:
+
+1
+2
+3
+4
+5: RECENT
+
+
+
+
+Ctrl + Z: Undo: Last/Most Recent Operation is Reverted
+Redo: Revert of Undo
+
+Stack:
+
+5: TOP                  4: TOP                5: TOP
+4                       3                     4      
+3   Ctrl + Z            2      Ctrl + Y       3
+2   (5: Deleted)        1    (5: Added)       2
+1                                             1
+
+ans: 1 Stack + 1 temp variable
+
+Use of storing in temp value ---> RESTORE (Redo Operations)
+
+
+Ctrl + Z;
+stack.pop();
+
+5: Variable: temp
+
+
+Ctrl + Y;
+stack.push(temp);
+
+
+
+(2) Browser History:
+
+Github: 6:30 
+Medium: 6:35
+Linkedin: 6:40
+
+History: (Reverse Chronological Order)
+
+
+Linkedin
+Medium
+Github
+
+- STACK
+
+
+(3) Recursion
+
+
+Recursion Stack: O(N) - Auxiliary Memory
+
+
+void add(c)
+{
+    if (c==5)
+        return;
+
+    add(c+1);
+}
+
+p.s.v.m()
+{
+    add(1);
+}
+
+
+
+Recursion Stack: O(N) - Heap
+
+add(5)
+add(4)
+add(3)
+add(2)
+add(1)
+
+
+(4) Memory Management Techniques 
+
+(5) Graphs:
+
+DFS: Stacks
+BFS: Queues
+
+
+
+
+CODE:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) 
+    {
+       Stack<Integer> s = new Stack<Integer>();
+       s.push(1);
+       s.push(2);
+       s.push(3);
+       
+       System.out.println("Stack: " + s); // [1 2 3: TOP]
+       System.out.println("Top Value: " + s.peek());  
+       System.out.println("Size: " + s.size());  
+        
+       System.out.println("Deleted: " + s.pop()); //3: Deleted 
+       System.out.println("Size: " + s.size());  
+       System.out.println("Stack: " + s); // [1 2: TOP]
+        
+       System.out.println("Is Empty: " + s.isEmpty()); // false
+        
+        System.out.println("Stack Traversal: ");
+        while (!s.isEmpty())
+        {
+            System.out.print(s.pop() + " ");
+        }
+    }
+}
+
+
+OP:
+
+Stack: [1, 2, 3]
+Top Value: 3
+Size: 3
+Deleted: 3
+Size: 2
+Stack: [1, 2]
+Is Empty: false
+Stack Traversal: 
+2 1 
+
+
+ArrayList<Integer> al = new ArrayList<Integer>();
+
+Default Size: 256
+
+Java 6: New Arraylist Size = 1.5 x Previous Arraylist Size
+
+Java 8: New Arraylist Size = 2 x Previous Arraylist Size
+
+Already Inserted 256 Values, try to insert 257th value:
+New Size = 1.5 * 256
+
+Internal Working of ArrayList in Java
+https://www.javatpoint.com/internal-working-of-arraylist-in-java
+
+
+
+
+Complexity of Operations:
+
+Insertion: TOP
+Deletion: TOP
+
+
+(1) Push - Add Item
+
+Stack == Full
+"Overflow"
+
+CODE:
+s.push(5);
+
+TC: O(1)
+
+
+(2) Pop - Delete Item
+
+Stack == Empty
+"Underflow"
+
+CODE:
+s.pop(); --> Deletes Top Most Value
+
+TC: O(1)
+
+
+
+(3) Peek - Top Element
+
+CODE:
+s.peek()
+
+TC: O(1)
+
+(4) s.isEmpty() - true/false
+Empty or Not
+
+
+boolean empty()
+{
+    return (s.peek()==null);
+}
+
+TC: O(1)
+
+
+Packet of Bread:
+
+OPEN
+
+__5__ : TOP: PICK
+__4__
+__3__
+__2__
+__1__
+
+
+
+Ternary Operators:
+
+Ternary: Three
+
+Operator Requires 3 Operands
+
+
+Using If - Else
+
+if (a==10)
+{
+    s.o.p("yes");
+}
+
+else if (a==15)
+{
+       s.o.p("abc");
+ 
+}
+
+else
+{
+    s.o.p("no");
+}
+
+Using Ternary:
+
+(a==10) ? s.o.p("yes") : { (a==15) ? s.o.p("abc") : s.o.p("no")};
+
+? : If
+: Else
+
+
+
+
+
+Application Questions:
+
+
+1 2 3 ----> Stack ---> 3 2 1
+
+Order of Insertion of Values == Opposite of Order of Values in Stack 
+
+
+Q: Reverse an Array/String
+
+IP: "abc"
+OP: "cba"
+
+
+Ways?
+
+
+(1) Inbuilt Functions:
+    
+    S.reverse(); - JAVA
+    reverse(s.begin(), s.end());- C++
+    A[::-1] - Py
+
+TC: O(N)
+SC: O(1)    
+
+
+(2) Create Extra Array/String, Traverse from R to L
+
+int[] b = new int[n];
+for (i=n-1; i>=0; i--)
+    b[i] = a[n-1-i];
+
+TC: O(N)
+SC: O(N)
+
+(3) Swap
+
+for (i=0; i<n/2; i++)
+    swap(a[i], a[n-1-i]);
+
+TC: O(N/2)
+SC: O(1)
+
+
+(4) Two Pointer:
+
+l = a[i], r = a[n-i-1]
+while (l<=r)
+{
+    swap(a[l], a[r]);
+    l++;
+    r--;
+}
+
+TC: O(N/2)
+SC: O(1)
+
+(5) Recursion
+
+(6) Stack:
+
+for (i: str)
+    stack.push(i);
+
+s.o.p.(stack);
+
+TC: O(N)
+SC: O(N) - Stack
+
+
+
+
+Q: LC - 20: Valid/Balanced Parentheses - Flipkart/Amazon
+https://leetcode.com/problems/valid-parentheses/
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+ 
+
+Example 1:
+
+Input: s = "()"
+Output: true
+
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+
+Example 3:
+
+Input: s = "(]"
+Output: false
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of parentheses only "()[]{}".
+
+
+Opening:
+{,[,(
+
+Closing:
+},],)
+
+Curly, Square, Round
+
+
+
+
+
+Input: s = "{[()]}"
+Output: true
+
+
+
+
+An input string is valid if:
+
+- Open brackets must be closed by the same type of brackets.
+(==), [==], {==}: If-Else/Switch
+
+- Open brackets must be closed in the correct order.
+ 
+
+
+TRICK:
+
+Order of Opening Brackets == Reverse of Order of Closing Brackets
+-- Valid/Balanced
+Else --- Not Valid/Not Balanced
+
+DS: Stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 18th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Stacks 
+- Applications- 
+- Use Case- DONE
+- Code- 
+
+
+Questions
+- Reverse Array/String- 
+- Balanced Parentheses - Google/Flipkart- 
+- Balanced Parentheses Variation- Google (LC-921)- 
+
+- NGE - Amazon
+
+Queues
+- Applications- 
+- Use Case- 
+- Code- 
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+STACK:
+
+Approach:
+
+Iterate Over String
+
+Opening Bracket - Push to Stack
+Closing Bracket - Pop from Stack and Compare with the Closing Bracket
+
+If its same type - continue
+else - return false
+
+
+Complete String Traversed:
+No Brackets left in Stack, return true
+else return false
+
+
+DRY RUN:
+
+"{[()]}"
+
+STACK:
+
+(: TOP    [: TOP    {: TOP   Stack:Empty
+[         {  
+{
+
+check = st.peek();
+st.pop();
+
+
+pop: ( == ): TRUE - continue;
+
+pop: [ == ]: TRUE - continue;
+
+pop: { == }: TRUE - continue;
+
+Complete String Traversed, No Brackets Left
+OP: true
+
+
+
+
+B = "{[(]}...................................."
+
+
+Stack:
+
+(: TOP   [: TOP
+[        {
+{
+
+pop: ( == ]: FALSE
+"NOT BALANCED"
+
+
+C = "}..........."
+OP: "NOT BALANCED"
+
+D = "...........{"
+OP: "NOT BALANCED"
+
+
+
+
+CODE:
+
+// TC: O(N)
+// SC: O(N) - Stack
+
+class Solution 
+{
+    public boolean isValid(String s) 
+    {
+        // Edge Case:
+        if (s.charAt(0) == '}' || s.charAt(0) == ']' || s.charAt(0) == ')')
+            return false;
+        
+        Stack<Character> st = new Stack<Character>();
+        int i=0;
+        
+        for (i=0; i<s.length(); i++)
+        {
+            char c = s.charAt(i);
+            
+            // Push Opening Brackets to Stack
+            if (c == '[' || c=='(' || c == '{')
+            {
+                st.push(c);
+                continue;
+            }
+            
+            if (st.isEmpty()) // No Opening Brackets
+                return false;
+            
+            char check;
+            
+            switch (c)
+            {
+                    
+                case ')': 
+                    check = st.peek();
+                    st.pop();
+                    if (check == '{' || check == '[' )
+                        return false;
+                    break;
+
+                case ']':
+                    check = st.peek();
+                    st.pop();                
+                    if (check == '{' || check == '(' )
+                        return false;
+                    break;     
+                    
+                case '}': 
+                    check = st.peek();
+                    st.pop();
+                    if (check == '(' || check == '[' )
+                        return false;
+                    break;                        
+                
+            }
+        }
+        
+        return st.isEmpty();
+        }
+    }
+
+
+
+
+a = str.charAt(i) - Closing Bracket
+b = stack.peek() - Opening Bracket
+
+a , b
+( == )
+
+if (a=='(' and b== ')')
+    continue;
+else 
+    break;
+
+
+
+check = st.peek();
+st.pop();
+
+
+
+
+
+Q: [FB, Google] LC-921: Minimum Add to Make Parentheses Valid
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+A parentheses string is valid if and only if:
+
+It is the empty string,
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+You are given a parentheses string s. In one move, you can insert a parenthesis at any position of the string.
+
+For example, if s = "()))", you can insert an opening parenthesis to be "(()))" or a closing parenthesis to be "())))".
+Return the minimum number of moves required to make s valid.
+
+ 
+
+Example 1:
+
+Input: s = "())"
+Output: 1
+Example 2:
+
+Input: s = "((("
+Output: 3
+ 
+
+Constraints:
+
+1 <= s.length <= 1000
+s[i] is either '(' or ')'.
+
+
+
+
+Simple Terms:
+
+Valid/Balanced Logic: Same
+
+Minimum Number of Parentheses to Add to make the String Valid/Balanced:
+- Can Add '(' or ')'
+- Can Add Anywhere
+
+
+
+
+"())" ---> "(())"
+
+1 ( Add
+OP: 1 
+
+
+"()"
+OP: 0
+
+
+")))"
+OP: 3 (Opening Brackets)
+
+
+")(" ---> "()()"
+OP: 2
+
+"()()"
+OP: 0
+
+
+
+Incorrect Approach: NO ORDER/Sequence Maintained
+
+Count No of Opening And Brackets, Return Abs Difference
+
+(- count: a
+)- count: b
+
+return Math.abs(a-b);
+
+
+
+"()))(("
+opening: 3
+closing: 3
+ans = 0
+Expected: 4
+
+
+
+
+Solutions:
+
+(1) With Stack:
+Brackets Not Matching: ++count
+
+TC: O(N), SC: O(N)
+
+(2) Without Stack:
+
+Two Pointers
+TC: O(N), SC: O(1)
+
+
+
+
+DRY RUN:
+
+"()": 0
+open = 0
+close = 0 -> 1 -> 0
+
+return open+close = 0
+
+
+")))": 3
+open = 0->1->2->3
+close = 0 
+
+return open+close = 3
+
+
+"()))((": 4
+open = 0->1->2
+close = 0->1->0->1->2
+
+return open+close = 4
+
+
+
+Detailed Approach:
+
+open = 0, close = 0
+
+(1) Found '(' --> ++close
+(Must Add closing bracket to make it balanced)
+
+(2) Found ')'
+
+Two Cases:
+
+(A) close > 0 ---> --close
+(Sufficient Number of Closing Bracket)
+
+(B) Else --> ++open
+(Increase the Opening Bracket)
+
+
+return open+close
+
+
+
+CODE:
+
+
+// TC: O(N)
+// SC: O(1)
+// Author: @devangs
+// Approach: Two Pointers
+
+class Solution {
+    public int minAddToMakeValid(String s) {
+        int open=0, close=0;
+        int len = s.length();
+        int i=0;
+        
+        
+        for (i=0; i<len; i++)
+        {
+            if (s.charAt(i) == '(')
+                ++close;
+            else if (close>0)
+                --close;
+            else
+                ++open;
+        }
+        
+        return open+close;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
