@@ -13667,7 +13667,7 @@ TC: O(1)
 
 (3) Front: Get Front Element
 
-(4) Rear: Get Reat Element
+(4) Rear: Get Rear Element
 
 (5) q.isEmpty() - true/false
 Empty or Not
@@ -13866,6 +13866,473 @@ Why Stack - Ordering Required for Immediate Next Element
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 20th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Stacks 
+- Applications- DONE
+- Use Case- DONE
+- Code- DONE
+
+Questions
+- Reverse Array/String- DONE
+- Balanced Parentheses - Amazon/Flipkart- DONE
+https://leetcode.com/problems/valid-parentheses/
+- Balanced Parentheses Variation- FB/Google (LC-921)- DONE
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+Queues
+- Applications- DONE
+- Use Case- DONE
+- Code- DONE
+
+- NGE - Amazon: DONE
+- Daily Temperatures: DONE
+
+- NGE-2
+- NGE-1
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+(2) Optimised Approach: Using Stack
+
+Why Stack - Ordering Required for Immediate Next Element
+
+
+
+Approach:
+
+(1) Go from R to L
+(2) Intuition: Dont need smaller value
+Need: NGE
+
+Pop till get greater element on Top or Stack becomes Empty
+
+(3) If Stack Empty --> ans: -1
+(4) Else: ans: stack.top(): NGE
+
+
+CODE:
+
+
+arr = [4, 5, 2, 25]
+OP:   [5, 25, 25, -1]
+
+
+
+int[] nge(int[] arr, int n)
+{
+Stack<Integer> st = new Stack<Integer>();
+int[] ans = new int[n];
+int i=0;
+
+for (i=n-1; i>=0; i--)
+    // arr[i] = 25, 2, 5, 4
+{
+    // 25 <= 2: FALSE - No Pop, 2 <= 5: TRUE - Pop, 5<=4: FALSE- No Pop
+    while(!st.isEmpty() && st.peek()<=arr[i])
+        st.pop(); // s= [TOP: 25]
+
+    if (st.isEmpty())
+        ans[i] = -1; // ans = [_,_,_,-1]
+
+    else
+        ans[i] = st.peek(); // ans = [5,25,25,-1]
+
+    st.push(arr[i]); // st = [TOP:4, 5, 25]
+}
+
+return ans; // ans = [5,25,25,-1]
+}
+
+
+TC: O(N)
+SC: O(N)
+
+
+Variations:
+
+(1) NGE on Right
+(2) NGE on Left: Change Loop
+(3) NSE (Next Smaller Element) on Right: Change <= to >= in while
+(4) NSE on Left: Change <= to >= in while and Change Loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q: LC-739 Daily Temperatures
+https://leetcode.com/problems/daily-temperatures/
+
+
+
+Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+ 
+
+Example 1:
+
+Input: temperatures = [73,74,75,71,69,72,76,73]
+Output: [1,1,4,2,1,1,0,0]
+
+Example 2:
+
+Input: temperatures = [30,40,50,60]
+Output: [1,1,1,0]
+Example 3:
+
+Input: temperatures = [30,60,90]
+Output: [1,1,0]
+ 
+
+Constraints:
+
+1 <= temperatures.length <= 105
+30 <= temperatures[i] <= 100
+
+
+
+
+Input: temperatures = [73,74,75,71,69,72,76,73]
+Output: [1,1,4,2,1,1,0,0]
+
+
+73 -> 74: 1
+74 -> 75: 1
+75 -> 71,69,72,76: 4
+
+
+
+
+public int[] dailyTemperatures(int[] temperatures) {
+  }
+
+
+Solution:
+
+"NGE Temperature on Right and Return Diff between Indices"
+
+
+73: 0
+74: 1
+
+OP: 1-0 = 1
+
+75: 2
+76: 6
+OP: 6-2 = 4
+
+
+STACK: Pushing the Index
+- st.push(i);
+
+
+While Condition:
+
+    while(!st.isEmpty() && temp[st.peek(i)]<=temp[i])
+        st.pop(); 
+
+
+
+TC: O(N)
+SC: O(N)
+
+
+CODE:
+
+// Variation of Next Greater Element
+
+// Author: @devangs
+// TC: O(N)
+// SC: O(N) -Stack
+
+
+class Solution {
+   public int[] dailyTemperatures(int[] temperatures) 
+   {
+    Stack<Integer> stack = new Stack<>();
+    int[] ret = new int[temperatures.length];
+    for(int i = 0; i < temperatures.length; i++) 
+    {
+        while(!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i] ) // temp[index]<temp[i]: stack.peek() --> index
+        {
+            int idx = stack.pop();
+            ret[idx] = i - idx; // Diff of Indices
+        }
+        stack.push(i); // Push Index into Stack Not the Value - because diff of indices is required
+    }
+    return ret;
+}
+}
+
+
+
+
+
+
+
+
+
+
+Q: LC- 503: Next Greater Element II
+https://leetcode.com/problems/next-greater-element-ii/
+
+Given a circular integer array nums (i.e., the next element of nums[nums.length - 1] is nums[0]), return the next greater number for every element in nums.
+
+The next greater number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, return -1 for this number.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,1]
+Output: [2,-1,2]
+
+Explanation: The first 1's next greater number is 2; 
+The number 2 can't find next greater number. 
+The second 1's next greater number needs to search circularly, which is also 2.
+
+Example 2:
+
+Input: nums = [1,2,3,4,3]
+Output: [2,3,4,-1,4]
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-109 <= nums[i] <= 109
+
+
+
+
+
+
+Solution:
+
+Circular Array:
+
+arr[n-1] ---> arr[0]
+
+Circular Array = Min Twice Iterate Normal Array
+
+
+Worst Case: Decreasing Order of Values
+
+[5,4,3,2,1]
+5: Iterate Once: OP: -1
+4: Iterate Twice: OP: 5
+3: Iterate Twice: OP: 5
+2: Iterate Twice: OP: 5
+1: Iterate Twice: OP: 5
+
+OP: [-1,5,5,5,5]
+
+Equivalent As:
+[5,4,3,2,1,5,4,3,2,1]
+
+
+Input: nums = [1,2,1]
+Output: [2,-1,2]
+
+1: Iterate Once - NGE
+2: Iterate Once - NGE
+1: Last Element - Iterate Twice- NGE
+
+
+
+(1) Iterate Twice
+
+for (i=0; i<n*2; i++)
+
+
+arr[]: N
+Index: 0 to N-1
+
+
+(2) Adjust Indexing:
+
+[5,4,3,2,1,5,4,3,2,1]
+
+
+arr = [5,4,3,2,1]
+Size: 5
+
+Travelling; 5*2 = 10 Items
+
+
+arr[5]: Error
+arr[6]: Error
+arr[9]: Error
+
+
+Trick:
+arr[0] = 5
+arr[1] = 4
+arr[2] = 3
+arr[3] = 2
+arr[4] = 1
+
+arr[5] = 5 = arr[0]
+arr[6] = 4 = arr[1]
+arr[7] = 3 = arr[2]
+arr[8] = 2 = arr[3]
+arr[9] = 1 = arr[4]
+
+i >= n ---> i%n
+ i = 0 to 4: No Issues
+
+i = 5, arr[5]: Not Exist
+i % N = 5%5 = 0
+arr[0] = arr[5] = 5
+
+
+
+i % N : 0 to N-1 (Traversal in Circular Array)
+
+
+
+
+CODE:
+
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) 
+    {
+        int n = nums.length;
+        int res[] = new int[n];
+        Arrays.fill(res,-1);
+        
+        Stack<Integer> st = new Stack<Integer>();
+        int i=0;
+
+        // Circular Array ---> Min Traverse Normal Array to Find NGE
+        for (i=0; i<n*2; i++)
+        {
+            // Index Adjustment
+       // i % N --> Keep Index Values between 0 to N-1     
+            while(!st.isEmpty() && nums[st.peek()] < nums[i % n])
+                res[st.pop()] = nums[i%n];
+            
+            st.push(i % n);
+        }
+        
+        return res;
+        
+    }
+}
+
+
+TC: O(N)
+SC: O(N)
+
+
+
+
+
+Q: LC-496: Next Greater Element I
+https://leetcode.com/problems/next-greater-element-i/
+
+
+The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
+
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.
+
+For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for this query is -1.
+
+Return an array ans of length nums1.length such that ans[i] is the next greater element as described above.
+
+ 
+
+Example 1:
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+
+
+Explanation: The next greater element for each value of nums1 is as follows:
+- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+
+
+
+Example 2:
+
+Input: nums1 = [2,4], nums2 = [1,2,3,4]
+Output: [3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 2 is underlined in nums2 = [1,2,3,4]. The next greater element is 3.
+- 4 is underlined in nums2 = [1,2,3,4]. There is no next greater element, so the answer is -1.
+ 
+
+Constraints:
+
+1 <= nums1.length <= nums2.length <= 1000
+0 <= nums1[i], nums2[i] <= 104
+All integers in nums1 and nums2 are unique.
+All the integers of nums1 also appear in nums2.
+ 
+
+Follow up: Could you find an O(nums1.length + nums2.length) solution?
+
+
+
+
+Understanding:
+
+(1) nums1 = Subset of nums2
+Every Value in num1 would be ALWAYS present in nums2
+
+(2) OP Array Size: nums1.length
+
+(3) Find NGE for nums2[j] in nums2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TODO: Area of Histogram/ Trapping Rain Water
 
 
 
