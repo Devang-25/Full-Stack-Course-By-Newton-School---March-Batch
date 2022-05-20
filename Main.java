@@ -13256,8 +13256,9 @@ OP: "NOT BALANCED"
 D = "...........{"
 OP: "NOT BALANCED"
 
-
-
+{[()]}
+continue: {, (, [
+no conitnue: {
 
 CODE:
 
@@ -13527,6 +13528,77 @@ class Solution {
 
 
 
+Date : 19th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Stacks 
+- Applications- DONE
+- Use Case- DONE
+- Code- DONE
+
+Questions
+- Reverse Array/String- DONE
+- Balanced Parentheses - Amazon/Flipkart- DONE
+https://leetcode.com/problems/valid-parentheses/
+- Balanced Parentheses Variation- FB/Google (LC-921)- DONE
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+Queues
+- Applications- 
+- Use Case- 
+- Code- 
+
+- NGE - Amazon
+- Daily Temperatures
+- NGE-1
+- NGE-2
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+28th May --> 10th June
+
+Informal Session: 45 Mins- 1 Hr: TODO: ME
+
+
+
+Patterns: 17-18 Patterns
+
+150 Ques: 
+
+
+char: 2 Bytes
+
+
+Other Languages: ASCII Charcaters: 256 = 2^8
+8 bits: 1 Byte
+
+Java: Unicode Characters: 16 bits = 2 Bytes
+
+
+
+Queues
+Sorting
+Linked Lists
+
+
+DSA-2:
+- Trees: BT/BST
+- Graphs
+- Backtracking
+- DP
+
+
+
+DSA-1 --> Full Stack (HTML, CSS, JS, React, Node) -> Placement: 
+
+Advanced Companies:
+
+DSA-1 --> Full Stack (HTML, CSS, JS, React, Node) -> Placement ---> DSA - 2 --> Placement:
+
+Flipkart: 26 LPA
 
 
 
@@ -13535,12 +13607,256 @@ class Solution {
 
 
 
+- What? (Use Case/Problem)
+- Why? (Applications)
+- How? (Coding/Implementation)
+
+
+QUEUES:
+
+Use Case: Least Recently Used Element in O(1) Time
+
+
+FIFO: First in First Out
+
+First Inserted == First Deleted
+
+FCFS: First Come First Serve
+
+
+
+Real Life Example:
+
+
+    New R...........S.F: Bank Counter
+
+    Insertion: Rear         Deletion: Front   
+        (ENQUEUE)                (DEQUEUE)
+
+
+
+F........R = FCFS/ First in First Out (FIFO)
+
+First Person to Enter Queue = F
+Last Person to Enter Queue = R
+Most Recent Person in Queue = R
+Least Recent Person in Queue = F: O(1)
+
+
+Complexity of Operations:
+
+
+Insertion: Rear
+Deletion: Front
+
+(1) Enqueue: Insertion
+- At Rear
+
+If Queue == Full
+"Overflow"
+
+TC: O(1)
+
+(2) Dequeue: Deletion
+- At Front
+
+If Queue == Empty
+"Underflow"
+
+TC: O(1)
+
+(3) Front: Get Front Element
+
+(4) Rear: Get Reat Element
+
+(5) q.isEmpty() - true/false
+Empty or Not
+
+
+boolean empty()
+{
+    return (q.front()==null);
+}
+
+TC: O(1)
+
+
+
+Applications:
+
+(1) LRU Cache
+
+L1,L2, L3 Cache
+
+Fast: L1 > L2 > L3
+
+
+(2) OS: Threads
+
+CPU Scheduling:
+
+CPU: Threads  ---> Queue (FCFS/FIFO)
+
+Why Queue Not Stacks?
+
+Login to Your PC:
+
+4 Operations: [Chrome, VLC, Spotify, VS Code]
+
+Queues: [Chrome, VLC, Spotify, VS Code]
+
+Stack: [VS Code, Spotify, VLC, Chrome]
+
+
+(3) IO Buffers
+
+Buffer Size and Time for Submission
+
+Time ---> Rank
+Less Time --> Less Rank
+
+
+Submitted First ---> Rank 1 : Queue
+
+Submitted Last ---> Rank 1 : Stack
+
+
+
+CODE:
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a new queue
+        Queue<Integer> queue = new LinkedList<Integer>();
+        //Size of Queue
+        System.out.println("Size: " + queue.size());//0
+        System.out.println("Is queue empty? " + queue.isEmpty()); // true
+        
+        // Enqueue elements to the queue
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        queue.add(4);
+        queue.add(5);
+
+        // Print the queue
+        System.out.println("Queue: " + queue); 
+        //[F: 1 2 3 4 5: R]
+        
+        // Check front element
+        System.out.println("Front element: " + queue.element()); //1
+
+        // Dequeue elements from the queue - From Front
+        System.out.println("Dequeued element: " + queue.remove()); //[F: 2 3 4 5: R]
+        System.out.println("Dequeued element: " + queue.remove()); //[F: 3 4 5: R]
+        System.out.println("Dequeued element: " + queue.remove()); //[F: 4 5: R]
+        System.out.println("Queue: " + queue);  
+        //[F:4 5:R]
+
+        // Check front element
+        System.out.println("Front element: " + queue.element()); //4
+
+        // Size of Queue
+         System.out.println("Size: " + queue.size()); // 2
+       
+        // Check if the queue is empty
+        System.out.println("Is queue empty? " + queue.isEmpty()); // false
+
+        // Clear the queue - Completely Delete the Queue
+       // queue.clear();
+    }
+}
+
+
+
+OP:
+
+Size: 0
+Is queue empty? true
+Queue: [1, 2, 3, 4, 5]
+Front element: 1
+Dequeued element: 1
+Dequeued element: 2
+Dequeued element: 3
+Queue: [4, 5]
+Front element: 4
+Size: 2
+Is queue empty? false
 
 
 
 
 
 
+Q: [Amazon] Immediate Next Greater Element (NGE) in an Array
+
+
+Given an Array, Print the Immediate Next Greater Element on the Right for each element
+If No NGE, Print -1
+
+
+arr = [4, 5, 2, 25]
+OP:   [5, 25, 25, -1]
+
+4 -> [5,2,25]: 5
+5 -> [2,25]
+2 -> [25]
+25 -> []
+
+
+Hint: Last Value --> Always -1
+
+
+Trick: ORDER IS IMPORTANT -- NEVER EVER SORT
+
+Predecessor
+Successor
+Immediate Next 
+Immediate Previous
+Kth Next 
+
+
+Solution:
+
+
+(1) Brute Force: Two Nested Loops
+
+
+4 -> [5,2,25]: 5
+
+For Each Element, Find the Elements on right and find the first greater element and break
+
+i = 2
+j = 0,1: Left
+j = 3,4.....: Right
+
+
+4 -> [5,2,25]: 5 : OP
+
+for (i=0; i<n; i++)  // 4
+{
+    for (j=i+1;j<n;j++) //5 2 25
+    {
+        if (arr[j] > arr[i]) // 5 > 4
+        {
+            s.o.p (arr[i] -----> arr[j]); //4---> 5
+            break;
+        }
+    }
+
+    if (j == n)
+        s.o.p (arr[i] -----> -1);            
+
+}
+
+TC: O(N^2), 5 Pass, 5 TLE
+SC: O(1)
+
+
+
+(2) Optimised Approach: Using Stack
+
+Why Stack - Ordering Required for Immediate Next Element
 
 
 
