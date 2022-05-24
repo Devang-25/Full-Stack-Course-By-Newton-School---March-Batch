@@ -14531,7 +14531,7 @@ DONE:
 - Queues
 
 TODO:
-- Linked Lists
+- Linked Lists: WIP
 - Sorting
 
 
@@ -14621,7 +14621,7 @@ RAM: 8 GB/16 GB
 
 
 
-Memroy Diagram:
+Memory Diagram:
 
 
 .: FREE
@@ -14783,7 +14783,500 @@ TC: O(1)
 
 
 
+
+
+
+
+
+
+
+Date : 24th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+
+(4) TRAVERSAL: Printing Linked List - 
+(5) Calculate Length -- Iterative - 
+(6) Calculate Length -- Recursive - HW()
+(7) Search in a Linked List -- Iterative, Recursive --
+(8) Delete a Linked List - 
+(9) Nth Node in a Linked List -- 
+(10) Nth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
 Disadvantages of Linked Lists:
+
+(1)  No Random Access, Only Sequential Access
+
+Array:
+
+a = {1,2,3,4,5}
+Index: 0 to 4
+
+a[3] = 4 // O(1)
+arr[idx] = Element // O(1)
+
+
+If I know the index of any element, 
+I can directly reach to that element in O(1) Time
+
+
+- No Need to Start from beginning
+
+-- Random Access
+
+
+Linked Lists:
+
+
+head: 1 -> 2-> 3-> 4-> 5: tail
+
+Cannot Go Directly from 1 to 5
+- No Concept of Indexing
+
+
+To reach and Node in LL, 
+I MUST Start with head everytime
+
+-- Only Sequential Access
+
+
+Practical Example:
+
+4 Friends, College Reunion
+
+A --> B ---> C --> D
+
+
+A: Has Contact of B
+B: Has Contact of C
+C: Has Contact of D
+
+
+
+A wants to call D?
+
+- Need to reach C
+- Need to reach B
+
+A will call B, will call C, will call D
+
+
+A --> B --> C --> D
+
+
+
+
+(2) No Backtracking in Single LL
+
+a = {1,2,3,4,5}
+L to R, R to L
+
+
+i++: L to R
+i--: R to L
+
+
+Linked List:
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+Cannot Go Back: Reverse
+- Single LL
+
+Possible: Double LL
+
+head: 1 <-> 2 <-> 3 <-> 4 <-> 5: tail
+
+
+
+
+
+
+
+
+
+CODE:
+
+Java:
+
+
+int a;// a : Variable
+Node a; // a: Object of type Node: Class
+
+Class A
+{
+
+}
+
+main()
+{ 
+A obj; // Not Self Referential Object
+}
+
+
+
+
+
+class Node
+{
+    int data;
+    Node next = null; // Self Referential Object
+
+    Node(int data)
+    {
+        this.data = data;
+    }
+}
+
+
+- Every Object of a Class has the Same Structure
+
+EVERY NODE WILL HAVE SAME STRUCTURE
+
+Structure of Linked List:
+
+1, next      2, next      3, next      4,5,next: INCORRECT
+null          null        null         null
+
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+
+
+
+
+
+Q: Form a Linked List from Nodes:
+
+
+// Structure/Blueprint of Node
+class Node
+{
+    int data;
+    Node next = null; // Self Referential Object
+
+    Node(int data)
+    {
+        this.data = data;
+    }
+}
+
+public static void main(String args[])
+{
+    // Creating Nodes
+    Node head = new Node(1);
+    Node second = new Node(2);
+    Node third = new Node(3);
+
+
+    1, next          2, next     3, next
+    null              null         null
+    (head)          (first)      (second)
+
+
+    // Connecting Nodes - Forming a Linked List
+    head.next = second;
+    // 1 -> 2
+
+    second.next = third;
+    // 2-> 3
+
+    LL: head: 1->2->3-> null: tail
+
+}
+
+
+End of Linked List?
+
+if (node.next == null) -- Last Node of LL/Last Compartment of Train
+
+
+
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- 
+(7) Search in a Linked List -- Iterative, Recursive -- DOMNE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+
+
+(10) Nth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+
+
+Pattern:
+Ques, IP, OP, Company, Function
+
+
+30 Sec --> 20 sec
+Completed Function, TC, SC
+
+
+
+Q: [Amazon] TRAVERSAL: Printing Linked List
+
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+OP: [1 2 3 4 5]
+
+
+void printList(Node head)
+{
+
+}
+
+
+Solution:
+
+Approach: Traverse for Each Node and Print Data
+
+
+s.o.p.(head): Incorrect
+s.o.p(head.data): Correct
+
+Move to Next Node:
+
+nextNode = currNode.next
+
+
+
+Dont Make Operations on head
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+while (head!=null)
+    head = head.next;
+
+After Loop:
+
+1 -> 2 -> 3 -> 4 -> 5:head, tail
+
+
+Better Way: 
+
+Node temp = head;
+Perform Operations on temp
+
+
+
+CORRECT CODE:
+
+head: 1 -> 2 -> 3 -> 4 -> 5: null
+
+
+void printList(Node head)
+{
+    Node temp = head;
+    while (temp!=null)
+    {
+        System.out.println(temp.data + " ");
+        temp = temp.next;
+    }
+}
+
+OP: [1 2 3 4 5]
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+INCORRECT CODE:
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+
+void printList(Node head)
+{
+    Node temp = head;
+    while (temp.next!=null)
+    {
+        System.out.println(temp.data + " "); // Last Node DOES NOT Satisfy the Criteria
+        temp = temp.next;
+    }
+}
+
+OP: [1 2 3 4]
+
+
+
+
+Q-2: [Amazon] Count the Number of Nodes in a Linked List/ Length of Linked List
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+OP: 5
+
+
+int getCount(Node head)
+{
+    Node temp = head;
+    int count =0;
+
+    while (temp!=null)
+    {
+        ++count;
+        temp = temp.next;
+    }
+
+    return count;
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+Iteration <--> Recursion: Interconvertible
+
+HW: Write Recursive Version of getCount()
+
+
+
+
+
+Q-3: [Adobe] Search in a Linked List
+
+LL, int key
+
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+
+key: 2
+OP: true
+
+key: 7
+OP: false
+
+Time: "25 Sec"
+
+
+boolean searchNode(Node head, int key)
+{
+    Node temp = head;
+
+    while (temp!=null)
+    {
+        if (temp.data == key)
+            return true;
+
+        temp = temp.next;
+    }
+
+    return false;
+}
+
+Brownie Points:
+
+TC: Best Case: O(1) - First Node
+    Worst Case: O(N) - Last Node/Node Not Present
+
+SC: O(1)
+
+
+
+
+
+
+
+
+Q- 4: [Microsoft] Print Kth Node from Beginning in a Linked List
+
+
+LL, int K
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 2
+OP: 20
+
+K = 4
+OP: 40
+
+
+
+Constraints:
+1 <= K <= N
+
+If K>N, Just Do: K = K%N
+
+
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 2
+OP: 20
+
+
+
+int KthNode(Node head, int K)
+{
+    Node temp = head;
+    int count =0;
+
+    while (temp!=null)
+    {
+        ++count; // 0->1->2
+
+        if(count == K) //1!=2, 2==2
+            return temp.data; // 20
+
+        temp = temp.next; // 10->20
+    }
+
+    return -1;
+}
+
+
+TC: O(K), 1 <= K <= N
+SC: O(1)
+
+
+
+
 
 
 
