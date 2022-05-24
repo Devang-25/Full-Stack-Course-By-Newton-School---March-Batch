@@ -14214,6 +14214,7 @@ arr[0] = arr[5] = 5
 
 
 
+
 i % N : 0 to N-1 (Traversal in Circular Array)
 
 
@@ -14316,6 +14317,153 @@ Every Value in num1 would be ALWAYS present in nums2
 
 
 
+Solution:
+
+
+(1) Brute Force: Nested Loop
+
+nums1[i] ---> Find in nums2[i]
+
+TC: O(nums1*nums2)
+
+Find NGE of nums2[i] in nums2
+- Stack: O(nums2)
+
+
+TC: O(nums1 * [nums2 + nums2])
+SC: O(nums2)
+
+
+// Brute Force:
+// TC: O(nums1.length * nums2.length)
+// SC: O(1)
+
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+
+
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) 
+    {
+        int[] ans = new int[nums1.length]; // ans = [_ _ _]
+        int i=0;
+        
+        for (i=0; i<nums1.length; i++) // 4 1 2
+        {
+            int greaterIdx = -1;
+            int j = nums2.length-1; // 2 4 3 1
+            
+            //nums1[i] = 4, nums2[j] = 2
+            //nums1[i] = 4, nums2[j] = 4
+
+            //nums1[i] = 1, nums2[j] = 2
+            //nums1[i] = 1, nums2[j] = 4
+            //nums1[i] = 1, nums2[j] = 3
+            //nums1[i] = 1, nums2[j] = 1
+
+            //nums1[i] = 2, nums2[j] = 2
+            while (j>=0 && nums2[j]!=nums1[i]) 
+            {
+                if (nums2[j] > nums1[i]) // 2>1, 4>1, 3>1
+                {
+                    greaterIdx = nums2[j]; //greaterIdx = 2, greaterIdx = 4, greaterIdx = 3
+                }
+                j--;
+            }
+
+            // End of While - j=0: Complete Second Array Tarversed AND nums2[j]==nums1[i]
+            ans[i] = greaterIdx; // ans = [-1, 3, -1]
+        }
+
+            return ans;// ans = [-1, 3, -1]
+    }
+}
+
+
+
+
+(2) Optimised Solution:
+
+nums1 = [1,4,2] nums2= [2,4,1,1,2]
+For 1 and 2: Which NGE to Calculate: Cumbersome
+
+Values MUST be distinct.
+
+
+unique/distinct --> Set/Map
+
+
+
+
+Approach:
+
+(1) nums2.size() >= nums1.size()
+(nums1: Subset, nums2: Superset)
+
+(2) NGE in nums2 for All Values
+- Using Stack: T: O(nums2), S: O(nums2)
+
+Map: 
+Key: nums2[i]
+Value: NGE of nums2[i] in nums2
+
+
+(3) OP Array: nums1.size()
+100%: All Values in nums1 will be there in nums2
+
+
+
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+
+
+Go to nums2, Create the Map:
+Map:
+4: -1
+1: 3
+2: -1
+3: -1
+
+
+Go to nums1, ALL VALUES MUST BE PRESENT in Key of Map
+4: -1- OP
+1: 3 - OP
+2: -1 - OP
+
+
+CODE:
+
+    // Optimised Solution:
+    /// TC: O(nums1 + nums2)
+    // SC: O(nums2)
+    
+        public int[] nextGreaterElement(int[] nums1, int[] nums2)
+        {
+    //Key: nums2[i], Value: NGE of nums2[i] in nums2
+    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    Stack<Integer> st = new Stack<Integer>();
+    int res[] = new int[nums1.length];            
+    int i=0;        
+        
+    // Finding NGE for All Values in nums2 and putting in  map
+            for (int num: nums2)
+            {
+                while(!st.isEmpty() && st.peek() < num)
+                    map.put(st.pop(), num);
+                
+                st.push(num);
+            }
+            
+      // Travel over nums1 and find NGE for nums1[i] in nums2[j] for nums2      
+            for (i=0; i<nums1.length; i++)
+                res[i] = map.getOrDefault(nums1[i],-1);
+            
+            return res;
+        }
+}
 
 
 
@@ -14332,7 +14480,310 @@ Every Value in num1 would be ALWAYS present in nums2
 
 
 
-TODO: Area of Histogram/ Trapping Rain Water
+Date : 23rd May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Stacks 
+- Applications- DONE
+- Use Case- DONE
+- Code- DONE
+
+Questions
+- Reverse Array/String- DONE
+- Balanced Parentheses - Amazon/Flipkart- DONE
+https://leetcode.com/problems/valid-parentheses/
+- Balanced Parentheses Variation- FB/Google (LC-921)- DONE
+https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+
+Queues
+- Applications- DONE
+- Use Case- DONE
+- Code- DONE
+- NGE - Amazon: DONE
+- Daily Temperatures: DONE
+- NGE-2: DONE
+- NGE-1: DONE
+
+-- Linked Lists
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+Mon: Linked List-1: DONE
+Tue: Linked List-2
+Wed: Sorting-1 (Merge, Quick, Insertion, Selection)
+Thu: Sorting-2
+
+
+Syllabus:
+
+DONE:
+- Arrays
+- Matrices
+- Strings
+- Recursion
+- XOR and Bit Manipulation
+- Search
+- Stacks
+- Queues
+
+TODO:
+- Linked Lists
+- Sorting
+
+
+
+
+
+
+
+
+-----> LINKED LISTS
+
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+
+(4) TRAVERSAL: Printing Linked List - 
+(5) Calculate Length -- Iterative - 
+(6) Calculate Length -- Recursive - HW()
+(7) Search in a Linked List -- Iterative, Recursive --
+(8) Delete a Linked List - 
+(9) Nth Node in a Linked List -- 
+(10) Nth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Reverse a Linked List
+(13) Reverse a Linked List in Size of K
+
+
+
+
+Most Important/Easy:
+- Linked Lists (Interviews)
+- DP (Dynamic Programming) (OA + Interviews)
+- BST (Binary Search Trees)
+
+
+
+
+
+Linked Lists:
+
+
+Master Any DS/Algo:
+
+(1) What (Use Case): DONE
+(2) Why (Applications/NEED): DONE
+(3) How (Coding/Implementation)
+
+
+Guy: Bholu
+Intern
+
+
+Manager: Write an API to input 3 Numbers and print their sum
+
+
+Sol:
+
+int b[100000000000];
+b[0] = s.nextInt();
+b[1] = s.nextInt();
+b[2] = s.nextInt();
+int sum = b[0] + b[1] + b[2];
+System.out.println(sum);
+
+
+
+Bugs:
+
+(1) Memory Wastage
+
+int b[100000000000];
+OP: Stack Overflow
+
+Space: 4 *10^9 Bytes != 4 GB Contiguous Memory: RAM
+
+
+(2) Integer Overflow:
+
+long sum = a+b+c;
+
+
+
+RAM: 8 GB/16 GB
+
+
+
+Memroy Diagram:
+
+
+.: FREE
+X: Occupied
+
+
+8 GB RAM:
+
+
+
+1 GB        1 GB         1 GB        1 GB
+
+......XXXXXX......XXXXXX......XXXXXX.......XXXXXX
+      Chrome       VLC         Spotify     VS Code
+
+
+
+Linked List: YES
+
+
+Nodes Connected with Each Other:
+
+
+A ---> B ----> C ----> D
+1 GB   1 GB    1 GB   1 GB
+
+A -> next = B
+B -> next = C
+C -> next = D
+
+
+
+In Real Life:
+
+Linkedin, Instagram: Distributed Systems
+
+
+Linked List --> Rise to Distributed Memory
+                ---> Distributed Systems (Databases)
+                    ---> Monolith to Microservice
+
+
+
+
+
+Linked List vs Arrays:
+
+(1) Dynamic Allocation
+
+CORRECT
+int arr[] = new int[10];
+
+
+CORRECT
+int n = s.nextInt()
+int arr[] = new int[n];
+
+INCORRECT
+int arr[] = new int[];
+
+
+arr[10]: 
+Can I make it 11: NO
+Can I make it 9: NO
+
+I need to know Size BEFORE Execution of My program.
+
+During Program Execution - Cannot Change Size - Static in Nature
+
+
+
+Production Example:
+
+Flipkart/Amazon
+15th Aug: Sale
+
+Expect: 100 Mn
+
+
+int arr[100Mn];
+
+Surpise: 200Mn
+
+First 100 Mn People: See the Page (VIEW) - App Fine
+Rest 100 Mn People: No Page (No READ): Resource Not Found: Error
+
+
+Surprise: 50Mn
+- Loss of Resources/Memory
+
+
+I need Something which can be adjusted in Execution Time
+
+If Request Increased ---> Size Increase
+If Request Decrease ---> Size Decrease
+
+
+Linked List: Dynamic Allocation
+Arrays: Static
+
+
+Array: Prepaid/ Log of Wood
+Linked List: Postpaid/ Rubber Band
+
+
+(2) Rogue Memory
+
+Bholu:
+
+int b[1000];
+ans = b[0] + b[1] + b[2];
+print(ans);
+
+
+1000-3 = 997*4 Bytes: WASTED
+
+
+
+int[] arr = new int[1000];
+
+There is NO Guarantee that ALL Elements of Arrays will be used in Program
+
+
+Linked List: No Rogue Memory
+(Dynamic Allocation)
+
+
+(3) Complexity for Insertion:
+
+Arrays:
+
+IP: [7 2 3 4 5 6 _]
+Insert 8 before 2
+
+OP: [7 8 2 3 4 5 6]
+
+
+TC: O(N)
+Best Case: O(1) - Insert at End
+Worst Case: O(N) - Insert at Beginning
+
+
+
+Linked List:
+
+IP: A --> B --> C --> D
+
+Given C, Insert E after C
+
+OP: A --> B --> C --> E ---> D
+
+
+Steps:
+
+(1) C.next = E // O(1)
+(2) E.next = D // O(1)
+
+TC: O(1)
+
+
+
+Disadvantages of Linked Lists:
 
 
 
