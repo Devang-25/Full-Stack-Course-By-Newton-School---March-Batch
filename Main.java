@@ -15244,6 +15244,7 @@ If K>N, Just Do: K = K%N
 
 
 
+
 head: 10 -> 20 -> 30 -> 40 -> 50 -> null
 
 
@@ -15273,6 +15274,584 @@ int KthNode(Node head, int K)
 
 TC: O(K), 1 <= K <= N
 SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 25th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+
+TODO:
+
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+VVVVVI
+Q-8: Print Kth Node from End in Linked List: SPECIAL
+[Google, Cisco, Adobe, Paypal, Flipkart]
+
+
+LL, int K
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 1
+OP: 50
+
+K = 4
+OP: 20
+
+
+Constraints:
+
+1 <= K <= N
+
+
+int KthNodefromEnd(Node head, int K)
+{
+
+}
+
+
+
+Solution:
+
+Good Developer vs Very Good Developer Approach
+
+Two Approaches:
+
+(1) Good Developer Approach:
+
+Kth Node from End
+= (len-K+1) from Beginning
+
+
+K = 1
+OP: 50
+len = 5
+
+From Beginning: len-K+1 = 5-1+1 = 5th Node from Beginning = 50
+
+
+7-3 = 4, 3 is Excluded, 7 is Included
+
+b-a: a is Excluded, b is Included
+b-a+1: a and b bot Included
+
+
+
+Complexity:
+
+(1) Calculate Length: O(N)
+(2) Traverse (len-K+1) from beginning and then return that Node: O(N-K+1)
+
+TC: O(N) + O(N-K+1) = O(2*N)
+
+Worst Case: K = 1
+
+
+In Real Life Productions:
+N = 10^9
+
+O(N): Single Traversal: 10^9 Interations
+O(2*N): Double Traversal: 2*10^9 Iterations
+
+
+Phonepe/Paytm/Gpay
+
+UPI: Payments
+
+Paytm: 2 sec
+Phonepe: 2 sec
+
+
+Code: O(N) -> O(2N) in Paytm Codebase
+
+Paytm: 4 sec
+Phonepe: 2 sec
+
+Latency Increase by 2 Times
+
+
+
+
+(2) Very Good Developer Approach:
+Single Traversal: O(N)
+
+
+Two Pointer/Hare and Tortoise/ Fast and Slow Approach:
+
+Approach:
+
+Initial:
+
+slow : head
+fast : head + K
+
+Start Traversal:
+
+slow = slow.next
+fast = fast.next
+
+
+fast == null: STOP
+slow --> Kth Node from End
+
+
+
+Why This Works?
+
+a and b: diff K
+Add Same Value, diff = K: Always
+
+
+
+a = 5
+b = 7
+k = 2
+
+
+a +10, b+10
+5+10 = 15
+7+10 = 17
+diff = 2 = K
+
+
+a-b= k
+(a+n)-(b+n) = k
+
+
+
+
+DRY RUN:
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+K = 2
+OP: 40
+
+
+head = 10
+
+Initial:
+
+slow = 10
+fast = head + K = 30
+
+Start Traversal:
+
+slow = 10->20
+fast = 30->40
+
+
+slow = 20->30
+fast = 40->50
+
+slow = 30->40: Kth Node from End - Ans
+fast = 50->null: STOP
+
+OP: 40
+
+
+
+DS:      Real Life
+
+Stack : Packet of Bread
+Queue:  Bank Line/Queue
+Linked List: Running Track 
+Circular LL: Round Track
+
+
+Example:
+
+
+100 Metres Race
+
+A: 10 M
+B: 50 M
+
+Diff = 40 M
+
+Speed of A : Remains Same
+Speed of B : Remains Same
+
+B --> 100 M
+A --> 100-40 = 60 M
+
+
+
+
+
+
+CODE:
+
+
+
+int KthNodefromEnd(Node head, int K)
+{
+    Node slow = head;
+    Node fast = head;
+
+    while (K--!=0) // O(K)
+        fast = fast.next;
+
+    // fast = head + K
+
+    while (fast!=null) // O(N-K)
+    {
+        slow = slow.next; // O(1)
+        fast = fast.next; // O(1)
+    }
+
+    // slow: Kth Node from End
+
+    return (slow.data)
+}
+
+TC: O(N)
+SC: O(1)
+
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+K = 2
+OP: 40
+
+slow = 10: head
+fast = 10: head
+
+fast = head + k : 30 (K Nodes after head)
+
+fast = head + K: CODE - INCORRECT
+    (Node) (int)
+
+
+while(K--!=0) ---> Moving Fast to K Times Ahead
+    fast = fast.next
+
+OR
+
+for (i=0; i<K; i++)
+    fast = fast.next
+
+
+
+
+
+
+
+VVVVI
+Q-9: Middle of Linked List: SPECIAL
+[Adobe, Paypal]
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+Middle: 30: OP
+
+
+int getMiddle(Node head)
+{
+
+}
+
+
+Solution:
+
+Good Developer vs Very Good Developer Approach
+
+Two Approaches:
+
+(1) Good Developer Approach:
+
+len: Length of Linked List
+print(len/2) or print((len+1)/2), Even or Odd
+
+TC: O(N) + O(N/2) = O(1.5*N)
+
+
+(2) Very Good Developer Approach
+
+O(N): Single Traversal
+
+Two Pointer/Hare and Tortoise/ Fast and Slow Approach:
+
+Approach:
+
+Initial:
+
+slow = head
+fast = head
+
+Start Traversal:
+
+slow = slow.next
+fast = fast.next.next
+
+
+When the Fast reaches End
+slow --> Middle of Linked List
+
+
+
+
+
+
+Why It Works?
+
+Track: 100 M
+
+Two People are Running:
+
+A = 10 km/h
+B = 20 km/h
+
+After time 't':
+B covers the distance: d
+A covers the distance: d/2
+
+
+
+CODE:
+
+
+int getMiddle(Node head)
+{
+    Node slow = head;   
+    Node fast = head;
+
+    while(fast!=null && fast.next!=null)
+    {
+        slow = slow.next; // Speed: x
+        fast = fast.next.next; // Speed: 2x
+    }
+
+    // After the while loops, fast -> End, slow-> Middle of LL
+    return slow.data;
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+Q-10: Detect Cycle in a Linked List
+LC - 141: Linked List Cycle
+https://leetcode.com/problems/linked-list-cycle/
+
+
+
+
+
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+ 
+
+Example 1:
+
+
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+Example 2:
+
+
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+Example 3:
+
+
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+ 
+
+Constraints:
+
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
+ 
+
+Follow up: Can you solve it using O(1) (i.e. constant) memory?
+
+
+Unacademy:
+
+Detecting Cycle in a Linked List, using hashing
+A linked list is said to contain a cycle if any node is visited more than once while traversing the list.
+
+Given a list check whether or not there is a cycle in the list.
+Return 1 is list has cycle, else return 0.
+
+Note: If the list is empty, head will be null.
+Example :
+Input :
+   A.         .......
+              |     |
+              V     |
+     (head)1->2->4->5
+ 
+   B.(head)1->2->NULL
+Output :
+A. 1
+B. 0
+
+
+
+
+
+Understanding:
+
+Cycle/Loop in a Linked List:
+A Node is Traversed MORE THAN Once During Traversal of Linked List
+
+
+Eg:
+              .......
+              |     |
+              V     |
+     (head)1->2->4->5
+
+ 
+OP: 1 2 4 5 2 4 5 2 4 5 2 4 5......: Loop
+
+
+            ..........
+            |        |
+            V        |
+     (head) 1->2->4->5
+
+OP: 1 2 4 5 1 2 4 5 1 2 4 5 1 2 4 5......: Loop
+
+
+
+while(temp.next!=null) - Condition Never satisfied
+{
+    s.o.p(_)
+}
+
+
+Edge Cases:
+
+(1) LL: 1->2->3->NULL
+    No Cycle/Loop
+
+(2) LL: 1->2->3->4->5->2->NULL
+    No Cycle/Loop
+    
+(3) LL: 2->2->2->2->NULL
+    No Cycle/Loop
+    
+(4) LL: 1->2->3->4   
+           |_____|
+
+    Yes, There is a Loop/Cycle
+
+
+
+Incorrect Approach:
+
+while(temp.next!=null)- NEVER HIT
+- TLE
+
+
+Solution:
+
+(1) With Hashing:
+
+
+Intuition:
+
+More than 1 Node Traversed in LL - CYCLE
+OR
+Duplicate Node Traversed - CYCLE
+
+Set: Check if Node Already raversed: CYCLE, Else No Cycle
+
+
+
+CODE:
+
+// T: O(N)
+// S: O(N)- Set
+
+public class Solution {
+    public boolean hasCycle(ListNode head) 
+    {
+        if (head == null)
+            return false;
+        
+        // Check for Duplication of Node, Not for Duplication of Data in Node
+        HashSet<ListNode> set = new HashSet<ListNode>();
+        ListNode temp = head;
+        
+        while(temp!=null)
+        {
+       // Node Already Contained ---> Cycle     
+            if (set.contains(temp))
+                return true;
+            
+            set.add(temp);
+            temp = temp.next;
+        }
+        
+        return false; //No Cycle
+    }
+}
+
+
+Next Class:
+
+Without Hashing
+
+
+
+
 
 
 
