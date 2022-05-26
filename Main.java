@@ -15673,8 +15673,8 @@ SC: O(1)
 
 
 
-
-Q-10: Detect Cycle in a Linked List
+VVVVI
+Q-10: Detect Cycle in a Linked List: SPECIAL
 LC - 141: Linked List Cycle
 https://leetcode.com/problems/linked-list-cycle/
 
@@ -15770,7 +15770,7 @@ OP: 1 2 4 5 1 2 4 5 1 2 4 5 1 2 4 5......: Loop
 
 
 
-while(temp.next!=null) - Condition Never satisfied
+while(temp.next!=null) - Condition Never satisfied if LL has Cycle
 {
     s.o.p(_)
 }
@@ -15796,7 +15796,7 @@ Edge Cases:
 
 Incorrect Approach:
 
-while(temp.next!=null)- NEVER HIT
+while(temp.next!=null)- NEVER HIT in case LL Contains Cycle
 - TLE
 
 
@@ -15807,11 +15807,11 @@ Solution:
 
 Intuition:
 
-More than 1 Node Traversed in LL - CYCLE
+Same Node is Tarversed More Than Once in LL - CYCLE
 OR
-Duplicate Node Traversed - CYCLE
+Duplicate Node Found/Traversed - CYCLE
 
-Set: Check if Node Already raversed: CYCLE, Else No Cycle
+Set: Check if Node Already traversed: CYCLE, Else No Cycle
 
 
 
@@ -15845,11 +15845,9 @@ public class Solution {
 }
 
 
-Next Class:
 
-Without Hashing
-
-
+T: O(N)
+S: O(N)- Set
 
 
 
@@ -15859,6 +15857,517 @@ Without Hashing
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+Date : 26th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+
+TODO:
+
+(13) Detect Cycle in a Linked List - Without Hashing
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+(2) Without Hashing
+
+TC: O(N)
+SC: O(1)
+
+
+Circular Linked List/Linked List With Cycle:
+Real Life Example: Circular Track
+
+
+Track = 400 M, Circular Track
+
+
+A: 10 Km/h
+B: 20 Km/h
+
+
+If in time 't', A Cover 1 lap
+How Many Laps will B Cover?
+
+Ans: 2 Laps
+
+
+
+Circular Track:
+A will meet B when B has already covered 1 lap
+
+
+Parallel Track:
+A and B will Never Meet
+
+
+
+Approach:
+
+
+(1) slow: head, fast: head
+(2) slow: Speed->x, fast: Speed->2x
+(3) if slow == fast: CYCLE/LOOP
+(4) Else, No Cycle
+
+
+
+CODE:
+
+
+
+// Approach -2 : Without Hashing
+// T: O(N)
+// S: O(1)
+
+public class Solution {
+    public boolean hasCycle(ListNode head) 
+    {
+                // Contraints:
+// The number of the nodes in the list is in the range [0, 10^4].
+        if (head == null)
+            return false;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        // slow: 1x, fast: 2x
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            slow = slow.next; // speed: 1x
+            fast = fast.next.next; // speed: 2x
+            
+            if (slow == fast)
+                return true;                
+        }
+        
+        return false;
+    }
+}
+
+
+T: O(N)
+S: O(1)
+
+
+
+
+
+
+
+
+
+
+-------> SORTING:
+
+Sorting:
+List of Unsorted Values ---> List of Sorted Values
+
+[3 1 6 8 9 2] ---> [1 2 3 6 8 9]
+
+Sorting Algorithms:
+
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Merge Sort 
+- Quick Sort
+
+
+- Heap Sort
+- Radix Sort
+
+
+
+
+
+Q: Which is the Best Sorting Algorithm in World? - Google
+
+
+
+
+
+
+(1) Bubble Sort:
+Simplest Sorting Algorithm
+
+
+
+Approach:
+- Swap Adjacent Elements if they are not in ascending order
+
+Example:
+
+a = [5 1 4 2 8]
+OP: [1 2 4 5 8]
+
+
+First Iteration/Pass:
+
+5 1 4 2 8 ---> 1 5 4 2 8: 5 > 1: SWAP
+i j 
+
+1 5 4 2 8 ---> 1 4 5 2 8: 5 > 4: SWAP
+
+1 4 5 2 8 ---> 1 4 2 5 8: 5 > 2 : SWAP 
+
+1 4 2 5 8 ---> 1 4 2 5 8: NO SWAP
+
+
+Second Iteration/Pass:
+
+
+1 4 2 5 8 ---> 1 4 2 5 8: NO SWAP
+i j
+
+1 4 2 5 8 ---> 1 2 4 5 8: 4 > 2: SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+
+Third Iteration/Pass:
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+
+[1 2 4 5 8]: YES
+1 < 2 < 4 < 5 < 8
+
+
+
+Take i = 2
+
+arr[i]: CURRENT: 4
+arr[i+1]: RIGHT/Next: 5
+arr[i-1]: LEFT/Prev: 2
+
+
+curr < RIGHT AND curr > LEFT: No SWAP
+arr[i]<arr[i+1] AND arr[i] > arr[i-1]: NO SWAP
+
+Else, SWAP
+
+
+
+CODE:
+
+void BubbleSort(int[] arr, int n)
+{
+    int i=0,j=0;
+
+    for (i=0; i<n-1; i++) // O(N)
+    {
+        for (j=1; j<n-i-1; j++) // O(N) - Worst Case
+        {
+            if (arr[j] > arr[j+1])
+            {
+                swap(arr[j], arr[j+1]);
+            }
+
+        }
+    }
+}
+
+
+TC: O(N^2)
+SC: O(1)
+
+
+Best Case: Already Sorted -> Increasing Order -> No Swap
+Worst Case: Reverse Sorted -> Decreasing Order -> Maximum Swaps
+
+
+Why Name Bubble Sort:
+Large Values are Bubbled towards the End of Array
+
+
+
+
+
+
+(2) Selection Sort:
+
+Approach:
+
+- Sort Subarray by Finding the smallest element and swapping it with the first element
+- Repeat the process for the arr[0...n], arr[1...n], arr[2...n]
+
+
+Example:
+
+a = [64 25 12 22 11]
+OP: 11 12 22 25 65
+
+Indexing: 0 to 4
+
+
+
+Find Smallest Element in arr[0...4] = 11
+Place it at the Beginning of arr[0...4] 
+
+64 25 12 22 11 ---> 11 64 25 12 22
+// Shift 64 
+
+Find Smallest Element in arr[1...4] = 12 [11 64 25 12 22]- arr[1...4]
+Place it at the Beginning of arr[1...4] 
+
+11 64 25 12 22 ---> 11 12 64 25 22
+
+
+Find Smallest Element in arr[2...4] = 22 
+Place it at the Beginning of arr[2...4] 
+
+11 12 64 25 22 ---> 11 12 22 64 25
+
+
+Find Smallest Element in arr[3...4] = 25 
+Place it at the Beginning of arr[2...4] 
+
+11 12 22 64 25 ---> 11 12 22 25 64 
+
+
+
+Selection Sort:
+
+arr[0...n]
+arr[1...n]
+arr[2...n]
+.........
+arr[n-1...n]
+
+- Find Smalleest Value --> Shift to Front
+
+
+Selection Sort:
+
+(1) Find Smallest in Array : First 
+(2) Find Second Smallest in Array : Second 
+(3) Find Third in Array : Third 
+
+.......
+
+(N) Find Second Largest : Second Last
+
+
+
+
+CODE:
+
+
+
+void selectionSort(int[] arr, int n)
+{
+    int i=0, j=0;
+
+    for (i=0; i<n-1; i++)
+    {
+        int min = i;
+        for (j=i+1; j<n; j++)
+        {
+            if (arr[j] < arr[min])
+            {
+                min = j;
+            }
+        }
+            swap(arr[i], arr[min]);
+    }
+}
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+IMP:
+Merge Sort
+
+Important:
+- Merge Two Sorted Arrays
+- Merge K Sorted Arrays
+- Merge Two Sorted Linked Lists
+- Merge K Sorted Linked Lists
+
+
+Algo: Divide and Conquer
+
+
+Steps:
+
+(DIVIDE)
+- Divide the Array into Two Halves
+- Recursively calls the function for thr two halves
+- Until it becomes single unit/element
+
+(CONQUER)
+- Sort the Two Halves Individually
+- Merge the Two Sorted Arrays Recursively in a Final Array
+
+
+Example:
+
+a[] = {38,27,43,3,9,82,10}
+
+index: 0 to 6
+mid = (0+6)/2 = 3
+
+
+First Half: a[0] to a[3] = [38 27 43 3] = arr[0] to arr[mid]
+
+Second Half: a[4] to a[6] = [9 82 10] = a[mid+1] to a[n-1]
+
+
+DIVIDE:
+
+                [38 27 43 3 9 82 10]
+
+           [38 27 43 3]      [9 82 10]
+    
+        [38 27] [43 3]      [9 82] [10]
+
+     [38][27][43][3]       [9] [82] [10]
+
+
+CONQUER:
+
+     [38][27][43][3]       [9] [82] [10]
+
+     [27 38] [3 43]       [9 82] [10]
+
+        [3 27 38 43]    [9 10 82]
+
+            [3 9 10 27 38 43 82]
+
+
+How Conquer Works?
+
+
+[38] [27] --> [27 38]
+
+Create Array of Size: 1 + 1 = 2
+
+Compare 27 and 38
+27 < 38
+ans[0] = 27, ans[1] = 38
+
+ans = [27 38]
+
+
+
+left[m], right[n] --> Ans[m+n]
+[27 38] [3 43] --> [3 27 38 43]
+
+
+if (left[i] < right[j]) // Move to left array
+    i++;
+Else
+    j++; // Move to Right Array
+
+
+
+Create Array of Size: M + N
+Compare Each values of the array and select the smallest 
+(left and right comparison)
+- Accordingly go i++ or j++
+
+Ans = arr[m+n]: Sorted Array
+
+
+
+
+
+
+Pseudo Code:
+
+
+l = 0, r = n-1
+
+void mergeSort(int[] arr, int l, int r)
+{
+    if (l<=r)
+    {
+        mid = l+(r-l)/2;
+        mergeSort(arr, l, mid); // Left Part - DIVIDE
+        mergeSort(arr, mid+1, r); // Right Part - DIVIDE
+        merge(arr[], l, mid, r); // Merge the Two Parts recursively - CONQUER
+    }
+}
+
+
+TC: O(N*log N)
+
+Splitting into half: Similar to Binary Search: log N
+Total Times: N
+Hence, TC = O(N*logN)
+
+SC: O(N) - Extra Array Created
+
+
+
+
+
+
+
+Arrays.sort(arr); // O(NlogN)
+
+Internally Uses: Tim Sort
+
+Tim Sort: Hybrid Sort
+        - Collection of Quick, Merge and Selection
+
+
+
+
+Syllabus:
+
+DONE:
+- Arrays
+- Matrices
+- Strings
+- Recursion
+- XOR and Bit Manipulation
+- Search
+- Stacks
+- Queues
+- Linked Lists:
+- Sorting
 
 
 
