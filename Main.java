@@ -16377,3 +16377,529 @@ DONE:
 
 
 
+
+
+
+
+Date : 30th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing - DONE
+(13) Detect Cycle in a Linked List - Without Hashing - DONE
+(14) Sorting Algos - DONE
+
+TODO:
+- Assignment Questions
+- OOPS
+- Dynamic Programming
+- Max Prod Subarray: LC
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+3rd June: Informal Session (45 Mins - 1 Hr)
+5th June: Contest (Sunday - Shuffling) 
+9th June: Shuffling
+10th June: Classes 
+
+DSA1: DONE
+DSA2: DONE
+
+DSA3: Advanced DSA
+- DP (Dynamic Programming)
+- Backtracking
+- Trees
+- Graphs
+
+FE: HTML, CSS, JS, React, Redux
+BE: Sql, Nodejs, MongodB
+
+Placement: 2 Months
+
+
+Big Tech: Specialists - BE, FE, Full Stack
+
+Startups: Generalists - SWE
+
+Salary: 3 Yrs: SDE -1:2
+
+Product: 
+
+
+
+
+- Assignment Questions
+
+
+
+
+
+
+Q: Bit Manipulation - In Class - Minimize XOR
+
+Minimize XOR
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+
+Given an integer array A of N integers, 
+find the pair of integers in the array which have minimum XOR value. 
+Report the minimum XOR value.
+
+Input
+
+First line denotes N, the size of the array.
+Next line denotes N space-separated array elements.
+
+Constraints:
+2 <= N <= 100000
+0 <= A[i] <= 10^7
+
+Output
+
+Print a single integer denoting minimum xor value
+Example
+
+Sample Input
+4
+0 2 5 7
+
+Sample Output
+2
+
+Explanation:
+0 xor 2 = 2
+
+Sample Input
+
+4
+0 4 7 9
+
+Sample Output
+3
+
+
+
+
+
+
+Solutions:
+
+
+(1) Brute Force Solution: Two Nested Loops
+
+- For Each pair, Calculate XOR and Find the Minimum
+
+TC: O(N^2)
+SC: O(1)
+
+
+(2) Optimised Solution:
+A ^ A = 0: Min
+
+Same Input, XOR = 0
+Diff Input, XOR = 1
+
+A ^ B: Min: A == B
+
+
+A close to B: Min XOR - Intuition
+A far from B: Max XOR
+
+
+
+
+Sort the Array: 
+All Close Elements will become together
+
+
+
+a = [5 2 0 7]
+After Sorting: [0 2 5 7]
+
+Min XOR: 0^2 = 2
+
+
+Approach:
+
+(1) Sort the Array
+(2) Calculate: arr[i] ^ arr[i+1]: Contiguous Values
+(3) Find Minimum
+
+TC: O(NlogN)
+SC: O(1)
+
+
+CODE:
+
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+class Main {
+    static int minXOR(int [] A, int N) 
+    {
+        Arrays.sort(A);  // for sorting the array
+        int minimumxor = Integer.MAX_VALUE;
+        int value = 0;
+        for(int i=0; i<N-1; i++) {
+            value = A[i]^A[i+1];
+            minimumxor = Math.min(minimumxor, value);  // to find minimum pair
+        }
+        return minimumxor;
+    }
+
+    public static void main (String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        int [] A = new int[N];
+
+        for(int i=0; i<N; i++) {
+            A[i] = input.nextInt();
+        }
+        
+        System.out.println(minXOR(A, N));
+    }
+}
+
+
+TC: O(NlogN)
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q: Two Pointers - In Class - Max subarray sum (size K)
+https://my.newtonschool.co/playground/code/x8oof6sc2xnx/
+
+
+Max subarray sum (size K)
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+Given an array of integers A and a number K, 
+find maximum sum of a subarray of size K.
+
+Input
+The first line of input contains two integers N and K, denoting the number of elements in the array and the subarray size respectively.
+The next line contains N integers denoting the elements of the array respectively.
+
+1 <= K <= N <= 200000
+-200000 <= A[i] <= 200000
+
+Output
+Print a single integer denoting the maximum sum of subarray of size K.
+
+Example
+
+Sample Input:
+4 2
+-1 5 2 -3
+
+Sample Output:
+7
+
+Explanation:
+Three subarrays of size 2, their sum are 4, 7, -1
+
+
+
+Understanding:
+
+a = [-1 5 2 -3]
+K = 2
+
+
+Subarrays: Sum
+
+[-1 5] = 4
+[5 2] = 7 : MAX
+[2 -3] = 1
+
+
+
+Solutions:
+
+(1) Brute Force: Two Nested Loops
+
+Generate All Subarray of Size K and find the max Sum:
+
+TC: O(N^2)
+SC: O(1)
+
+(2) Optimised Solution: Single Loop
+
+
+[-1 5 2 -3]
+K = 2
+
+Subarrays:
+
+First Subarray: [-1 5] 
+for (i=0; i<K; i++)
+
+Other Subarrays:
+
+
+[0.1....k..k+1........]
+
+First Subarray: arr[0...k]
+Next Subarray: Remove 0 and add 1
+            arr[1...k+1]
+
+Next: arr[2...k+2]
+
+
+
+
+arr = [-1 5 2 -3]
+K = 2
+
+
+Subarrays: Sum
+[-1 5] = 4
+[5 2] = 7 : MAX
+[2 -3] = -1
+
+
+CODE:
+public static int maxSum(int arr[], int n, int k)
+    {
+        int res = 0;
+        for (int i=0; i<k; i++) // O(K)
+           res += arr[i]; // res = 4
+
+
+        int currentSum = res; // currentSum = 4
+        for (int i = k; i<n; i++)  // O(N-K)
+        // i = 2; i<4; i++
+        {   // i = 2
+            // currentSum += arr[2] - arr[2-2] = arr[2] - arr[0] = 2-(-1) = 3
+            // currenSum = 4+3 = 7
+
+            // i = 3
+            // currentSum += arr[3] - arr[3-2] = arr[3] - arr[1] = -3-(5) = -8
+            // currenSum = 7-8 = -1
+           
+           currentSum += arr[i] - arr[i-k]; // Remove 0 and add 1
+                                            //  arr[1...k+1]
+           res = Math.max(res, currentSum); // res = max(4, 7) = 7
+        }
+      
+        return res; //7
+    }
+
+
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+
+Q: LC - 152: Maximum Product Subarray
+https://leetcode.com/problems/maximum-product-subarray/
+
+Given an integer array nums, find a contiguous non-empty subarray within the array that has the largest product, and return the product.
+
+The test cases are generated so that the answer will fit in a 32-bit integer.
+
+A subarray is a contiguous subsequence of the array.
+
+ 
+
+Example 1:
+
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+Example 2:
+
+Input: nums = [-2,0,-1]
+Output: 0
+Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+ 
+
+Constraints:
+
+1 <= nums.length <= 2 * 104
+-10 <= nums[i] <= 10
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+
+
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+
+
+
+Subarray: Product
+
+[2 3]     = 6
+[2 3 -2]  = -12
+[2 3 -2 4] = -48
+
+
+[3 -2]   = -6
+[3 -2 4]  = -24
+
+[-2 4]  = -8
+
+MaxAns = 6
+
+
+
+ public int maxProduct(int[] nums) 
+ {
+        
+}
+
+
+Solution:
+
+
+(1) Brute Force: Two Nested Loops
+
+- Generate All Subarrays 
+- Calculate Prod of All Subarrays
+- Find Max
+
+CODE:
+
+for (int i = 0; i < n; i++)
+    {
+        int mul = nums[i];
+        for (int j = i + 1; j < n; j++)
+        {
+            
+            result = max(result, mul);
+            mul *= nums[j];
+        }
+        result = max(result, mul);
+    }
+    return result;
+}
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+(2) Optimised Solution:
+
+Trick:
+
+
+
+[2,3,-2,4]
+
+
+Subarray:
+
+
+[2 3]
+Prefix Prod : 0
+Suffix Prod:  [-2 4] = -8
+
+
+Max Product = Max(prefix_prod, suffix_prod)
+
+
+
+CODE:
+
+
+
+// Author: @devangs
+// TC: O(N)
+// SC: O(1)
+
+
+
+[2,3,-2,4]
+N = 4
+OP: 6
+
+
+class Solution {
+    public int maxProduct(int[] A) 
+    {
+        int len = A.length;
+        int prod = 1;
+        int max = Integer.MIN_VALUE;
+        int i = 0;
+        
+        for (i=0; i<len; i++)
+        {
+    // prefix_prod = prefix_prod * A[i]: Multiply from Beginning
+            max = Math.max(prod*=A[i], max); //max = 2, 6, -12, -48: max = 6 
+            
+            // Edge Case for 0 i Subarray
+            if (A[i] == 0)
+                prod = 1;            
+        }
+        
+        prod = 1;
+        
+        for (i=len-1; i>=0; i--)
+        {
+     // suffix_prod = sufix_prod * A[n-i-1]: Multiply from End
+            max = Math.max(prod*=A[i], max); // max = 4, -8, -24, -48: max = 4
+            
+            // Edge Case for 0 i Subarray
+            if (A[i] == 0)
+                prod = 1; 
+        }
+        
+        return max; // max(6,4) = 6
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
