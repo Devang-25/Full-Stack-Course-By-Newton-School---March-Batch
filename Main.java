@@ -16401,12 +16401,12 @@ Agenda:
 (12) Detect Cycle in a Linked List - With Hashing - DONE
 (13) Detect Cycle in a Linked List - Without Hashing - DONE
 (14) Sorting Algos - DONE
+- Max Prod Subarray: LC: DONE
 
 TODO:
-- Assignment Questions
-- OOPS
+- Assignment Questions: DONE
 - Dynamic Programming
-- Max Prod Subarray: LC
+- OOPS
 
 "Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
 
@@ -16419,7 +16419,7 @@ TODO:
 3rd June: Informal Session (45 Mins - 1 Hr)
 5th June: Contest (Sunday - Shuffling) 
 9th June: Shuffling
-10th June: Classes 
+Till 10th June: Classes 
 
 DSA1: DONE
 DSA2: DONE
@@ -16530,8 +16530,8 @@ A far from B: Max XOR
 
 
 Sort the Array: 
-All Close Elements will become together
-
+(1) All Close Elements will become together
+(2) Iterate Over Adjacent values and find the Min XOR
 
 
 a = [5 2 0 7]
@@ -16600,7 +16600,7 @@ SC: O(1)
 
 
 
-
+IMP:
 Q: Two Pointers - In Class - Max subarray sum (size K)
 https://my.newtonschool.co/playground/code/x8oof6sc2xnx/
 
@@ -16637,6 +16637,13 @@ Explanation:
 Three subarrays of size 2, their sum are 4, 7, -1
 
 
+Solution:
+
+Total Number Of Subarrays in an Array of Size N = N*(N+1)/2
+
+Number Of Subarrays of Size K in an Array of Size N = N-K+1
+OR
+Number of Sliding Windows os Size K in an Array of Size N = N-K+1
 
 Understanding:
 
@@ -16670,7 +16677,7 @@ K = 2
 Subarrays:
 
 First Subarray: [-1 5] 
-for (i=0; i<K; i++)
+CODE: for (i=0; i<K; i++)
 
 Other Subarrays:
 
@@ -16872,7 +16879,7 @@ class Solution {
     // prefix_prod = prefix_prod * A[i]: Multiply from Beginning
             max = Math.max(prod*=A[i], max); //max = 2, 6, -12, -48: max = 6 
             
-            // Edge Case for 0 i Subarray
+            // Edge Case for 0 in Subarray
             if (A[i] == 0)
                 prod = 1;            
         }
@@ -16884,7 +16891,7 @@ class Solution {
      // suffix_prod = sufix_prod * A[n-i-1]: Multiply from End
             max = Math.max(prod*=A[i], max); // max = 4, -8, -24, -48: max = 4
             
-            // Edge Case for 0 i Subarray
+            // Edge Case for 0 in Subarray
             if (A[i] == 0)
                 prod = 1; 
         }
@@ -16892,6 +16899,499 @@ class Solution {
         return max; // max(6,4) = 6
     }
 }
+
+
+
+
+
+
+
+
+Date : 31st May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Agenda:
+
+- Introduction to DP
+- DP vs Backtracking vs Greedy
+- DP vs Recursion- Real Life Example 
+
+
+Questions
+- Removing Chocolates- Paypal: 
+- Uncertain Steps- Google: 
+- max Steps - Amazon: 
+- [Adobe] Q: Variation of Sum of Numbers- 1,3,5: 
+
+
+2D DP:
+- Goldmine- Microsoft
+- Maximum size square sub-matrix with all 1s- Paypal
+
+- OOPS
+- Quick Sort
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+Syllabus:
+
+DONE:  (70%)
+- Arrays
+- Matrices
+- Strings
+- Recursion
+- XOR and Bit Manipulation
+- Search
+- Stacks
+- Queues
+- Linked Lists:
+- Sorting
+
+
+30%:
+
+DP : Started
+Backtracking
+Trees
+Graphs
+
+
+
+
+
+Agenda: Dynamic Programming (DP)
+
+- DP vs Backtracking vs Greedy
+
+
+DP:
+- Optimisation Over Recursion
+- Storing the Results of previous states to avoid recalculating
+
+Backtracking:
+- Optimisation Over Recursion
+- Does Not Store Any State
+- Find All Possible Answers
+
+Greedy:
+- Find me the BEST Solution Now
+- DONT THINK ABOUT FUTURE
+
+
+
+
+
+Eg:
+
+
+Given a Matrix, 
+Calculate Max Gold Coins in the Matrix.
+
+
+Constraints: Right or Down
+
+[
+S: 1  10  20
+   100 1000 25
+   70  80   90: D 
+]
+
+
+S- D Path?
+
+
+1 10 1000 25 90: VALID
+1 10 1000 80 90: VALID
+1 100 1000 80 90: VALID: ANS
+
+
+
+
+DP: Find All S-D Valid Path and then Check for Maximum
+
+Greedy: 
+
+You are 1: 10 or 100
+
+According to Greedy, 
+ALWAYS go to 100 because MAX(10,100) = 100
+
+
+At Every Step, Choose the BEST SOLUTION there, 
+DONT THINK ABOUT FUTURE
+
+
+
+
+WORKING:
+
+[
+S: 1  10  20
+   100 1000 25
+   70  80   90: D 
+]
+
+
+Correct OP: 1 100 1000 80 90
+
+Greedy OP: 1 100 1000 80 90
+
+
+
+NOT WORKING:
+
+[
+S: 1  10  2000
+   100 1000 25
+   70  80   90: D 
+]
+
+
+
+As Per Greedy,
+
+At 1: Select 100
+After Reaching 100, Never be able to reach 2000
+
+
+Greedy does not write answer Always.
+
+
+
+
+Dynamic Programming (DP)
+
+
+For any DS/Algo:
+- What (Use Case/Problem)
+- Why (Applications)
+- How (Coding/Implementation)
+
+
+What?
+
+- Optimisation Over Recursion by "Storing the State Results to Avoid Calculating Again and Again"
+
+Why?
+
+Exponential Time Complexity ---> Polynomial Time
+(Recursive)                      (DP)
+
+O(2^N) --> O(N)
+
+
+State Variables:
+Number of Variables Determining the State of DP
+
+
+
+1-D DP: State Depends on 1 Variables
+Eg: Fibbonacci Numbers/Factorial
+
+
+2-D DP: State Depends on 2 Variables
+Eg: 0-1 Knapsack Problem
+
+
+3-D DP: State Depends on 3 Variables
+
+House of Robbers-3: LC Premium
+Round H: GKS 2019
+
+
+
+
+
+Fibbonacci Series
+
+0 1 1 2 3 5 8 13 21.....
+
+
+fib(n) = fib(n-1) + fib(n-2)
+
+Nth Term = (N-1)th Term + (N-2)th Term
+
+
+
+Take N = 5
+
+fib(5) = fib(4) + fib(3)
+fib(4) = fib(3) + fib(2)
+fib(3) = fib(2) + fib(1)
+
+.........................
+
+first = 0
+second = 1
+
+for (i = 2)..
+    a[i] = a[i-1] = a[i-2];
+
+
+TREE DIAGRAM:
+
+
+                      5 - YOU
+              x+y: 4       3        
+            (x) 3 (y)2    2  1   
+              2  1  1 0  1 0   
+GROUND       1 0  
+
+
+Real Life Example:
+
+(1) Recursion: Elder: Hard Working
+(2) DP: Younger: Lazy but Smart
+
+
+15th Aug:
+Task: Collect Sweets from All Florrs in the Building
+
+
+Recursion: Hard Worker:
+
+Start from Ground Floor: ALWAYS
+
+1st: 0-1
+2nd: 0-1-2
+3rd: 0-1-2-3
+4th: 0-1-2-3-4
+
+
+DP: Smart Worker
+
+Use a Lift
+
+1st: 0-1
+2nd: 1-2
+3rd: 2-3
+4th: 3-4
+
+
+
+Recursion: EVERYTIME leaf to root traversal for Each Node
+
+DP: Reads Values from the stored data
+
+
+
+CODE:
+
+fib(n) = fib(n-1) + fib(n-2)
+
+
+// Recursive Code
+
+int fib(int n)
+{
+    if (n<=1)
+        return n;
+
+    return fib(n-1) + fib(n-2);
+}
+
+TC: O(2^N)
+SC: O(1) - In Memory
+    O(N) - Auxiliary Memory
+
+
+// DP Code
+
+
+int fibdp(int n)
+{
+    int res[n+1]; // Storing the State Results
+    res[0] = 0;
+    res[1] = 1;
+
+    for (i=2; i<=n; i++)
+        res[i] = res[i-1] + res[i-2];
+
+    return res[n]; // Nth Fibonacci Number
+}
+
+TC:  O(N)
+SC:  O(N)
+
+
+
+0 1 1 2 3 5 8 13 21.....
+
+Calculate fib(3):
+
+Recursion: 0 1 1 2
+DP: 1+1 = 2 = fib(2) + fib(1)
+
+
+
+
+
+DP: 
+
+Store the Results of previous subproblems so that it can be used again.
+
+
+NO NEED TO RE-CALCULATE AGAIN AND AGAIN
+
+
+
+
+
+
+IMP: 
+
+How to Solve Any DP Question in World?
+
+
+
+(1) Identify:
+
+Maximum, Minimum, Shortest, Largest, Smallest, Number of Ways, 
+Count, Permutations etc etc - Mathematical Operations -- DP
+
+Eg:
+
+"Longest" Common Subsequence (LCS) between two Strings - DP
+Underlying Algo: DP
+
+Keywords: Underlying Algo
+Constraints: TC and SC
+
+(2) Decide a State Expression
+Shortcut: Replace N with K
+
+state(k) = ?
+NOTE: ALWAYS MENTIONED IN THE QUESTION
+
+(3) Formulate a State Relation - IMP
+
+- How does the current state result relates to previous state results
+
+
+state(k) ----> state(k-1) or state(k-2) etc
+
+
+(4) Optimisation - Memorisation/Memoisation (Top Down/Bottom Up)
+
+Higher Order DP: 2D and Above
+
+
+
+
+
+
+
+
+
+Q: LC - 70: Climbing Stairs
+https://leetcode.com/problems/climbing-stairs/
+
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. 
+In how many distinct ways can you climb to the top?
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ 
+
+Constraints:
+
+1 <= n <= 45
+
+
+
+Solution:
+
+
+(1) Identify - DONE 
+"How many Ways" - DP
+
+
+(2) Decide a State Expression
+Shortcut: Replace N with K
+
+state(k) = Number of Ways to reach Kth Stair Using 1 or 2 Step
+
+Answer = state(N) = Number of Ways to reach Nth Stair Using 1 or 2 Step
+
+NOTE: ALWAYS MENTIONED IN THE QUESTION
+
+
+
+
+(3) Formulate a State Relation - IMP
+
+- How does the current state result relates to previous state results
+
+state(k) = state(k-1) + state(k-2)        
+
+
+
+
+
+Reach 5th Stair:
+
+4th Stair: 1 Step
+3rd Stair: 2 Steps
+
+
++: OR
+*: AND
+
+Number of Ways to reach 5th Stair
+= Number of Ways to reach 4th Stair
+ + (OR)
+ Number of Ways to reach 3rd Stair
+
+
+
+state(5) = state(4) + state(3)
+        = state(5-1) + state(5-2)
+
+
+state(k) = state(k-1) + state(k-2)        
+
+fib(n) = fib(n-1) + fib(n-2)
+
+
+REC: TLE
+DP: Pass All TC
+
+
+
+
+
+
+
+
+
+
+
 
 
 
