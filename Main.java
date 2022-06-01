@@ -14531,7 +14531,7 @@ DONE:
 - Queues
 
 TODO:
-- Linked Lists
+- Linked Lists: WIP
 - Sorting
 
 
@@ -14621,7 +14621,7 @@ RAM: 8 GB/16 GB
 
 
 
-Memroy Diagram:
+Memory Diagram:
 
 
 .: FREE
@@ -14783,7 +14783,2614 @@ TC: O(1)
 
 
 
+
+
+
+
+
+
+
+Date : 24th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+
+(4) TRAVERSAL: Printing Linked List - 
+(5) Calculate Length -- Iterative - 
+(6) Calculate Length -- Recursive - HW()
+(7) Search in a Linked List -- Iterative, Recursive --
+(8) Delete a Linked List - 
+(9) Nth Node in a Linked List -- 
+(10) Nth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
 Disadvantages of Linked Lists:
+
+(1)  No Random Access, Only Sequential Access
+
+Array:
+
+a = {1,2,3,4,5}
+Index: 0 to 4
+
+a[3] = 4 // O(1)
+arr[idx] = Element // O(1)
+
+
+If I know the index of any element, 
+I can directly reach to that element in O(1) Time
+
+
+- No Need to Start from beginning
+
+-- Random Access
+
+
+Linked Lists:
+
+
+head: 1 -> 2-> 3-> 4-> 5: tail
+
+Cannot Go Directly from 1 to 5
+- No Concept of Indexing
+
+
+To reach and Node in LL, 
+I MUST Start with head everytime
+
+-- Only Sequential Access
+
+
+Practical Example:
+
+4 Friends, College Reunion
+
+A --> B ---> C --> D
+
+
+A: Has Contact of B
+B: Has Contact of C
+C: Has Contact of D
+
+
+
+A wants to call D?
+
+- Need to reach C
+- Need to reach B
+
+A will call B, will call C, will call D
+
+
+A --> B --> C --> D
+
+
+
+
+(2) No Backtracking in Single LL
+
+a = {1,2,3,4,5}
+L to R, R to L
+
+
+i++: L to R
+i--: R to L
+
+
+Linked List:
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+Cannot Go Back: Reverse
+- Single LL
+
+Possible: Double LL
+
+head: 1 <-> 2 <-> 3 <-> 4 <-> 5: tail
+
+
+
+
+
+
+
+
+
+CODE:
+
+Java:
+
+
+int a;// a : Variable
+Node a; // a: Object of type Node: Class
+
+Class A
+{
+
+}
+
+main()
+{ 
+A obj; // Not Self Referential Object
+}
+
+
+
+
+
+class Node
+{
+    int data;
+    Node next = null; // Self Referential Object
+
+    Node(int data)
+    {
+        this.data = data;
+    }
+}
+
+
+- Every Object of a Class has the Same Structure
+
+EVERY NODE WILL HAVE SAME STRUCTURE
+
+Structure of Linked List:
+
+1, next      2, next      3, next      4,5,next: INCORRECT
+null          null        null         null
+
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+{
+    data: int
+    next: null
+}
+
+
+
+
+
+
+Q: Form a Linked List from Nodes:
+
+
+// Structure/Blueprint of Node
+class Node
+{
+    int data;
+    Node next = null; // Self Referential Object
+
+    Node(int data)
+    {
+        this.data = data;
+    }
+}
+
+public static void main(String args[])
+{
+    // Creating Nodes
+    Node head = new Node(1);
+    Node second = new Node(2);
+    Node third = new Node(3);
+
+
+    1, next          2, next     3, next
+    null              null         null
+    (head)          (first)      (second)
+
+
+    // Connecting Nodes - Forming a Linked List
+    head.next = second;
+    // 1 -> 2
+
+    second.next = third;
+    // 2-> 3
+
+    LL: head: 1->2->3-> null: tail
+
+}
+
+
+End of Linked List?
+
+if (node.next == null) -- Last Node of LL/Last Compartment of Train
+
+
+
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- 
+(7) Search in a Linked List -- Iterative, Recursive -- DOMNE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+
+
+(10) Nth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+
+
+Pattern:
+Ques, IP, OP, Company, Function
+
+
+30 Sec --> 20 sec
+Completed Function, TC, SC
+
+
+
+Q: [Amazon] TRAVERSAL: Printing Linked List
+
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+OP: [1 2 3 4 5]
+
+
+void printList(Node head)
+{
+
+}
+
+
+Solution:
+
+Approach: Traverse for Each Node and Print Data
+
+
+s.o.p.(head): Incorrect
+s.o.p(head.data): Correct
+
+Move to Next Node:
+
+nextNode = currNode.next
+
+
+
+Dont Make Operations on head
+
+head: 1 -> 2 -> 3 -> 4 -> 5: tail
+
+while (head!=null)
+    head = head.next;
+
+After Loop:
+
+1 -> 2 -> 3 -> 4 -> 5:head, tail
+
+
+Better Way: 
+
+Node temp = head;
+Perform Operations on temp
+
+
+
+CORRECT CODE:
+
+head: 1 -> 2 -> 3 -> 4 -> 5: null
+
+
+void printList(Node head)
+{
+    Node temp = head;
+    while (temp!=null)
+    {
+        System.out.println(temp.data + " ");
+        temp = temp.next;
+    }
+}
+
+OP: [1 2 3 4 5]
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+INCORRECT CODE:
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+
+void printList(Node head)
+{
+    Node temp = head;
+    while (temp.next!=null)
+    {
+        System.out.println(temp.data + " "); // Last Node DOES NOT Satisfy the Criteria
+        temp = temp.next;
+    }
+}
+
+OP: [1 2 3 4]
+
+
+
+
+Q-2: [Amazon] Count the Number of Nodes in a Linked List/ Length of Linked List
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+OP: 5
+
+
+int getCount(Node head)
+{
+    Node temp = head;
+    int count =0;
+
+    while (temp!=null)
+    {
+        ++count;
+        temp = temp.next;
+    }
+
+    return count;
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+Iteration <--> Recursion: Interconvertible
+
+HW: Write Recursive Version of getCount()
+
+
+
+
+
+Q-3: [Adobe] Search in a Linked List
+
+LL, int key
+
+
+head: 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+
+key: 2
+OP: true
+
+key: 7
+OP: false
+
+Time: "25 Sec"
+
+
+boolean searchNode(Node head, int key)
+{
+    Node temp = head;
+
+    while (temp!=null)
+    {
+        if (temp.data == key)
+            return true;
+
+        temp = temp.next;
+    }
+
+    return false;
+}
+
+Brownie Points:
+
+TC: Best Case: O(1) - First Node
+    Worst Case: O(N) - Last Node/Node Not Present
+
+SC: O(1)
+
+
+
+
+
+
+
+
+Q- 4: [Microsoft] Print Kth Node from Beginning in a Linked List
+
+
+LL, int K
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 2
+OP: 20
+
+K = 4
+OP: 40
+
+
+
+Constraints:
+1 <= K <= N
+
+If K>N, Just Do: K = K%N
+
+
+
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 2
+OP: 20
+
+
+
+int KthNode(Node head, int K)
+{
+    Node temp = head;
+    int count =0;
+
+    while (temp!=null)
+    {
+        ++count; // 0->1->2
+
+        if(count == K) //1!=2, 2==2
+            return temp.data; // 20
+
+        temp = temp.next; // 10->20
+    }
+
+    return -1;
+}
+
+
+TC: O(K), 1 <= K <= N
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 25th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+
+TODO:
+
+(12) Detect Cycle in a Linked List - With Hashing
+(13) Detect Cycle in a Linked List - Without Hashing
+
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+VVVVVI
+Q-8: Print Kth Node from End in Linked List: SPECIAL
+[Google, Cisco, Adobe, Paypal, Flipkart]
+
+
+LL, int K
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+K = 1
+OP: 50
+
+K = 4
+OP: 20
+
+
+Constraints:
+
+1 <= K <= N
+
+
+int KthNodefromEnd(Node head, int K)
+{
+
+}
+
+
+
+Solution:
+
+Good Developer vs Very Good Developer Approach
+
+Two Approaches:
+
+(1) Good Developer Approach:
+
+Kth Node from End
+= (len-K+1) from Beginning
+
+
+K = 1
+OP: 50
+len = 5
+
+From Beginning: len-K+1 = 5-1+1 = 5th Node from Beginning = 50
+
+
+7-3 = 4, 3 is Excluded, 7 is Included
+
+b-a: a is Excluded, b is Included
+b-a+1: a and b bot Included
+
+
+
+Complexity:
+
+(1) Calculate Length: O(N)
+(2) Traverse (len-K+1) from beginning and then return that Node: O(N-K+1)
+
+TC: O(N) + O(N-K+1) = O(2*N)
+
+Worst Case: K = 1
+
+
+In Real Life Productions:
+N = 10^9
+
+O(N): Single Traversal: 10^9 Interations
+O(2*N): Double Traversal: 2*10^9 Iterations
+
+
+Phonepe/Paytm/Gpay
+
+UPI: Payments
+
+Paytm: 2 sec
+Phonepe: 2 sec
+
+
+Code: O(N) -> O(2N) in Paytm Codebase
+
+Paytm: 4 sec
+Phonepe: 2 sec
+
+Latency Increase by 2 Times
+
+
+
+
+(2) Very Good Developer Approach:
+Single Traversal: O(N)
+
+
+Two Pointer/Hare and Tortoise/ Fast and Slow Approach:
+
+Approach:
+
+Initial:
+
+slow : head
+fast : head + K
+
+Start Traversal:
+
+slow = slow.next
+fast = fast.next
+
+
+fast == null: STOP
+slow --> Kth Node from End
+
+
+
+Why This Works?
+
+a and b: diff K
+Add Same Value, diff = K: Always
+
+
+
+a = 5
+b = 7
+k = 2
+
+
+a +10, b+10
+5+10 = 15
+7+10 = 17
+diff = 2 = K
+
+
+a-b= k
+(a+n)-(b+n) = k
+
+
+
+
+DRY RUN:
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+K = 2
+OP: 40
+
+
+head = 10
+
+Initial:
+
+slow = 10
+fast = head + K = 30
+
+Start Traversal:
+
+slow = 10->20
+fast = 30->40
+
+
+slow = 20->30
+fast = 40->50
+
+slow = 30->40: Kth Node from End - Ans
+fast = 50->null: STOP
+
+OP: 40
+
+
+
+DS:      Real Life
+
+Stack : Packet of Bread
+Queue:  Bank Line/Queue
+Linked List: Running Track 
+Circular LL: Round Track
+
+
+Example:
+
+
+100 Metres Race
+
+A: 10 M
+B: 50 M
+
+Diff = 40 M
+
+Speed of A : Remains Same
+Speed of B : Remains Same
+
+B --> 100 M
+A --> 100-40 = 60 M
+
+
+
+
+
+
+CODE:
+
+
+
+int KthNodefromEnd(Node head, int K)
+{
+    Node slow = head;
+    Node fast = head;
+
+    while (K--!=0) // O(K)
+        fast = fast.next;
+
+    // fast = head + K
+
+    while (fast!=null) // O(N-K)
+    {
+        slow = slow.next; // O(1)
+        fast = fast.next; // O(1)
+    }
+
+    // slow: Kth Node from End
+
+    return (slow.data)
+}
+
+TC: O(N)
+SC: O(1)
+
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+K = 2
+OP: 40
+
+slow = 10: head
+fast = 10: head
+
+fast = head + k : 30 (K Nodes after head)
+
+fast = head + K: CODE - INCORRECT
+    (Node) (int)
+
+
+while(K--!=0) ---> Moving Fast to K Times Ahead
+    fast = fast.next
+
+OR
+
+for (i=0; i<K; i++)
+    fast = fast.next
+
+
+
+
+
+
+
+VVVVI
+Q-9: Middle of Linked List: SPECIAL
+[Adobe, Paypal]
+
+head: 10 -> 20 -> 30 -> 40 -> 50 -> null
+
+
+Middle: 30: OP
+
+
+int getMiddle(Node head)
+{
+
+}
+
+
+Solution:
+
+Good Developer vs Very Good Developer Approach
+
+Two Approaches:
+
+(1) Good Developer Approach:
+
+len: Length of Linked List
+print(len/2) or print((len+1)/2), Even or Odd
+
+TC: O(N) + O(N/2) = O(1.5*N)
+
+
+(2) Very Good Developer Approach
+
+O(N): Single Traversal
+
+Two Pointer/Hare and Tortoise/ Fast and Slow Approach:
+
+Approach:
+
+Initial:
+
+slow = head
+fast = head
+
+Start Traversal:
+
+slow = slow.next
+fast = fast.next.next
+
+
+When the Fast reaches End
+slow --> Middle of Linked List
+
+
+
+
+
+
+Why It Works?
+
+Track: 100 M
+
+Two People are Running:
+
+A = 10 km/h
+B = 20 km/h
+
+After time 't':
+B covers the distance: d
+A covers the distance: d/2
+
+
+
+CODE:
+
+
+int getMiddle(Node head)
+{
+    Node slow = head;   
+    Node fast = head;
+
+    while(fast!=null && fast.next!=null)
+    {
+        slow = slow.next; // Speed: x
+        fast = fast.next.next; // Speed: 2x
+    }
+
+    // After the while loops, fast -> End, slow-> Middle of LL
+    return slow.data;
+}
+
+
+TC: O(N)
+SC: O(1)
+
+
+
+VVVVI
+Q-10: Detect Cycle in a Linked List: SPECIAL
+LC - 141: Linked List Cycle
+https://leetcode.com/problems/linked-list-cycle/
+
+
+
+
+
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+ 
+
+Example 1:
+
+
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+Example 2:
+
+
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 0th node.
+Example 3:
+
+
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
+ 
+
+Constraints:
+
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
+ 
+
+Follow up: Can you solve it using O(1) (i.e. constant) memory?
+
+
+Unacademy:
+
+Detecting Cycle in a Linked List, using hashing
+A linked list is said to contain a cycle if any node is visited more than once while traversing the list.
+
+Given a list check whether or not there is a cycle in the list.
+Return 1 is list has cycle, else return 0.
+
+Note: If the list is empty, head will be null.
+Example :
+Input :
+   A.         .......
+              |     |
+              V     |
+     (head)1->2->4->5
+ 
+   B.(head)1->2->NULL
+Output :
+A. 1
+B. 0
+
+
+
+
+
+Understanding:
+
+Cycle/Loop in a Linked List:
+A Node is Traversed MORE THAN Once During Traversal of Linked List
+
+
+Eg:
+              .......
+              |     |
+              V     |
+     (head)1->2->4->5
+
+ 
+OP: 1 2 4 5 2 4 5 2 4 5 2 4 5......: Loop
+
+
+            ..........
+            |        |
+            V        |
+     (head) 1->2->4->5
+
+OP: 1 2 4 5 1 2 4 5 1 2 4 5 1 2 4 5......: Loop
+
+
+
+while(temp.next!=null) - Condition Never satisfied if LL has Cycle
+{
+    s.o.p(_)
+}
+
+
+Edge Cases:
+
+(1) LL: 1->2->3->NULL
+    No Cycle/Loop
+
+(2) LL: 1->2->3->4->5->2->NULL
+    No Cycle/Loop
+    
+(3) LL: 2->2->2->2->NULL
+    No Cycle/Loop
+    
+(4) LL: 1->2->3->4   
+           |_____|
+
+    Yes, There is a Loop/Cycle
+
+
+
+Incorrect Approach:
+
+while(temp.next!=null)- NEVER HIT in case LL Contains Cycle
+- TLE
+
+
+Solution:
+
+(1) With Hashing:
+
+
+Intuition:
+
+Same Node is Tarversed More Than Once in LL - CYCLE
+OR
+Duplicate Node Found/Traversed - CYCLE
+
+Set: Check if Node Already traversed: CYCLE, Else No Cycle
+
+
+
+CODE:
+
+// T: O(N)
+// S: O(N)- Set
+
+public class Solution {
+    public boolean hasCycle(ListNode head) 
+    {
+        if (head == null)
+            return false;
+        
+        // Check for Duplication of Node, Not for Duplication of Data in Node
+        HashSet<ListNode> set = new HashSet<ListNode>();
+        ListNode temp = head;
+        
+        while(temp!=null)
+        {
+       // Node Already Contained ---> Cycle     
+            if (set.contains(temp))
+                return true;
+            
+            set.add(temp);
+            temp = temp.next;
+        }
+        
+        return false; //No Cycle
+    }
+}
+
+
+
+T: O(N)
+S: O(N)- Set
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 26th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing
+
+TODO:
+
+(13) Detect Cycle in a Linked List - Without Hashing
+- Sorting Algos
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+(2) Without Hashing
+
+TC: O(N)
+SC: O(1)
+
+
+Circular Linked List/Linked List With Cycle:
+Real Life Example: Circular Track
+
+
+Track = 400 M, Circular Track
+
+
+A: 10 Km/h
+B: 20 Km/h
+
+
+If in time 't', A Cover 1 lap
+How Many Laps will B Cover?
+
+Ans: 2 Laps
+
+
+
+Circular Track:
+A will meet B when B has already covered 1 lap
+
+
+Parallel Track:
+A and B will Never Meet
+
+
+
+Approach:
+
+
+(1) slow: head, fast: head
+(2) slow: Speed->x, fast: Speed->2x
+(3) if slow == fast: CYCLE/LOOP
+(4) Else, No Cycle
+
+
+
+CODE:
+
+
+
+// Approach -2 : Without Hashing
+// T: O(N)
+// S: O(1)
+
+public class Solution {
+    public boolean hasCycle(ListNode head) 
+    {
+                // Contraints:
+// The number of the nodes in the list is in the range [0, 10^4].
+        if (head == null)
+            return false;
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        // slow: 1x, fast: 2x
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            slow = slow.next; // speed: 1x
+            fast = fast.next.next; // speed: 2x
+            
+            if (slow == fast)
+                return true;                
+        }
+        
+        return false;
+    }
+}
+
+
+T: O(N)
+S: O(1)
+
+
+
+
+
+
+
+
+
+
+-------> SORTING:
+
+Sorting:
+List of Unsorted Values ---> List of Sorted Values
+
+[3 1 6 8 9 2] ---> [1 2 3 6 8 9]
+
+Sorting Algorithms:
+
+- Bubble Sort
+- Insertion Sort
+- Selection Sort
+- Merge Sort 
+- Quick Sort
+
+
+- Heap Sort
+- Radix Sort
+
+
+
+
+
+Q: Which is the Best Sorting Algorithm in World? - Google
+
+
+
+
+
+
+(1) Bubble Sort:
+Simplest Sorting Algorithm
+
+
+
+Approach:
+- Swap Adjacent Elements if they are not in ascending order
+
+Example:
+
+a = [5 1 4 2 8]
+OP: [1 2 4 5 8]
+
+
+First Iteration/Pass:
+
+5 1 4 2 8 ---> 1 5 4 2 8: 5 > 1: SWAP
+i j 
+
+1 5 4 2 8 ---> 1 4 5 2 8: 5 > 4: SWAP
+
+1 4 5 2 8 ---> 1 4 2 5 8: 5 > 2 : SWAP 
+
+1 4 2 5 8 ---> 1 4 2 5 8: NO SWAP
+
+
+Second Iteration/Pass:
+
+
+1 4 2 5 8 ---> 1 4 2 5 8: NO SWAP
+i j
+
+1 4 2 5 8 ---> 1 2 4 5 8: 4 > 2: SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+
+Third Iteration/Pass:
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+1 2 4 5 8 ---> 1 2 4 5 8: NO SWAP
+
+
+[1 2 4 5 8]: YES
+1 < 2 < 4 < 5 < 8
+
+
+
+Take i = 2
+
+arr[i]: CURRENT: 4
+arr[i+1]: RIGHT/Next: 5
+arr[i-1]: LEFT/Prev: 2
+
+
+curr < RIGHT AND curr > LEFT: No SWAP
+arr[i]<arr[i+1] AND arr[i] > arr[i-1]: NO SWAP
+
+Else, SWAP
+
+
+
+CODE:
+
+void BubbleSort(int[] arr, int n)
+{
+    int i=0,j=0;
+
+    for (i=0; i<n-1; i++) // O(N)
+    {
+        for (j=1; j<n-i-1; j++) // O(N) - Worst Case
+        {
+            if (arr[j] > arr[j+1])
+            {
+                swap(arr[j], arr[j+1]);
+            }
+
+        }
+    }
+}
+
+
+TC: O(N^2)
+SC: O(1)
+
+
+Best Case: Already Sorted -> Increasing Order -> No Swap
+Worst Case: Reverse Sorted -> Decreasing Order -> Maximum Swaps
+
+
+Why Name Bubble Sort:
+Large Values are Bubbled towards the End of Array
+
+
+
+
+
+
+(2) Selection Sort:
+
+Approach:
+
+- Sort Subarray by Finding the smallest element and swapping it with the first element
+- Repeat the process for the arr[0...n], arr[1...n], arr[2...n]
+
+
+Example:
+
+a = [64 25 12 22 11]
+OP: 11 12 22 25 65
+
+Indexing: 0 to 4
+
+
+
+Find Smallest Element in arr[0...4] = 11
+Place it at the Beginning of arr[0...4] 
+
+64 25 12 22 11 ---> 11 64 25 12 22
+// Shift 64 
+
+Find Smallest Element in arr[1...4] = 12 [11 64 25 12 22]- arr[1...4]
+Place it at the Beginning of arr[1...4] 
+
+11 64 25 12 22 ---> 11 12 64 25 22
+
+
+Find Smallest Element in arr[2...4] = 22 
+Place it at the Beginning of arr[2...4] 
+
+11 12 64 25 22 ---> 11 12 22 64 25
+
+
+Find Smallest Element in arr[3...4] = 25 
+Place it at the Beginning of arr[2...4] 
+
+11 12 22 64 25 ---> 11 12 22 25 64 
+
+
+
+Selection Sort:
+
+arr[0...n]
+arr[1...n]
+arr[2...n]
+.........
+arr[n-1...n]
+
+- Find Smalleest Value --> Shift to Front
+
+
+Selection Sort:
+
+(1) Find Smallest in Array : First 
+(2) Find Second Smallest in Array : Second 
+(3) Find Third in Array : Third 
+
+.......
+
+(N) Find Second Largest : Second Last
+
+
+
+
+CODE:
+
+
+
+void selectionSort(int[] arr, int n)
+{
+    int i=0, j=0;
+
+    for (i=0; i<n-1; i++)
+    {
+        int min = i;
+        for (j=i+1; j<n; j++)
+        {
+            if (arr[j] < arr[min])
+            {
+                min = j;
+            }
+        }
+            swap(arr[i], arr[min]);
+    }
+}
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+IMP:
+Merge Sort
+
+Important:
+- Merge Two Sorted Arrays
+- Merge K Sorted Arrays
+- Merge Two Sorted Linked Lists
+- Merge K Sorted Linked Lists
+
+
+Algo: Divide and Conquer
+
+
+Steps:
+
+(DIVIDE)
+- Divide the Array into Two Halves
+- Recursively calls the function for thr two halves
+- Until it becomes single unit/element
+
+(CONQUER)
+- Sort the Two Halves Individually
+- Merge the Two Sorted Arrays Recursively in a Final Array
+
+
+Example:
+
+a[] = {38,27,43,3,9,82,10}
+
+index: 0 to 6
+mid = (0+6)/2 = 3
+
+
+First Half: a[0] to a[3] = [38 27 43 3] = arr[0] to arr[mid]
+
+Second Half: a[4] to a[6] = [9 82 10] = a[mid+1] to a[n-1]
+
+
+DIVIDE:
+
+                [38 27 43 3 9 82 10]
+
+           [38 27 43 3]      [9 82 10]
+    
+        [38 27] [43 3]      [9 82] [10]
+
+     [38][27][43][3]       [9] [82] [10]
+
+
+CONQUER:
+
+     [38][27][43][3]       [9] [82] [10]
+
+     [27 38] [3 43]       [9 82] [10]
+
+        [3 27 38 43]    [9 10 82]
+
+            [3 9 10 27 38 43 82]
+
+
+How Conquer Works?
+
+
+[38] [27] --> [27 38]
+
+Create Array of Size: 1 + 1 = 2
+
+Compare 27 and 38
+27 < 38
+ans[0] = 27, ans[1] = 38
+
+ans = [27 38]
+
+
+
+left[m], right[n] --> Ans[m+n]
+[27 38] [3 43] --> [3 27 38 43]
+
+
+if (left[i] < right[j]) // Move to left array
+    i++;
+Else
+    j++; // Move to Right Array
+
+
+
+Create Array of Size: M + N
+Compare Each values of the array and select the smallest 
+(left and right comparison)
+- Accordingly go i++ or j++
+
+Ans = arr[m+n]: Sorted Array
+
+
+
+
+
+
+Pseudo Code:
+
+
+l = 0, r = n-1
+
+void mergeSort(int[] arr, int l, int r)
+{
+    if (l<=r)
+    {
+        mid = l+(r-l)/2;
+        mergeSort(arr, l, mid); // Left Part - DIVIDE
+        mergeSort(arr, mid+1, r); // Right Part - DIVIDE
+        merge(arr[], l, mid, r); // Merge the Two Parts recursively - CONQUER
+    }
+}
+
+
+TC: O(N*log N)
+
+Splitting into half: Similar to Binary Search: log N
+Total Times: N
+Hence, TC = O(N*logN)
+
+SC: O(N) - Extra Array Created
+
+
+
+
+
+
+
+Arrays.sort(arr); // O(NlogN)
+
+Internally Uses: Tim Sort
+
+Tim Sort: Hybrid Sort
+        - Collection of Quick, Merge and Selection
+
+
+
+
+Syllabus:
+
+DONE:
+- Arrays
+- Matrices
+- Strings
+- Recursion
+- XOR and Bit Manipulation
+- Search
+- Stacks
+- Queues
+- Linked Lists:
+- Sorting
+
+
+
+
+
+
+
+
+
+
+
+
+
+Date : 30th May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+Agenda:
+
+(1) Introduction to Linked List- DONE
+(2) Linked List vs Array - DONE
+(3) Linked List Insertion - DONE
+(4) TRAVERSAL: Printing Linked List - DONE
+(5) Calculate Length -- Iterative - DONE
+(6) Calculate Length -- Recursive - HW()- DONE
+(7) Search in a Linked List -- Iterative, Recursive -- DONE
+(8) Delete a Linked List - DONE
+(9) Nth Node in a Linked List -- DONE
+(10) Kth Node from End in Linked List -- Two Approaches (Two Traversals and Single Traversal)
+(11) Middle of Linked List -- Two Approaches (Two Traversals and Single Traversals)
+(12) Detect Cycle in a Linked List - With Hashing - DONE
+(13) Detect Cycle in a Linked List - Without Hashing - DONE
+(14) Sorting Algos - DONE
+- Max Prod Subarray: LC: DONE
+
+TODO:
+- Assignment Questions: DONE
+- Dynamic Programming
+- OOPS
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+3rd June: Informal Session (45 Mins - 1 Hr)
+5th June: Contest (Sunday - Shuffling) 
+9th June: Shuffling
+Till 10th June: Classes 
+
+DSA1: DONE
+DSA2: DONE
+
+DSA3: Advanced DSA
+- DP (Dynamic Programming)
+- Backtracking
+- Trees
+- Graphs
+
+FE: HTML, CSS, JS, React, Redux
+BE: Sql, Nodejs, MongodB
+
+Placement: 2 Months
+
+
+Big Tech: Specialists - BE, FE, Full Stack
+
+Startups: Generalists - SWE
+
+Salary: 3 Yrs: SDE -1:2
+
+Product: 
+
+
+
+
+- Assignment Questions
+
+
+
+
+
+
+Q: Bit Manipulation - In Class - Minimize XOR
+
+Minimize XOR
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+
+Given an integer array A of N integers, 
+find the pair of integers in the array which have minimum XOR value. 
+Report the minimum XOR value.
+
+Input
+
+First line denotes N, the size of the array.
+Next line denotes N space-separated array elements.
+
+Constraints:
+2 <= N <= 100000
+0 <= A[i] <= 10^7
+
+Output
+
+Print a single integer denoting minimum xor value
+Example
+
+Sample Input
+4
+0 2 5 7
+
+Sample Output
+2
+
+Explanation:
+0 xor 2 = 2
+
+Sample Input
+
+4
+0 4 7 9
+
+Sample Output
+3
+
+
+
+
+
+
+Solutions:
+
+
+(1) Brute Force Solution: Two Nested Loops
+
+- For Each pair, Calculate XOR and Find the Minimum
+
+TC: O(N^2)
+SC: O(1)
+
+
+(2) Optimised Solution:
+A ^ A = 0: Min
+
+Same Input, XOR = 0
+Diff Input, XOR = 1
+
+A ^ B: Min: A == B
+
+
+A close to B: Min XOR - Intuition
+A far from B: Max XOR
+
+
+
+
+Sort the Array: 
+(1) All Close Elements will become together
+(2) Iterate Over Adjacent values and find the Min XOR
+
+
+a = [5 2 0 7]
+After Sorting: [0 2 5 7]
+
+Min XOR: 0^2 = 2
+
+
+Approach:
+
+(1) Sort the Array
+(2) Calculate: arr[i] ^ arr[i+1]: Contiguous Values
+(3) Find Minimum
+
+TC: O(NlogN)
+SC: O(1)
+
+
+CODE:
+
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+class Main {
+    static int minXOR(int [] A, int N) 
+    {
+        Arrays.sort(A);  // for sorting the array
+        int minimumxor = Integer.MAX_VALUE;
+        int value = 0;
+        for(int i=0; i<N-1; i++) {
+            value = A[i]^A[i+1];
+            minimumxor = Math.min(minimumxor, value);  // to find minimum pair
+        }
+        return minimumxor;
+    }
+
+    public static void main (String[] args) 
+    {
+        Scanner input = new Scanner(System.in);
+        int N = input.nextInt();
+        int [] A = new int[N];
+
+        for(int i=0; i<N; i++) {
+            A[i] = input.nextInt();
+        }
+        
+        System.out.println(minXOR(A, N));
+    }
+}
+
+
+TC: O(NlogN)
+SC: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IMP:
+Q: Two Pointers - In Class - Max subarray sum (size K)
+https://my.newtonschool.co/playground/code/x8oof6sc2xnx/
+
+
+Max subarray sum (size K)
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+Given an array of integers A and a number K, 
+find maximum sum of a subarray of size K.
+
+Input
+The first line of input contains two integers N and K, denoting the number of elements in the array and the subarray size respectively.
+The next line contains N integers denoting the elements of the array respectively.
+
+1 <= K <= N <= 200000
+-200000 <= A[i] <= 200000
+
+Output
+Print a single integer denoting the maximum sum of subarray of size K.
+
+Example
+
+Sample Input:
+4 2
+-1 5 2 -3
+
+Sample Output:
+7
+
+Explanation:
+Three subarrays of size 2, their sum are 4, 7, -1
+
+
+Solution:
+
+Total Number Of Subarrays in an Array of Size N = N*(N+1)/2
+
+Number Of Subarrays of Size K in an Array of Size N = N-K+1
+OR
+Number of Sliding Windows os Size K in an Array of Size N = N-K+1
+
+Understanding:
+
+a = [-1 5 2 -3]
+K = 2
+
+
+Subarrays: Sum
+
+[-1 5] = 4
+[5 2] = 7 : MAX
+[2 -3] = 1
+
+
+
+Solutions:
+
+(1) Brute Force: Two Nested Loops
+
+Generate All Subarray of Size K and find the max Sum:
+
+TC: O(N^2)
+SC: O(1)
+
+(2) Optimised Solution: Single Loop
+
+
+[-1 5 2 -3]
+K = 2
+
+Subarrays:
+
+First Subarray: [-1 5] 
+CODE: for (i=0; i<K; i++)
+
+Other Subarrays:
+
+
+[0.1....k..k+1........]
+
+First Subarray: arr[0...k]
+Next Subarray: Remove 0 and add 1
+            arr[1...k+1]
+
+Next: arr[2...k+2]
+
+
+
+
+arr = [-1 5 2 -3]
+K = 2
+
+
+Subarrays: Sum
+[-1 5] = 4
+[5 2] = 7 : MAX
+[2 -3] = -1
+
+
+CODE:
+public static int maxSum(int arr[], int n, int k)
+    {
+        int res = 0;
+        for (int i=0; i<k; i++) // O(K)
+           res += arr[i]; // res = 4
+
+
+        int currentSum = res; // currentSum = 4
+        for (int i = k; i<n; i++)  // O(N-K)
+        // i = 2; i<4; i++
+        {   // i = 2
+            // currentSum += arr[2] - arr[2-2] = arr[2] - arr[0] = 2-(-1) = 3
+            // currenSum = 4+3 = 7
+
+            // i = 3
+            // currentSum += arr[3] - arr[3-2] = arr[3] - arr[1] = -3-(5) = -8
+            // currenSum = 7-8 = -1
+           
+           currentSum += arr[i] - arr[i-k]; // Remove 0 and add 1
+                                            //  arr[1...k+1]
+           res = Math.max(res, currentSum); // res = max(4, 7) = 7
+        }
+      
+        return res; //7
+    }
+
+
+
+TC: O(N)
+SC: O(1)
+
+
+
+
+
+Q: LC - 152: Maximum Product Subarray
+https://leetcode.com/problems/maximum-product-subarray/
+
+Given an integer array nums, find a contiguous non-empty subarray within the array that has the largest product, and return the product.
+
+The test cases are generated so that the answer will fit in a 32-bit integer.
+
+A subarray is a contiguous subsequence of the array.
+
+ 
+
+Example 1:
+
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+Example 2:
+
+Input: nums = [-2,0,-1]
+Output: 0
+Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
+ 
+
+Constraints:
+
+1 <= nums.length <= 2 * 104
+-10 <= nums[i] <= 10
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+
+
+Input: nums = [2,3,-2,4]
+Output: 6
+Explanation: [2,3] has the largest product 6.
+
+
+
+
+Subarray: Product
+
+[2 3]     = 6
+[2 3 -2]  = -12
+[2 3 -2 4] = -48
+
+
+[3 -2]   = -6
+[3 -2 4]  = -24
+
+[-2 4]  = -8
+
+MaxAns = 6
+
+
+
+ public int maxProduct(int[] nums) 
+ {
+        
+}
+
+
+Solution:
+
+
+(1) Brute Force: Two Nested Loops
+
+- Generate All Subarrays 
+- Calculate Prod of All Subarrays
+- Find Max
+
+CODE:
+
+for (int i = 0; i < n; i++)
+    {
+        int mul = nums[i];
+        for (int j = i + 1; j < n; j++)
+        {
+            
+            result = max(result, mul);
+            mul *= nums[j];
+        }
+        result = max(result, mul);
+    }
+    return result;
+}
+
+TC: O(N^2)
+SC: O(1)
+
+
+
+(2) Optimised Solution:
+
+Trick:
+
+
+
+[2,3,-2,4]
+
+
+Subarray:
+
+
+[2 3]
+Prefix Prod : 0
+Suffix Prod:  [-2 4] = -8
+
+
+Max Product = Max(prefix_prod, suffix_prod)
+
+
+
+CODE:
+
+
+
+// Author: @devangs
+// TC: O(N)
+// SC: O(1)
+
+
+
+[2,3,-2,4]
+N = 4
+OP: 6
+
+
+class Solution {
+    public int maxProduct(int[] A) 
+    {
+        int len = A.length;
+        int prod = 1;
+        int max = Integer.MIN_VALUE;
+        int i = 0;
+        
+        for (i=0; i<len; i++)
+        {
+    // prefix_prod = prefix_prod * A[i]: Multiply from Beginning
+            max = Math.max(prod*=A[i], max); //max = 2, 6, -12, -48: max = 6 
+            
+            // Edge Case for 0 in Subarray
+            if (A[i] == 0)
+                prod = 1;            
+        }
+        
+        prod = 1;
+        
+        for (i=len-1; i>=0; i--)
+        {
+     // suffix_prod = sufix_prod * A[n-i-1]: Multiply from End
+            max = Math.max(prod*=A[i], max); // max = 4, -8, -24, -48: max = 4
+            
+            // Edge Case for 0 in Subarray
+            if (A[i] == 0)
+                prod = 1; 
+        }
+        
+        return max; // max(6,4) = 6
+    }
+}
+
+
+
+
+
+
+
+
+Date : 31st May 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Agenda:
+
+- Introduction to DP
+- DP vs Backtracking vs Greedy
+- DP vs Recursion- Real Life Example 
+
+
+Questions
+- Removing Chocolates- Paypal: 
+- Uncertain Steps- Google: 
+- max Steps - Amazon: 
+- [Adobe] Q: Variation of Sum of Numbers- 1,3,5: 
+
+
+2D DP:
+- Goldmine- Microsoft
+- Maximum size square sub-matrix with all 1s- Paypal
+
+- OOPS
+- Quick Sort
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+Syllabus:
+
+DONE:  (70%)
+- Arrays
+- Matrices
+- Strings
+- Recursion
+- XOR and Bit Manipulation
+- Search
+- Stacks
+- Queues
+- Linked Lists:
+- Sorting
+
+
+30%:
+
+DP : Started
+Backtracking
+Trees
+Graphs
+
+
+
+
+
+Agenda: Dynamic Programming (DP)
+
+- DP vs Backtracking vs Greedy
+
+
+DP:
+- Optimisation Over Recursion
+- Storing the Results of previous states to avoid recalculating
+
+Backtracking:
+- Optimisation Over Recursion
+- Does Not Store Any State
+- Find All Possible Answers
+
+Greedy:
+- Find me the BEST Solution Now
+- DONT THINK ABOUT FUTURE
+
+
+
+
+
+Eg:
+
+
+Given a Matrix, 
+Calculate Max Gold Coins in the Matrix.
+
+
+Constraints: Right or Down
+
+[
+S: 1  10  20
+   100 1000 25
+   70  80   90: D 
+]
+
+
+S- D Path?
+
+
+1 10 1000 25 90: VALID
+1 10 1000 80 90: VALID
+1 100 1000 80 90: VALID: ANS
+
+
+
+
+DP: Find All S-D Valid Path and then Check for Maximum
+
+Greedy: 
+
+You are 1: 10 or 100
+
+According to Greedy, 
+ALWAYS go to 100 because MAX(10,100) = 100
+
+
+At Every Step, Choose the BEST SOLUTION there, 
+DONT THINK ABOUT FUTURE
+
+
+
+
+WORKING:
+
+[
+S: 1  10  20
+   100 1000 25
+   70  80   90: D 
+]
+
+
+Correct OP: 1 100 1000 80 90
+
+Greedy OP: 1 100 1000 80 90
+
+
+
+NOT WORKING:
+
+[
+S: 1  10  2000
+   100 1000 25
+   70  80   90: D 
+]
+
+
+
+As Per Greedy,
+
+At 1: Select 100
+After Reaching 100, Never be able to reach 2000
+
+
+Greedy does not write answer Always.
+
+
+
+
+Dynamic Programming (DP)
+
+
+For any DS/Algo:
+- What (Use Case/Problem)
+- Why (Applications)
+- How (Coding/Implementation)
+
+
+What?
+
+- Optimisation Over Recursion by "Storing the State Results to Avoid Calculating Again and Again"
+
+Why?
+
+Exponential Time Complexity ---> Polynomial Time
+(Recursive)                      (DP)
+
+O(2^N) --> O(N)
+
+
+State Variables:
+Number of Variables Determining the State of DP
+
+
+
+1-D DP: State Depends on 1 Variables
+Eg: Fibbonacci Numbers/Factorial
+
+
+2-D DP: State Depends on 2 Variables
+Eg: 0-1 Knapsack Problem
+
+
+3-D DP: State Depends on 3 Variables
+
+House of Robbers-3: LC Premium
+Round H: GKS 2019
+
+
+
+
+
+Fibbonacci Series
+
+0 1 1 2 3 5 8 13 21.....
+
+
+fib(n) = fib(n-1) + fib(n-2)
+
+Nth Term = (N-1)th Term + (N-2)th Term
+
+
+
+Take N = 5
+
+fib(5) = fib(4) + fib(3)
+fib(4) = fib(3) + fib(2)
+fib(3) = fib(2) + fib(1)
+
+.........................
+
+first = 0
+second = 1
+
+for (i = 2)..
+    a[i] = a[i-1] = a[i-2];
+
+
+TREE DIAGRAM:
+
+
+                      5 - YOU
+              x+y: 4       3        
+            (x) 3 (y)2    2  1   
+              2  1  1 0  1 0   
+GROUND       1 0  
+
+
+Real Life Example:
+
+(1) Recursion: Elder: Hard Working
+(2) DP: Younger: Lazy but Smart
+
+
+15th Aug:
+Task: Collect Sweets from All Florrs in the Building
+
+
+Recursion: Hard Worker:
+
+Start from Ground Floor: ALWAYS
+
+1st: 0-1
+2nd: 0-1-2
+3rd: 0-1-2-3
+4th: 0-1-2-3-4
+
+
+DP: Smart Worker
+
+Use a Lift
+
+1st: 0-1
+2nd: 1-2
+3rd: 2-3
+4th: 3-4
+
+
+
+Recursion: EVERYTIME leaf to root traversal for Each Node
+
+DP: Reads Values from the stored data
+
+
+
+CODE:
+
+fib(n) = fib(n-1) + fib(n-2)
+
+
+// Recursive Code
+
+int fib(int n)
+{
+    if (n<=1)
+        return n;
+
+    return fib(n-1) + fib(n-2);
+}
+
+TC: O(2^N)
+SC: O(1) - In Memory
+    O(N) - Auxiliary Memory
+
+
+// DP Code
+
+
+int fibdp(int n)
+{
+    int res[n+1]; // Storing the State Results
+    res[0] = 0;
+    res[1] = 1;
+
+    for (i=2; i<=n; i++)
+        res[i] = res[i-1] + res[i-2];
+
+    return res[n]; // Nth Fibonacci Number
+}
+
+TC:  O(N)
+SC:  O(N)
+
+
+
+0 1 1 2 3 5 8 13 21.....
+
+Calculate fib(3):
+
+Recursion: 0 1 1 2
+DP: 1+1 = 2 = fib(2) + fib(1)
+
+
+
+
+
+DP: 
+
+Store the Results of previous subproblems so that it can be used again.
+
+
+NO NEED TO RE-CALCULATE AGAIN AND AGAIN
+
+
+
+
+
+
+IMP: 
+
+How to Solve Any DP Question in World?
+
+
+
+(1) Identify:
+
+Maximum, Minimum, Shortest, Largest, Smallest, Number of Ways, 
+Count, Permutations etc etc - Mathematical Operations -- DP
+
+Eg:
+
+"Longest" Common Subsequence (LCS) between two Strings - DP
+Underlying Algo: DP
+
+Keywords: Underlying Algo
+Constraints: TC and SC
+
+(2) Decide a State Expression
+Shortcut: Replace N with K
+
+state(k) = ?
+NOTE: ALWAYS MENTIONED IN THE QUESTION
+
+(3) Formulate a State Relation - IMP
+
+- How does the current state result relates to previous state results
+
+
+state(k) ----> state(k-1) or state(k-2) etc
+
+
+(4) Optimisation - Memorisation/Memoisation (Top Down/Bottom Up)
+
+Higher Order DP: 2D and Above
+
+
+
+
+
+
+
+
+
+Q: LC - 70: Climbing Stairs
+https://leetcode.com/problems/climbing-stairs/
+
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. 
+In how many distinct ways can you climb to the top?
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ 
+
+Constraints:
+
+1 <= n <= 45
+
+
+
+Solution:
+
+
+(1) Identify - DONE 
+"How many Ways" - DP
+
+
+(2) Decide a State Expression
+Shortcut: Replace N with K
+
+state(k) = Number of Ways to reach Kth Stair Using 1 or 2 Step
+
+Answer = state(N) = Number of Ways to reach Nth Stair Using 1 or 2 Step
+
+NOTE: ALWAYS MENTIONED IN THE QUESTION
+
+
+
+
+(3) Formulate a State Relation - IMP
+
+- How does the current state result relates to previous state results
+
+state(k) = state(k-1) + state(k-2)        
+
+
+
+
+
+Reach 5th Stair:
+
+4th Stair: 1 Step
+3rd Stair: 2 Steps
+
+
++: OR
+*: AND
+
+Number of Ways to reach 5th Stair
+= Number of Ways to reach 4th Stair
+ + (OR)
+ Number of Ways to reach 3rd Stair
+
+
+
+state(5) = state(4) + state(3)
+        = state(5-1) + state(5-2)
+
+
+state(k) = state(k-1) + state(k-2)        
+
+fib(n) = fib(n-1) + fib(n-2)
+
+
+REC: TLE
+DP: Pass All TC
+
+
+
+
+
+
+
+
+
+
 
 
 
