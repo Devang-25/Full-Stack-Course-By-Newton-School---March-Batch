@@ -17594,19 +17594,20 @@ Q-3: [Paypal] Removing chocolates
 
 
 A box contains a number of chocolates that can only be removed 1 at a time or 3 at a a time. 
-How many ways can the box be emptied?
+"How many ways" can the box be emptied?
 
 The answer can be very large so return it modulo of 10^9+7
 
-For example, there are n = 7 chocolates initially. They can be removed nine ways as follows:
+For example, there are n = 7 chocolates initially. 
+They can be removed nine ways as follows:
 
 (1,1,1,1,1,1,1)
-(1,1,1,1,3)
+(1,1,1,1,3) - 5!/4!= 5
 (1,1,1,3,1)
 (1,1,3,1,1)
 (1,3,1,1,1)
 (3,1,1,1,1)
-(1,3,3)
+(1,3,3) - 3!/2!= 3
 (3,1,3)
 (3,3,1)
 
@@ -17660,9 +17661,9 @@ OR
 (1) Identify - DONE
 "How many ways" - DP
 
-(2) state(k) = Number of Ways to remove K Chocolates by removing 1 or 3 at a time
+(2) state(n) = Number of Ways to remove N Chocolates by removing 1 or 3 at a time
 
-state(n) = Number of Ways to remove N Chocolates by removing 1 or 3 at a time
+state(k) = Number of Ways to remove K Chocolates by removing 1 or 3 at a time
 
 
 (3) state(k) = state(k-1) + state(k-3)
@@ -17793,14 +17794,361 @@ class Main
 
 
 
-Q-4: [Microsoft]: Next Class
-
-Q-5: [Google] Uncertian Steps: Next Class
 
 
 
 
 
+
+
+
+
+
+
+Date : 2nd June 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Agenda:
+
+- Introduction to DP- DONE
+- DP vs Backtracking vs Greedy- DONE
+- DP vs Recursion- Real Life Example- DONE
+
+
+Questions
+- Removing Chocolates- Paypal: DONE
+- Uncertain Steps- Google: 
+- max Steps - Amazon: DONE
+- [Adobe] Q: Variation of Sum of Numbers- 1,3,5: DONE
+
+
+2D DP:
+- Goldmine- Microsoft
+- Maximum size square sub-matrix with all 1s- Paypal
+
+- OOPS
+- Quick Sort
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+
+
+
+
+Q-4: [Microsoft]: Variation of Sum of Numbers
+
+Given 3 Numbers {1,3,5}
+Tell me the "Total Number of Ways" to form a number N
+using sum of three Numbers {1,3,5}
+
+Note: 
+
+Repetitions and Arrangements are Allowed
+
+IP: 6
+OP: 8 
+
+[1 1 1 1 1 1]
+[1 5]
+[1 1 1 3] -4!/3! = 4
+[1 1 3 1]
+[1 3 1 1]
+[3 1 1 1]
+[3 3]
+[5 1]
+
+Total = 8 Ways
+
+
+
+Solution:
+
+(1) Identify: 
+"Total Number of Ways" - DONE
+
+(2) Define State Expression:
+
+state(N) = Number of Ways to make "N" using sum of {1,3,5}
+
+state(K) = Number of Ways to make "K" using sum of {1,3,5}
+
+(3) Formulate the State Relation:
+
+
+To make 7 using {1,3,5}
+
+6th: 6+1 = 7
+4th: 4+3 = 7
+2nd: 2+5 = 7
+
+
+state(7) = state(7-1) + state(7-3) + state(7-5)
+
+
+state(k) = state(k-1) + state(k-3) + state(k-5)
+
+
+                     7
+               2     4    6     
+              1     1 3   1 3 5
+
+
+2^0 + 2^1 + 2^2 +......= 2^n
+
+
+
+Rec: O(3^N) : TLE
+
+DP: O(N): All TC Passed
+
+
+
+
+
+
+
+Q-5: [Google] Uncertian Steps
+
+
+Codu is trying to go down stairs from his building to ground floor.
+
+
+He can go 3 ways:
+
+- Walk 1 step at a time.
+- Extend his legs and go 2 steps at a time.
+- Jump down 3 steps at a time.
+
+Given n steps, calculate the number of possible ways to reach the ground floor, 
+provided he can jump 3 steps at most once during this process.
+
+That is, he can jump down 3 steps only once, but at any time, if he wishes, while walking down the stairs.
+
+Constraints
+1 <= N <= 1000000.
+
+Input Format
+
+Single Integer denoting the number of Steps, N
+
+Output
+
+Number of ways to reach ground floor.
+As the number can be huge, give output modulo 1000000007.
+
+Example Input 1
+4
+Output
+7
+
+Explanation
+1, 1, 1, 1
+1, 2, 1
+1, 1, 2
+1, 3
+2, 1, 1
+2, 2
+3, 1
+
+Number of ways = 7.
+
+
+
+
+Solution:
+
+
+
+
+Trick:
+
+1: Infinite
+2: Infinite
+3: 0 or 1 Time (At Most Once)
+
+
+
+
+state(k) = state(k-1) + state(k-2) + state(k-3)
+- Infinite 1,2 and 3
+
+
+
+
+Solution:
+
+
+int cnt = 0;
+
+if (cnt<1)
+{
+// Counting Combination of {1,2,3}
+state(k) = state(k-1) + state(k-2) + state(k-3)
+++cnt;
+}
+
+else
+{
+// Counting Combination of {1,2}
+state(k) = state(k-1) + state(k-2)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q-6: [Google] 2D DP - Goldmine
+
+
+Matrix: MxN
+
+Start: First Column, Any Row
+End: Last Column, Any Row
+
+
+Directions: Right, Right Up, Right Down
+
+
+Task: Collect "Maximum Gold Coins"
+
+
+
+
+IP:
+
+m = 4
+n = 4
+
+
+1 3 1 5
+2 2 4 1
+5 0 2 3
+0 6 1 2
+
+OP: 
+16
+
+
+Current position: 4
+
+Right : 1 (East)
+Right Up: 5 (North East)
+Right Down: 3 (South East)
+
+
+5-6-2-4-5: INVALID
+
+5-2-4-5: VALID: = 16: ANS
+
+5-6-2-3 = VALID: = 16: ANS
+
+5 0 6 1 2 4 1 5: INVALID
+
+5 6 2 4 1 5: INVALID
+
+
+OP: 16
+
+
+DP: First Find All Ways ---> Select the Max
+
+
+
+
+
+
+Solution:
+
+
+(1) Identify: DONE
+
+"Maximum Gold Coins"
+
+
+(2) Decide a State Expression:
+
+
+state(i,j) = Maximum Amount of Gold Coins Collected till (i,j) by travelling
+            RIGHT, RIGHT UP or RIGHT DOWN
+
+
+(3) Formulate the State Relation:
+
+i,j --> Right, Right Up or Right Down
+
+
+Ans = MAX(Right, Right Up, Right Down)
+return Ans;
+
+
+
+- Direction Matrix/ Direction Map
+
+
+curr: i, j
+
+Right: 
+
+Right Up: 
+
+Right Down:
+
+
+
+
+
+1 3 1 5
+2 2 4 1
+5 0 2 3
+0 6 1 2
+
+
+Curr Element: 4: [1][2]
+
+Up: i-1, j: row-1, col
+
+Down: i+1, j: row+1, col
+
+Left: i, j-1: row, col-1
+
+Right: i, j+1: row, col+1
+
+Right Up: i-1, j+1: row-1, col+1
+
+Right Down: i+1 , j+1: row+1, col+1
+
+
+
+
+mat[i][j] = Math.max(mat[i][j+1], mat[i-1][j+1], mat[i+1][j+1]);
+                    RIGHT          RIGHT UP          RIGHT DOWN
+                
+
+
+CODE: Next Class
+
+
+
+
+
+
+
+Assignment Questions
 
 
 
