@@ -17062,7 +17062,7 @@ At 1: Select 100
 After Reaching 100, Never be able to reach 2000
 
 
-Greedy does not write answer Always.
+Greedy does not give correct answer Always.
 
 
 
@@ -17090,6 +17090,21 @@ O(2^N) --> O(N)
 
 State Variables:
 Number of Variables Determining the State of DP
+
+arr =  [10 20 30 40 50]
+index = [0 1 2 3 4]
+
+arr[index] = val: 1 State Variable: 1 D DP
+
+
+mat = 
+[
+[1 2 3]
+[4 5 6]
+[7 8 9]
+]
+
+mat[row][col] -> Uniquley Identify a Value: 2 State Variables: 2 D DP
 
 
 
@@ -17139,8 +17154,8 @@ for (i = 2)..
 TREE DIAGRAM:
 
 
-                      5 - YOU
-              x+y: 4       3        
+                      5 - YOU: x+y+x = 2*x + y
+              x+y: 4       3 (x)       
             (x) 3 (y)2    2  1   
               2  1  1 0  1 0   
 GROUND       1 0  
@@ -17291,10 +17306,11 @@ Higher Order DP: 2D and Above
 
 
 
-Q: LC - 70: Climbing Stairs
+Q: [Amazon] LC - 70: Climbing Stairs
 https://leetcode.com/problems/climbing-stairs/
 
-You are climbing a staircase. It takes n steps to reach the top.
+You are climbing a staircase. 
+It takes n steps to reach the top.
 
 Each time you can either climb 1 or 2 steps. 
 In how many distinct ways can you climb to the top?
@@ -17386,6 +17402,13 @@ DP: Pass All TC
 
 
 
+Variations:
+
+(1) Ground Stair ---> Nth Stair: Climb Up 1/2 Step at A Time
+(0 to N Using 1 Or 2)
+
+(2) Nth Stair ---> Ground Stair: Climb Down 1/2 Step at A Time
+(N to 0 Using 1 or 2)
 
 
 
@@ -17395,6 +17418,384 @@ DP: Pass All TC
 
 
 
+
+
+
+
+Date : 1st June 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO
+
+
+Agenda:
+
+- Introduction to DP- DONE
+- DP vs Backtracking vs Greedy- DONE
+- DP vs Recursion- Real Life Example- DONE
+
+
+Questions
+- Removing Chocolates- Paypal: DONE
+- Uncertain Steps- Google: 
+- max Steps - Amazon: DONE
+- [Adobe] Q: Variation of Sum of Numbers- 1,3,5: DONE
+
+
+2D DP:
+- Goldmine- Microsoft
+- Maximum size square sub-matrix with all 1s- Paypal
+
+- OOPS
+- Quick Sort
+- Assignment Questions
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+
+
+N Values, All Unique
+Total Number of Permutations (Ways) = N!
+
+
+N Values, K values are Repeated, 
+Total Number of Permutations (Ways) = N!/K!
+
+
+[1 2 3] N =3, K = 0
+
+Total Ways = 3!= 6
+
+[1 2 3]
+[1 3 2]
+[2 1 3]
+[2 3 1]
+[3 1 2]
+[3 2 1]
+
+
+
+Q-2: [Adobe] "Number of Ways" to make N as sum of {1,2}
+
+- All Permutations and Combinations are Allowed
+
+
+Eg: N = 5
+OP: 8
+
+Ways: 
+
+[1 1 1 1 1] - 1 Way
+[2 2 1] - 3!/2!= 3 Ways
+[2 1 2]
+[1 2 2]
+[1 1 1 2] - 4!/3! = 4
+[1 2 1 1]
+[1 1 2 1]
+[2 1 1 1]
+
+
+OP: 8
+
+
+
+
+Solution:
+
+
+(1) Identify - DONE 
+"Number of Ways" - DP
+
+
+(2) Decide a State Expression
+Shortcut: Replace N with K
+
+Answer = state(N) = Number of Ways to make N as sum of {1,2}
+
+state(k) = Number of Ways to make K as sum of {1,2}
+
+
+NOTE: ALWAYS MENTIONED IN THE QUESTION
+
+
+
+(3) Formulate a State Relation - IMP
+
+- How does the current state result relates to previous state results
+
+state(k) =  state(k-1) + state(k-2)
+
+
+
+
+
+
+Make 5 as sum of 1 or 2:
+
+
+5
+= 4 + 1 
+   OR
+  3 + 2 
+
+
+
+state(5) = state(4) + state(3)
+        = state(5-1) + state(5-2)
+
+state(k) = state(k-1) + state(k-2)
+
+
+state(1) = 1 //[1]
+state(2) =  2 //[1,1], [2]
+state(3) = 2+1 = 3 
+state(4) = 3+2 = 5 
+state(5) = 5+3 = 8: ANS     
+
+
+
+CODE:
+
+int solution(int n)
+{
+    int res[n+1]; // Storing the State Results
+    res[0] = 0;
+    res[1] = 1;
+
+    for (i=2; i<=n; i++)
+        res[i] = res[i-1] + res[i-2];
+
+    return res[n]; // Nth Number as Sum of {1,2}
+}
+
+TC:  O(N)
+SC:  O(N)
+
+
+
+- Fibbonacci
+- Max Steps: Top to Bottom
+- Max Steps: Bottom to Top
+- 0 to N as sum of {1,2}
+- N to 0 as sum of {1,2}
+
+
+
+- SAME QUESTIONS
+
+
+
+
+
+
+
+Q-3: [Paypal] Removing chocolates
+
+
+A box contains a number of chocolates that can only be removed 1 at a time or 3 at a a time. 
+How many ways can the box be emptied?
+
+The answer can be very large so return it modulo of 10^9+7
+
+For example, there are n = 7 chocolates initially. They can be removed nine ways as follows:
+
+(1,1,1,1,1,1,1)
+(1,1,1,1,3)
+(1,1,1,3,1)
+(1,1,3,1,1)
+(1,3,1,1,1)
+(3,1,1,1,1)
+(1,3,3)
+(3,1,3)
+(3,3,1)
+
+Input format: Single line represents the no of chocolates in the box.
+
+Output format: The number of ways of removing the chocolates modulo 10^9 + 7
+
+Constraints:
+
+1 <= n <= 10^9
+
+Sample Input 1 :
+
+1
+Sample Output 1 :
+
+1
+Explanation:: There is only one way to remove a chocolate, so
+
+ans = 1 % 1000000007 = 1
+Sample Input 2 :
+
+3
+Sample Output 2 :
+
+2
+Explanation: There are two ways to remove all the chocolates.
+
+remove all 3 at once,
+remove one after the other, so
+ans = 2 % 1000000007 = 2.
+
+
+
+
+
+
+
+
+
+
+Solution:
+
+N ----> 0 by Removing {1,3}
+
+OR
+
+0 ----> N by Adding {1,3}
+
+
+(1) Identify - DONE
+"How many ways" - DP
+
+(2) state(k) = Number of Ways to remove K Chocolates by removing 1 or 3 at a time
+
+state(n) = Number of Ways to remove N Chocolates by removing 1 or 3 at a time
+
+
+(3) state(k) = state(k-1) + state(k-3)
+
+
+10 Chocolates 
+= 9 Chocolates (Removing 1)
+ +  
+ 7 chocolates (Removing 3)
+
+
+
+                                10    
+                             9      7   
+                          8  6    6  4   
+
+                            ...0
+
+
+state(10) = state(10-1) + state(10-3)
+
+state(k) = state(k-1) + state(k-3)
+
+
+CODE:
+
+state(k) = state(k-1) + state(k-2)
+- Need to Initialise First 2 Values
+
+
+state(k) = state(k-1) + state(k-3)
+- Need to Initialise First 3 Values
+
+
+state(k) = state(k-1) + state(k-p)
+- Need to Initialise First p Values
+
+
+
+1 or 3 Chocolates at a Time
+
+res[1] = 1 //[1]
+res[2] = 1 //[1,1]
+res[3] = 2 // [1,1,1], [3]
+
+res[4] = 3  // [1,1,1,1], [1,3], [3,1]
+       = res[4-1] + res[4-3]
+       = 2 + 1 = 3
+
+
+mod = 1000000007
+
+// Initialise First 3 Values
+res = [1 1 2] 
+
+
+for (i=3; i<=n; i++)
+{
+res[i] = ((res[i-1] % mod) + (res[i-3] % mod)) % mod;
+}
+
+
+(a + b) mod m = (a mod m + b mod m) mod m
+
+
+
+CODE:
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+
+class Main
+{        
+
+    // state(k) = state(k-1) + state(k-2): Initialise 2 values in DP Ans
+    // state(k) = state(k-1) + state(k-3): Initialise 3 values in DP Ans
+    // state(k) = state(k-1) + state(k-p): Initialise p values in DP Ans
+
+
+    // 1 = [1] - 1 Way
+    // 2 = [1 1] - 1 Way
+    // 3 = [1 1 1], [3]  - 2 Ways
+    
+
+     static int mod = 1000000007;
+
+    static int removingChocolates(int n)
+    {
+        int[] ans = new int[n+1];
+        int i=0;
+        ans[0] = 1;
+        ans[1] = 1;
+        ans[2] = 2;
+        
+        for (i=3; i<=n; i++)
+        {
+            ans[i] = ((ans[i-1] % mod) + (ans[i-3] % mod)) % mod;
+        }
+        
+        return ans[n-1];
+        
+    }
+    
+    public static void main(String[] args)
+    {
+    Scanner s = new Scanner(System.in);
+    int n = s.nextInt();
+    System.out.println(removingChocolates(n));
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q-4: [Microsoft]: Next Class
+
+Q-5: [Google] Uncertian Steps: Next Class
 
 
 
