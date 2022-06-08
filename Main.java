@@ -18140,7 +18140,97 @@ mat[i][j] = Math.max(mat[i][j+1], mat[i-1][j+1], mat[i+1][j+1]);
                 
 
 
-CODE: Next Class
+CODE: 
+
+// "Zindagi Mein Harta Wahi Hai, Jisme Jitne Ki Bhookh Na Ho....- Alpha Droer: 22/05/2021"
+// Author: @devangs
+// T: O(M*N)
+// S: O(M*N)
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    
+    static final int MAX = 100;
+      
+    static int getMaxGold(int gold[][], int m, int n)
+    {
+        int goldTable[][] = new int[m][n];// dp[m][n]
+// goldTable[i][j] = Max No of Gold Coins Collected TILL (i,j) by Traversing in 3 Directions
+//  Directions = [Right, Right Up, RIght Down]
+    
+          
+        for(int[] rows:goldTable)
+            Arrays.fill(rows, 0);
+      
+        for (int col = n-1; col >= 0; col--)
+        {
+            for (int row = 0; row < m; row++)
+            {
+            /*
+            
+            Curr: i,j
+            
+            right: i,j+1
+            right up: i-1, j+1
+            right down: i+1, j+1
+            
+            */
+                  
+            // (i, j+1)
+            int right = (col == n-1) ? 0 : goldTable[row][col+1]; 
+      
+            // (i-1, j+1)
+            int right_up = (row == 0 || col == n-1) ? 0 : 
+                goldTable[row-1][col+1];
+      
+            // (i+1, j+1)
+            int right_down = (row == m-1 || col == n-1) ? 0 :
+                goldTable[row+1][col+1];
+      
+                // Max gold collected from taking
+                // either of the above 3 paths
+            goldTable[row][col] = 
+                gold[row][col] + Math.max(right, 
+                            Math.max(right_up, right_down));
+                                                          
+            }
+        }
+      
+
+        int res = goldTable[0][0];
+          
+        for (int i = 1; i < m; i++)
+            res = Math.max(res, goldTable[i][0]);
+              
+        return res;
+    }
+    
+    public static void main(String[] args) 
+    {
+    Scanner s = new Scanner(System.in);
+    int tc,m,n,i=0,j=0;
+    tc = s.nextInt();  
+    int[][] gold= new int[MAX][MAX];
+
+    while (tc-- > 0)
+    {
+        m = s.nextInt();
+        n = s.nextInt();
+        
+        for (i=0; i<m; i++)
+        {
+            for (j=0; j<n; j++)
+            {
+                gold[i][j] = s.nextInt();
+            }
+        }
+        
+        System.out.println(getMaxGold(gold, m, n));
+    }
+  }
+}
 
 
 
@@ -18148,7 +18238,759 @@ CODE: Next Class
 
 
 
-Assignment Questions
+
+
+
+
+
+
+Date : 7th June 2022
+Mentor: DEVANG SHARMA
+Batch: March Batch 2 - DRACO + AURIGA
+
+Agenda:
+
+DONE:
+- Introduction to DP- DONE
+- DP vs Backtracking vs Greedy- DONE
+- DP vs Recursion- Real Life Example- DONE
+Questions
+- Removing Chocolates- Paypal: DONE
+- Uncertain Steps- Google: 
+- max Steps - Amazon: DONE
+- [Adobe] Q: Variation of Sum of Numbers- 1,3,5: DONE
+2D DP:
+- Goldmine- Microsoft
+- Maximum size square sub-matrix with all 1s- Paypal
+
+TODO:
+
+- Assignment Questions
+- Rev Strings
+- Special Number (contest)
+- FLAMES ?
+- Leetcode: Group Anagrams: https://leetcode.com/problems/group-anagrams/
+- Leetcode: Valid Palindrome: https://leetcode.com/problems/valid-palindrome/
+- OOPS
+- Quick Sort
+
+"Please Type 'Hi' in the Chat Box if you have joined and Can See this Screen".
+
+
+
+Q: String Basics - In Class - Rev Strings
+
+
+
+Rev Strings
+
+Time Limit: 2 sec
+
+Memory Limit: 128000 kB
+
+Problem Statement
+You are given a string your task is to reverse the given string.
+Input
+The first line of the input contains a string.
+
+Constraints:-
+1 <= string length <= 100
+String contains only lowercase english letters
+
+Output
+The output should contain reverse of the input string.
+
+Example
+Sample Input
+abc
+
+Sample Output
+cba
+
+
+
+30 Sec, 
+Approach/Code, TC, SC
+
+
+Brute Force -> Optimised
+
+Solution:
+
+
+(1) Create Extra String, Run Loop from Right to Left
+
+string temp = "";
+for (i=n-1; i>=0; i--)
+    temp += s.charAt(i);
+
+
+T: O(N)
+S: O(N)
+
+(2) Swapping
+
+for (i=0; i<n/2; i++)
+    swap(s.charAt(i), s.charAt(n-i-1));
+
+"abcde"
+
+TC: O(N/2)
+SC: O(1) - In Place Solution
+
+
+(3) Two Pointer
+
+l = 0, r = n-1
+
+while (l<=r)
+{
+    swap(s.charAt(l), s.charAt(r));
+    l++;
+    r--;
+}
+
+TC: O(N/2)
+SC: O(1)
+
+(4) Simple Reverse Loop
+
+
+for (i=n-1; i>=0;i--) // N times - O(N)
+{
+    System.out.print(s.charAt(i));
+}
+
+T: O(N)
+S: O(1)
+
+(5) Using Reverse Method
+
+
+String s = "abcd";
+s.reverse(); --> No Function
+
+
+StringBuffer s2 = new StringBuffer(s);
+s2.reverse();
+
+
+
+StringBuilder s2 = new StringBuilder(s);
+s2.reverse();
+return s2.toString();
+
+
+
+TC: O(N)
+SC: O(N)
+
+
+(6) Using Stack:
+
+T: O(N)
+S: O(N)
+
+Stack: 1 2 3 4 5
+
+5 - TOP
+4
+3
+2
+1
+
+OP: 5 4 3 2 1
+
+Trick:
+
+Order of Insertion == Reverse of Order of Deletion --> Solved By Stack
+
+
+(1) Balanced Parentheses {[ ==]}, Order of Opening == Reverse of Order of Closing: STACk
+(2) NGE: Next Greater Element
+(3) Min Add to Make Valid Parenthesis
+(4) Daily Temperatures
+
+
+
+
+
+
+
+
+
+
+
+Q: String Basics - In Class - Special Number (contest)
+
+
+Special Number (contest)
+Easy
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+Problem Statement
+Given a number N, find out whether it is divisible by 3.
+Input
+The first and the only line of input contains the number N.
+
+Constraints
+1 <= N <= 10^100000 (N may consist of 100001 digits).
+
+
+No usual datatype will be able to input such large number.
+Output
+Output "Yes" if the number is divisible by 3, else output "No".
+Example
+Sample Input 1
+14
+
+Sample Output 1
+No
+
+Sample Input 2
+1234567890123456789012345678901234567890
+
+Sample Output 2
+Yes
+
+Explanation: In the first sample case, the number is not divisible by 3, 
+while in the second sample case, it is divisible by 3. (We know how weird this explanation is, but ok).
+
+
+
+
+Solution:
+
+Rule of Divisibility of 3:
+
+Any Number Divisible by 3
+= Sum of Digits as Multiple of 3
+
+"12345" + "67" : Concatenate
+= "123467"
+
+
+Approach:
+(1) Input String: Range is Very Large
+(2) Iterate Over String, Find Int value and add
+
+for (i=0; i<n; i++)
+    sum+= (s.charAt(i) - '0');
+
+
+if (sum %3 == 0)
+    s.o.p("Yes");
+else
+    s.o.p("No");
+
+
+
+"12345"
+
+int sum =0;
+s.charAt(0) = '1'-'0' = 1
+
+sum+= s.charAt(0) : Error
+int and char mismatch
+
+
+
+a: 97
+b: 98
+
+
+
+
+
+
+
+
+
+Q: String Basics - In Class - FLAMES ?
+
+
+FLAMES ?
+
+Time Limit: 2 sec
+Memory Limit: 128000 kB
+
+Problem Statement
+They say friendship is greater than love. Why not play the famous game "FLAMES".
+The rules are super simple. Given two strings (all lowercase), remove all the letters that are common to both the strings from both the strings. You cannot erase two characters corresponding to one character.
+
+For example, in the case
+String 1: saumya
+String 2: ansh
+You can remove only 1 'a' and 1 's' from both the strings.
+
+
+Remaining strings are:
+String 1: umya
+String 2: nh
+
+Now all you need to do is find the sum of the remaining strings length % 6.
+
+Output:
+If obtained value is 1, output "Friends"
+If obtained value is 2, output "Love"
+If obtained value is 3, output "Affection"
+If obtained value is 4, output "Marriage"
+If obtained value is 5, output "Enemy"
+If obtained value is 0, output "Siblings"
+
+Input
+You will be given two strings on different lines.
+
+Constraints
+1 <= Length of both the strings <= 100000
+
+Output
+Output a single string, the result of FLAMES test.
+
+
+Example
+
+Sample Input:-
+saumya
+ansh
+
+Sample Output:-
+Siblings
+
+Explanation:-
+after deleting characters :-
+str1 = umya
+str2 = nh
+sum = 4+2
+sum%6=0
+
+
+
+
+
+
+
+
+Approach:
+
+s1, s2: Common Elements
+Delete Common Elements
+Count sum of length
+Check sum%6
+
+
+
+Solution:
+
+
+
+(1) Brute Force: O(M*N)
+
+s1: "saumya"
+s2: "ansh"
+
+For Each char in s1, 
+Iterate All chars in s2
+
+
+
+(2) Storing Mapping: O(M+N)
+
+"saumya"
+"ansh"
+
+
+Map1:
+
+s: 1
+a: 2
+u: 1
+m: 1
+y: 1
+
+Map2:
+
+a: 1
+n: 1
+s: 1
+h: 1
+
+
+
+
+Math.abs(Map1[i]-Map2[i])
+
+s: 0
+a: 1
+u: 1
+m: 1
+y: 1
+n: 1
+h: 1
+
+Total = 6
+
+
+
+sum += Math.abs(Map1[i]-Map2[i]);
+
+sum % 6 --> FLAMES
+
+
+
+DS for Mapping?
+(1) Map: HashMap, LinkedHashMap, TreeMap
+- Order Not Required, Only Diff is Required
+
+
+(2) Array Can be Used
+
+s1: lower emglish albhabet: 26 chars
+s2: lower emglish albhabet: 26 chars
+
+
+int freq1[26]
+int freq2[26]
+
+"saumya"
+"ansh"
+
+
+freq1:
+
+s: 1
+a: 2
+u: 1
+m: 1
+y: 1
+
+freq2:
+
+a: 1
+n: 1
+s: 1
+h: 1
+
+
+"abcda"
+int arr[] = new int[26];
+HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+SC: Array: O(26)
+SC: Map: O(4)
+
+Map:
+
+a: 2
+b: 1
+c: 1
+d: 1
+
+map.size() = 4
+
+
+
+
+map.size() = O(K)
+K <= 26
+
+arr size = 26: ALWAYS
+O(26)
+
+
+
+
+(2) Optimising sum % 6 --> FLAMES
+
+
+(A) Switch: 6+1(default) Conditions
+T: O(1)
+S: O(1)
+
+(B) N % K = Range of OP: 0 to K-1
+
+    sum % 6 : 0 to 5
+
+
+string ans[6] = ["F", "L"...."S"]
+
+return ans[sum%6];
+
+T: O(1)
+
+arr[idx] = O(1)
+
+S: O(6)
+
+
+
+
+CODE:
+
+import java.io.*;
+import java.util.*;
+
+class Main
+{
+    public static void main(String[] args)
+    {
+        Scanner s = new Scanner(System.in);
+        String s1 = s.next();
+        String s2 = s.next();
+        String[] a= new String[6];
+        a[1]= "Friends";
+        a[2]= "Love";
+        a[3]="Affection";
+        a[4]= "Marriage";
+        a[5]= "Enemy";
+        a[0]= "Siblings";
+
+        int[] freq1= new int[26];
+        int[] freq2= new int[26];
+        int i=0;
+
+        for(i=0;i<26;i++)
+        {
+            freq1[i]=0;
+            freq2[i]=0;
+        }
+
+        for(i=0;i<s1.length();i++)
+        {
+            freq1[s1.charAt(i)-'a']++;
+        }
+
+        for(i=0;i<s2.length();i++)
+        {
+            freq2[s2.charAt(i)-'a']++;
+        }
+
+        int sum=0;
+
+        for(i=0;i<26;i++)
+        {
+           sum += Math.abs(freq1[i]-freq2[i]);
+        }
+
+        System.out.println(a[sum%6]);
+    }
+}
+
+
+TC: O(26) + O(26) + O(M) + O(N) = O(M+N)
+SC: O(26) + O(26) + O(6)
+
+
+Brute Force Code: O(M*N)
+
+
+import java.io.*; // for handling input/output
+import java.util.*; // contains Collections framework
+
+// don't change the name of this class
+// you can add inner classes if needed
+class Main {
+    public static void main (String[] args) {
+            Scanner sc = new Scanner(System.in);
+            String s1 = sc.nextLine();
+            String s2 = sc.nextLine();
+            int freq1[]=new int[26];
+            int freq2[]=new int[26];
+            for(int i=0;i<s1.length();i++)
+            {
+                freq1[s1.charAt(i)-'a']++;
+            }
+            for(int j=0;j<s2.length();j++)
+            {
+                freq2[s2.charAt(j)-'a']++;
+            }
+            int count=0;
+            for(int i=0;i<26;i++)
+            {
+                if(freq1[i]!=0)
+                {
+                    if(freq2[i]!=0)
+                    {
+                        count +=Math.abs(freq1[i]-freq2[i]);
+                    }
+                    else
+                    {
+                        count +=freq1[i];
+                    }
+                }
+                else
+                {
+                    count +=freq2[i];
+                }
+            }
+            switch(count%6)
+            {
+                case 1:
+                System.out.println("Friends");
+                break;
+                case 2:
+                System.out.println("Love");
+                break;
+                case 3:
+                System.out.println("Affection");
+                break;
+                case 4:
+                System.out.println("Marriage");
+                break;
+                case 5:
+                System.out.println("Enemy");
+                break;
+                default:
+                System.out.println("Siblings");
+            }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q: LC-49: Group Anagrams
+https://leetcode.com/problems/group-anagrams/
+
+
+Given an array of strings strs, group the anagrams together. 
+You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Example 2:
+
+Input: strs = [""]
+Output: [[""]]
+
+Example 3:
+
+Input: strs = ["a"]
+Output: [["a"]]
+ 
+
+Constraints:
+
+1 <= strs.length <= 104
+0 <= strs[i].length <= 100
+strs[i] consists of lowercase English letters.
+
+
+
+Definition of Anagrams:
+
+
+
+Anagram: Variation/Permutation of Word
+- All Permutations of characters of a Word
+
+
+Eg: 
+
+cat - tac, cta, act: Anagrams 
+
+rat - rta, tar, tra, atr, art: Anagrams
+
+cat, rat: Not Anagrams
+
+
+
+
+
+CODE:
+
+
+public List<List<String>> groupAnagrams(String[] strs) {
+        
+    }
+
+
+
+
+Solution:
+
+
+"cat", "act"
+
+
+Two Ways:
+(1) Sort 
+
+cat --> act
+act --> act
+
+if s1==s2 after sorting: YES
+
+(2) Map and Frequency
+
+s1
+c: 1
+a: 1
+t: 1
+
+s2
+c: 1
+a: 1
+t: 1
+
+2 Maps Also, map1 == map2
+
+1 Map, All Key Values == 0: YES
+
+
+
+
+Solution:
+
+(1) Sort all the array --> All Strings same: Anagram: O(NlogN)
+
+(2) Map<String, List<String>> map = new Map<String, List<String>>();
+
+If Already exist, append in map
+Else
+Put in Map
+
+"cat", "act", "tca"
+
+act, act, act
+
+Map:
+
+"act": [["cat", "act", "tca"]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
